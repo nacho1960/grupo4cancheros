@@ -1,0 +1,37 @@
+body, :root{
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+   
+}
+
+header, footer{
+    display: flex;
+    align-items: center;
+    background-color: red;
+    padding: 15px;
+}
+
+header{
+    position: sticky;
+    top: 0;
+    justify-content: space-between;
+}
+
+footer{
+    justify-content: left;
+    gap: 10px;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    
+    
+}
+
+
+@media (max-width: 600px){
+    header, footer{
+        flex-direction: column;
+    }
+}

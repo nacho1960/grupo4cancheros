@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancheros</title>
+    <link rel="stylesheet" href="../index.css">
+    <script src="https://kit.fontawesome.com/e50f04e157.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../js/addProd.js"></script>
+    <script type="text/javascript" src="../js/addCat.js"></script>
+</head>
+
+<body>
+    <header>
+        <a href="../index.html"><img src="" alt="logo"></a>
+        <div>
+            <button>Crear Cuenta</button>
+            <button>Iniciar Sesión</button>
+        </div>
+    </header>
+
+    <main>
+        <!---Panel de administración--->
+        <p>Bienvenido Administrador</p>
+        <button id="addProd">Agregar producto</button>
+        <button id="addCat">Agregar categoría</button>
+
+        <!---Formulario para agregar producto--->
+        
+        <form id="formProd">
+            <h3>Agregar producto</h3>
+
+            <input type="text" placeholder='Nombre' id="nombreProd" required/>
+
+            <div id="radioCat"></div>
+
+            <input type="file" name="imagen1" id="imagen1" accept="image/*"/>
+
+            <input type="file" name="imagen2" id="imagen2" accept="image/*"/>
+
+            <input type="file" name="imagen3" id="imagen3" accept="image/*"/>
+
+            <button type='sumbit'>Agregar producto</button>
+        </form>
+
+        <!---Formulario para agregar categoría--->
+        
+        <form id="formCat">
+            <h3>Agregar categoría</h3>
+            <input type="text" placeholder="Nombre" id="nombreCat" required>
+
+            <h4>Descripción</h4>
+            <h5>Dimensiones</h5>
+                <label for="cancha">Cancha</label>
+                <input type="text" name="cancha" id="cancha" required>
+
+                <label for="arco">Arco</label>
+                <input type="text" name="arco" id="arco" required>
+
+            <h5>Material de la cancha</h5>
+            <input type="text" name="material" id="material" required>
+
+            <button type="submit">Agregar categoría</button>
+        </form>
+    </main>
+
+    <footer>
+        <img src="" alt="logo">
+        <i class="fa-regular fa-copyright"></i>
+        <p>2024</p>
+    </footer>
+
+</body>
+
+</html>

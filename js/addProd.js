@@ -1,0 +1,99 @@
+window.addEventListener('load', function () {
+    const buttonAddProduct = document.getElementById('addProd');
+    const formProd = document.getElementById('formProd');
+    const formCat = document.getElementById('formCat');
+    var radioCat = document.getElementById('radioCat')
+    
+    formProd.style.display = 'none';
+    formCat.style.display = 'none';
+
+    buttonAddProduct.addEventListener('click', function () {
+        formProd.style.display = 'block';
+        formCat.style.display = 'none';
+    });
+
+    //Obtener las categorias desde la API
+    const categorias = ["Fútbol 5", "Fútbol 11", "Fútbol Sala"];
+
+    //Por cada categoría crea un radio
+    categorias.forEach(function (categoria) {
+        var radioLabel = document.createElement("label");
+        var radioInput = document.createElement("input");
+        radioInput.type = "radio";
+        radioInput.value = categoria;
+        radioInput.name = "tipoCancha";
+        radioLabel.appendChild(radioInput);
+        radioLabel.appendChild(document.createTextNode(categoria));
+        radioCat.appendChild(radioLabel);
+    });
+
+    //Ante un submit del formulario se ejecutará la siguiente función
+    formProd.addEventListener('submit', function (event) {
+        event.preventDefault();
+        //Creamos un JSON que tendrá los datos del nuevo producto
+        const formData = {
+            nombre: document.querySelector('#nombreProd').value,
+            categoria: document.querySelector('input[name="tipoCancha"]:checked').value,
+            imagenes: []
+        };
+
+        // Obtener las imágenes y agregarlas al FormData
+        const imagenes = [
+            document.querySelector('#imagen1').files[0],
+            document.querySelector('#imagen2').files[0],
+            document.querySelector('#imagen3').files[0]
+        ];
+
+        for (const imagen of imagenes) {
+            if (imagen) {
+                formData.imagenes.push(imagen);
+            }
+        }
+
+        console.log(formData);
+        
+        formProd.reset()
+
+    })
+
+    
+
+    /* Invocamos utilizando la función fetch la API Cacheros con el método POST que guardará al producto que enviaremos en formato JSON
+    const url = ;
+    const settings = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    }
+ 
+    fetch(url, settings)
+        .then(response => response.json())
+        .then(data => {
+            let successAlert = <p> Producto agregado correctamente. </p>
+ 
+            console.log(successAlert);
+ 
+            document.querySelector('#response').innerHTML = successAlert;
+            document.querySelector('#response').style.display = 'block';
+            formProd.reset()
+ 
+        })
+        .catch(error => {
+            //Lógica para consultar al back si el nombre del producto esta repetido. 
+            //Si el nombre esta repetido. 
+            let errorAlert = <p> Error al agregar el producto: ya existe un producto con ese nombre.</p>
+ 
+            document.querySelector('#response').innerHTML = errorAlert;
+            document.querySelector('#response').style.display = "block";
+
+            formProd.reset()
+        })*/
+
+})
+
+
+
+
+

@@ -5,8 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cancheros</title>
-    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/adm.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/e50f04e157.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <script type="text/javascript" src="../js/addProd.js"></script>
     <script type="text/javascript" src="../js/addCat.js"></script>
 </head>
@@ -15,51 +21,59 @@
     <header>
         <a href="../index.html"><img src="" alt="logo"></a>
         <div>
-            <button>Crear Cuenta</button>
             <button>Iniciar Sesión</button>
+            <button>Regístrate</button>
         </div>
     </header>
 
     <main>
         <!---Panel de administración--->
-        <p>Bienvenido Administrador</p>
-        <button id="addProd">Agregar producto</button>
-        <button id="addCat">Agregar categoría</button>
+        <div id="panelAdm">
+            <h2>Bienvenido Administrador</h2>
+            <button id="addProd">Agregar producto</button>
+            <button id="addCat">Agregar categoría</button>
+        </div>
 
         <!---Formulario para agregar producto--->
-        
         <form id="formProd">
-            <h3>Agregar producto</h3>
+            <h2>Agregar producto</h2>
 
-            <input type="text" placeholder='Nombre' id="nombreProd" required/>
+            <label>
+                <h4>Nombre</h4>
+            </label>
+            <input type="text" id="nombreProd" required />
 
-            <div id="radioCat"></div>
+            <div id="radioCat">
+                <h4>Categoría</h4>
+            </div>
 
-            <input type="file" name="imagen1" id="imagen1" accept="image/*"/>
+            <div id="image">
+                <h4>Imagen</h4>
 
-            <input type="file" name="imagen2" id="imagen2" accept="image/*"/>
-
-            <input type="file" name="imagen3" id="imagen3" accept="image/*"/>
+                <input type="file" name="imagen" id="imagen" accept="image/*" />
+            </div>
 
             <button type='sumbit'>Agregar producto</button>
         </form>
 
         <!---Formulario para agregar categoría--->
-        
+
         <form id="formCat">
-            <h3>Agregar categoría</h3>
-            <input type="text" placeholder="Nombre" id="nombreCat" required>
+            <h2>Agregar categoría</h2>
 
-            <h4>Descripción</h4>
-            <h5>Dimensiones</h5>
-                <label for="cancha">Cancha</label>
-                <input type="text" name="cancha" id="cancha" required>
+            <label for="">
+                <h4>Nombre</h4>
+            </label>
+            <input type="text" id="nombreCat" required>
 
-                <label for="arco">Arco</label>
-                <input type="text" name="arco" id="arco" required>
+            <div id="desCat">
+                <h4>Descripción</h4>
+                <label for="campo">Tamaño del campo en m (L x A)</label>
+                <input type="text" name="campo" id="campo" required>
 
-            <h5>Material de la cancha</h5>
-            <input type="text" name="material" id="material" required>
+                <label for="">Material del campo</label>
+                <input type="text" name="material" id="material" required>
+            </div>
 
             <button type="submit">Agregar categoría</button>
         </form>

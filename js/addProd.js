@@ -13,7 +13,7 @@ window.addEventListener('load', function () {
     });
 
     //Obtener las categorias desde la API
-    const categorias = ["Fútbol 5", "Fútbol 11", "Fútbol Sala"];
+    const categorias = ["Fútbol", "Handball", "Basket", "Tenis"];
 
     //Por cada categoría crea un radio
     categorias.forEach(function (categoria) {
@@ -21,8 +21,9 @@ window.addEventListener('load', function () {
         var radioInput = document.createElement("input");
         radioInput.type = "radio";
         radioInput.value = categoria;
-        radioInput.name = "tipoCancha";
+        radioInput.name = "tipo";
         radioLabel.appendChild(radioInput);
+        radioLabel.style.marginRight = "10px";
         radioLabel.appendChild(document.createTextNode(categoria));
         radioCat.appendChild(radioLabel);
     });
@@ -33,22 +34,9 @@ window.addEventListener('load', function () {
         //Creamos un JSON que tendrá los datos del nuevo producto
         const formData = {
             nombre: document.querySelector('#nombreProd').value,
-            categoria: document.querySelector('input[name="tipoCancha"]:checked').value,
-            imagenes: []
+            categoria: document.querySelector('input[name="tipo"]:checked').value,
+            imagen: document.querySelector('#imagen')
         };
-
-        // Obtener las imágenes y agregarlas al FormData
-        const imagenes = [
-            document.querySelector('#imagen1').files[0],
-            document.querySelector('#imagen2').files[0],
-            document.querySelector('#imagen3').files[0]
-        ];
-
-        for (const imagen of imagenes) {
-            if (imagen) {
-                formData.imagenes.push(imagen);
-            }
-        }
 
         console.log(formData);
         

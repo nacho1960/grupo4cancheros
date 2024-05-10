@@ -14,8 +14,7 @@ window.addEventListener('load', function () {
         //Creamos un JSON que tendrá los datos de la nueva categoría
         const formData = {
             nombre: document.querySelector('#nombreCat').value,
-            dimCancha: document.querySelector('#cancha').value,
-            dimArco: document.querySelector('#arco').value,
+            dimCancha: document.querySelector('#campo').value,
             material: document.querySelector('#material').value,
         };
 

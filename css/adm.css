@@ -1,0 +1,72 @@
+main{
+    display: grid;
+    gap: 50px;
+    grid-template-columns: 1fr 2fr;
+    flex-grow: 1;
+}
+
+h2 {
+    color: var(--color-text);
+}
+
+h4 {
+    margin-bottom: 0;
+}
+
+
+/*Panel administrador*/
+#panelAdm{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#panelAdm button{
+    border: none;
+    padding: 10px;
+    background-color: var(--bg-primary-button-pan-adm);
+}
+
+#panelAdm button:hover{
+    background-color: var(--color-text);
+}
+
+#panelAdm h2{
+    align-self: center;
+}
+
+/*Formularios*/
+#formProd, #formCat, #image, #desCat{
+    display: flex;
+    flex-direction: column;
+}
+
+#image, #desCat{
+    gap: 5px; 
+}
+
+#formProd button, #formCat button{
+    margin-top: 30px;
+    background-color: #235C9F;
+    border-radius: 38px;
+    padding: 10px;
+    border: none;
+    color: #F6BF0F;
+    font-weight: 600;
+}
+
+#desCat input{
+    width: 10em;
+}
+
+#addProd{
+    pointer-events: auto;
+}
+
+
+
+
+
+
+
+

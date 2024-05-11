@@ -16,8 +16,9 @@ window.addEventListener('load', function () {
             nombre: document.querySelector('#nombreCat').value,
             dimCancha: document.querySelector('#campo').value,
             material: document.querySelector('#material').value,
-        };
-
+            precio: document.querySelector('#precio').value
+        }
+            
         console.log(formData);
 
         formCat.reset()

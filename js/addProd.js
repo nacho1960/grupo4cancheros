@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
     var radioCat = document.getElementById('radioCat');
     const tableDivProd = document.getElementById("divProdTabla");
     const tableDivCat = document.getElementById("divCatTabla");
-    
+
     formProd.style.display = 'none';
     formCat.style.display = 'none';
     tableDivProd.style.display = 'none';
@@ -41,16 +41,28 @@ window.addEventListener('load', function () {
         const formData = {
             nombre: document.querySelector('#nombreProd').value,
             categoria: document.querySelector('input[name="tipo"]:checked').value,
-            imagen: document.querySelector('#imagen')
+            imagen: document.querySelector('#imagen').files[0]
         };
 
-        console.log(formData);
-        
+        // Convertir imagen a base64
+        if (formData.imagen) {
+            const reader = new FileReader();
+            reader.readAsDataURL(formData.imagen);
+            reader.onload = function () {
+                const base64Image = reader.result;
+                formData.imagen = base64Image;
+                //document.getElementById("imagenPrueba").src = formData.imagen
+                console.log(formData);
+            };
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+            };
+        }
         formProd.reset()
 
     })
 
-    
+
 
     /* Invocamos utilizando la función fetch la API Cacheros con el método POST que guardará al producto que enviaremos en formato JSON
     const url = ;

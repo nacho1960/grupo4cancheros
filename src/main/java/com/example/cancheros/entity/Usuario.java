@@ -16,11 +16,11 @@ public class Usuario {
     @Id//marca como id al primer campo despues de la anotacion en este caso id pero podria llamarse distinto
    @GeneratedValue(strategy = GenerationType.IDENTITY)//genera  automaticamente los id en bd utilizando autincremento
     private Long idUsuario ;
-    @Column( name = "nombre" , nullable = false)//unique significa
+    @Column( name = "Nombre" , nullable = false)//unique significa
     private String nombre;
-    @Column( name = "apellido", nullable = false)//el nullable en false significa que no se puede ingresar valores null otra forma de validacion de datos
+    @Column( name = "Apellido", nullable = false)//el nullable en false significa que no se puede ingresar valores null otra forma de validacion de datos
     private String apellido;
-    @Column(name = "email", unique = true , nullable = false)//el unique significa q solo podra haber un correo asi en la base es una forma de validacion
+    @Column(name = "Email", unique = true , nullable = false)//el unique significa q solo podra haber un correo asi en la base es una forma de validacion
     private String email;
     private UserRole role;
 }

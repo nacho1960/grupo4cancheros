@@ -30,21 +30,17 @@ public class ProductoServiceImpl implements IProductoService {
     @Override
     public void guardar(Producto producto) throws Exception {
         try {
-            ArrayList<Producto> productosExistentes = new ArrayList<Producto>();
+            List<Producto> productosExistentes = repository.findAll();
             for (Producto prod : productosExistentes) {
-
-                if (prod.getNombreProducto()==producto.getNombreProducto()){
-                    throw new Exception("ya existe un producto con ese nombre" + producto.getNombreProducto());
+                if (prod.getNombreProducto().equals(producto.getNombreProducto())){
+                    throw new Exception("Ya existe un producto con ese nombre: " + producto.getNombreProducto());
                 }
-                repository.save(producto);
-                LOGGER.info("Producto guardado con exito.");
-
-
             }
-
-
+            repository.save(producto);
+            LOGGER.info("Producto guardado con exito.");
         } catch (Exception e) {
             LOGGER.error(e);
+            throw new Exception(e);
         }
     }
 

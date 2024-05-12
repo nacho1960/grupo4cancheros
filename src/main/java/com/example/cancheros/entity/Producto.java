@@ -17,11 +17,12 @@ public class Producto {
     @Column(name = "Nombre", nullable = false)
     private String nombreProducto;
 
-    @Column(name = "Imagen", nullable = false)
-    private String rutaImagenProducto;
-    @OneToOne
-    @JoinColumn (name="id_categoria", referencedColumnName="idCategoria", nullable = false)
+    @Lob //Anotacion para campos grandes (hasta 4GB)
+    @Column(name = "Imagen", nullable = false, columnDefinition = "LONGTEXT")
+    private String imagen;
 
+    @ManyToOne //Muchos productos pueden tener la misma categoria
+    @JoinColumn (name="id_categoria", nullable = false)
     private Categoria categoria;
 
 

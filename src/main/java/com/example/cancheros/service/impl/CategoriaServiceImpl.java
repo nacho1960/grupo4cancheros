@@ -21,13 +21,13 @@ public class CategoriaServiceImpl implements ICategoriaService {
     }
 
     @Override
-    public void guardar(Categoria categoria) {
+    public void guardar(Categoria categoria) throws Exception{
         try {
-            LOGGER.info("Guardando categoría con id: " + categoria.getIdCategoria());
             repository.save(categoria);
             LOGGER.info("Categoría guardado con éxito.");
         } catch (Exception e) {
             LOGGER.error(e);
+            throw new Exception(e);
         }
     }
 

@@ -22,10 +22,14 @@ public class ProductoController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<?> guardar(@RequestBody Producto producto)throws Exception {
-        productoService.guardar(producto);
-
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<?> guardar(@RequestBody Producto producto) {
+        try {
+            System.out.println(producto);
+            productoService.guardar(producto);
+            return ResponseEntity.ok(HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")
@@ -42,7 +46,7 @@ public class ProductoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) {
         productoService.eliminar(id);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.NO_CONTENT);
     }
 
 }

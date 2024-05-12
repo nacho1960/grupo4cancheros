@@ -1,0 +1,130 @@
+[2024-05-12 17:12:30] [INFO ] [CategoriaServiceImpl:26] Guardando categoría con id: null
+[2024-05-12 17:12:30] [ERROR] [CategoriaServiceImpl:30] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Categoria.precioHora
+[2024-05-12 17:16:23] [INFO ] [CategoriaServiceImpl:26] Guardando categoría con id: null
+[2024-05-12 17:16:23] [ERROR] [CategoriaServiceImpl:30] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Categoria.precioHora
+[2024-05-12 17:19:35] [INFO ] [CategoriaServiceImpl:26] Guardando categoría con id: null
+[2024-05-12 17:19:35] [ERROR] [CategoriaServiceImpl:30] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Categoria.producto
+[2024-05-12 17:21:00] [ERROR] [CategoriaServiceImpl:29] org.springframework.orm.jpa.JpaSystemException: could not execute statement [Field 'id_producto' doesn't have a default value] [insert into categoria (descripcion,nombre,precio) values (?,?,?)]
+[2024-05-12 17:22:52] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 17:24:33] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 17:29:53] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 17:31:55] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 17:38:14] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 17:38:39] [ERROR] [CategoriaServiceImpl:29] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Categoria.precioHora
+[2024-05-12 17:39:31] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 17:39:41] [ERROR] [CategoriaServiceImpl:29] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Categoria.precioHora
+[2024-05-12 17:41:15] [ERROR] [CategoriaServiceImpl:29] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Categoria.precioHora
+[2024-05-12 17:46:41] [ERROR] [CategoriaServiceImpl:29] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Categoria.precioHora
+[2024-05-12 17:50:05] [ERROR] [CategoriaServiceImpl:29] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Categoria.precioHora
+[2024-05-12 17:50:47] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 17:52:32] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 17:53:41] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 18:07:58] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 18:08:44] [ERROR] [ProductoServiceImpl:42] org.springframework.dao.DataIntegrityViolationException: could not execute statement [Duplicate entry '1' for key 'producto.UK_ser0ir6us9s72rxoox0hvkvg5'] [insert into producto (id_categoria,imagen,nombre) values (?,?,?)]; SQL [insert into producto (id_categoria,imagen,nombre) values (?,?,?)]; constraint [producto.UK_ser0ir6us9s72rxoox0hvkvg5]
+[2024-05-12 18:09:16] [ERROR] [ProductoServiceImpl:42] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Producto.categoria
+[2024-05-12 18:12:38] [ERROR] [ProductoServiceImpl:42] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Producto.categoria
+[2024-05-12 18:15:13] [ERROR] [ProductoServiceImpl:42] org.springframework.dao.InvalidDataAccessApiUsageException: org.hibernate.TransientPropertyValueException: Not-null property references a transient value - transient instance must be saved before current operation : com.example.cancheros.entity.Producto.categoria -> com.example.cancheros.entity.Categoria
+[2024-05-12 18:15:25] [ERROR] [ProductoServiceImpl:42] org.springframework.dao.DataIntegrityViolationException: could not execute statement [Duplicate entry '1' for key 'producto.UK_ser0ir6us9s72rxoox0hvkvg5'] [insert into producto (id_categoria,imagen,nombre) values (?,?,?)]; SQL [insert into producto (id_categoria,imagen,nombre) values (?,?,?)]; constraint [producto.UK_ser0ir6us9s72rxoox0hvkvg5]
+[2024-05-12 18:16:50] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 18:22:02] [ERROR] [ProductoServiceImpl:42] org.springframework.dao.DataIntegrityViolationException: could not execute statement [Duplicate entry '2' for key 'producto.UK_ser0ir6us9s72rxoox0hvkvg5'] [insert into producto (id_categoria,imagen,nombre) values (?,?,?)]; SQL [insert into producto (id_categoria,imagen,nombre) values (?,?,?)]; constraint [producto.UK_ser0ir6us9s72rxoox0hvkvg5]
+[2024-05-12 18:22:14] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 18:22:21] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 18:24:23] [ERROR] [ProductoServiceImpl:42] java.lang.Exception: Ya existe un producto con ese nombre: Messi
+[2024-05-12 18:32:18] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 18:32:38] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 18:32:42] [ERROR] [ProductoServiceImpl:42] java.lang.Exception: Ya existe un producto con ese nombre: Messi
+[2024-05-12 18:32:51] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 18:35:18] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 18:35:34] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 18:37:03] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 18:39:22] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 18:40:41] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 18:41:09] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 18:46:04] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 18:47:10] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 18:47:15] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 18:50:12] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 18:59:12] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 18:59:17] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 18:59:20] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:00:36] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:00:38] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:00:39] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:01:06] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:03:33] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:03:54] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:05:46] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:09:48] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:10:51] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:11:15] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:12:20] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:12:22] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:12:58] [ERROR] [ProductoServiceImpl:42] java.lang.Exception: Ya existe un producto con ese nombre: Cristiano
+[2024-05-12 19:13:08] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 19:13:12] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:19:15] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:23:46] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:23:48] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:23:52] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:24:00] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 19:24:01] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:26:03] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 19:26:03] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:26:06] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:26:07] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:26:08] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:26:10] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:26:16] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:27:29] [ERROR] [ProductoServiceImpl:42] org.springframework.dao.DataIntegrityViolationException: could not execute statement [Data truncation: Data too long for column 'imagen' at row 1] [insert into producto (id_categoria,imagen,nombre) values (?,?,?)]; SQL [insert into producto (id_categoria,imagen,nombre) values (?,?,?)]
+[2024-05-12 19:29:06] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:29:07] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:29:07] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:29:08] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:29:09] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:34:08] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 19:36:18] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 19:36:23] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:39:03] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 19:39:11] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:42:54] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 19:49:55] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:52:34] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 19:53:51] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 19:53:57] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 19:54:48] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 19:58:18] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 19:58:26] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 19:59:01] [ERROR] [ProductoServiceImpl:42] java.lang.Exception: Ya existe un producto con ese nombre: Cancha Messi
+[2024-05-12 20:00:27] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 20:01:03] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 20:01:09] [ERROR] [ProductoServiceImpl:42] java.lang.Exception: Ya existe un producto con ese nombre: Cancha Messi
+[2024-05-12 20:01:19] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:02:49] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:04:53] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:04:57] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:05:25] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:06:56] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:07:20] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:13:05] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:14:05] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:19:36] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:21:20] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:24:23] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:24:27] [INFO ] [ProductoServiceImpl:67] Eliminando producto: 1
+[2024-05-12 20:24:27] [INFO ] [ProductoServiceImpl:56] Buscando Producto con el ID: 1
+[2024-05-12 20:24:27] [INFO ] [ProductoServiceImpl:61] Producto encontrado.
+[2024-05-12 20:24:27] [INFO ] [ProductoServiceImpl:76] Producto eliminado con éxito: 1
+[2024-05-12 20:35:19] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 20:35:26] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 20:35:34] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-12 20:35:53] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 20:35:55] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 20:35:58] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-12 20:36:09] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 20:36:24] [INFO ] [ProductoServiceImpl:40] Producto guardado con exito.
+[2024-05-12 20:36:35] [ERROR] [ProductoServiceImpl:42] java.lang.Exception: Ya existe un producto con ese nombre: Cancha Messi
+[2024-05-12 20:36:40] [INFO ] [ProductoServiceImpl:49] Listando todos los productos.
+[2024-05-12 20:37:01] [INFO ] [ProductoServiceImpl:67] Eliminando producto: 1
+[2024-05-12 20:37:01] [INFO ] [ProductoServiceImpl:56] Buscando Producto con el ID: 1
+[2024-05-12 20:37:01] [INFO ] [ProductoServiceImpl:61] Producto encontrado.
+[2024-05-12 20:37:01] [INFO ] [ProductoServiceImpl:76] Producto eliminado con éxito: 1

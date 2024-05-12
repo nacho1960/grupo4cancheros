@@ -20,9 +20,13 @@ public class CategoriaController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<?> guardar(@RequestBody Categoria categoria) {
-        categoriaService.guardar(categoria);
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<?> guardar(@RequestBody Categoria categoria)  {
+        try {
+            categoriaService.guardar(categoria);
+            return ResponseEntity.ok(HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @GetMapping("/listarTodos")

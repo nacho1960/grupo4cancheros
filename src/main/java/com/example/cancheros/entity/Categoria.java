@@ -14,6 +14,7 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCategoria;
+
     @Column(name = "Nombre", nullable = false)
     private  String nombre ;
 
@@ -22,9 +23,5 @@ public class Categoria {
 
     @Column(name = "Precio", nullable = false)
     private Double precioHora;
-    @ManyToOne
-    @JoinColumn (name="id_Producto", referencedColumnName="idProducto", nullable = false)
-    private Producto producto;
-
 
 }

@@ -5,42 +5,60 @@ window.addEventListener('load', function () {
     var radioCat = document.getElementById('radioCat');
     const tableDivProd = document.getElementById("divProdTabla");
     const tableDivCat = document.getElementById("divCatTabla");
+    const response = document.getElementById("response")
 
     formProd.style.display = 'none';
     formCat.style.display = 'none';
     tableDivProd.style.display = 'none';
     tableDivCat.style.display = 'none';
+    response.style.display = 'none';
 
     buttonAddProduct.addEventListener('click', function () {
         formProd.style.display = 'block';
         formCat.style.display = 'none';
         tableDivProd.style.display = 'none';
         tableDivCat.style.display = 'none';
+        response.style.display = 'none';
+        radioCat.innerHTML = '<h4>Categoría</h4>'
+
+        //Obtener las categorias desde la API
+        const url = 'http://localhost:8080/categorias/listarTodos';
+        const settings = {
+            method: 'GET'
+        }
+
+        fetch(url, settings)
+            .then(response => response.json())
+            .then(data => {
+                //Recorremos la colección de categorias del JSON:
+                data.forEach(categoria => {
+                    //Por cada categoría crea un radio
+                    var radioLabel = document.createElement("label");
+                    var radioInput = document.createElement("input");
+                    radioInput.type = "radio";
+                    radioInput.value = categoria.idCategoria;
+                    radioInput.name = "tipo";
+                    radioLabel.appendChild(radioInput);
+                    radioLabel.style.marginRight = "10px";
+                    radioLabel.appendChild(document.createTextNode(categoria.nombre));
+                    radioCat.appendChild(radioLabel);
+                });
+
+                console.log(data);
+            });
     });
 
-    //Obtener las categorias desde la API
-    const categorias = ["Fútbol", "Handball", "Basket", "Tenis"];
 
-    //Por cada categoría crea un radio
-    categorias.forEach(function (categoria) {
-        var radioLabel = document.createElement("label");
-        var radioInput = document.createElement("input");
-        radioInput.type = "radio";
-        radioInput.value = categoria;
-        radioInput.name = "tipo";
-        radioLabel.appendChild(radioInput);
-        radioLabel.style.marginRight = "10px";
-        radioLabel.appendChild(document.createTextNode(categoria));
-        radioCat.appendChild(radioLabel);
-    });
 
     //Ante un submit del formulario se ejecutará la siguiente función
     formProd.addEventListener('submit', function (event) {
         event.preventDefault();
         //Creamos un JSON que tendrá los datos del nuevo producto
         const formData = {
-            nombre: document.querySelector('#nombreProd').value,
-            categoria: document.querySelector('input[name="tipo"]:checked').value,
+            nombreProducto: document.querySelector('#nombreProd').value,
+            categoria: {
+                idCategoria: parseInt(document.querySelector('input[name="tipo"]:checked').value)
+            },
             imagen: document.querySelector('#imagen').files[0]
         };
 
@@ -51,55 +69,53 @@ window.addEventListener('load', function () {
             reader.onload = function () {
                 const base64Image = reader.result;
                 formData.imagen = base64Image;
-                //document.getElementById("imagenPrueba").src = formData.imagen
                 console.log(formData);
+                //Invocación a la API
+                enviarDatos(formData);
             };
             reader.onerror = function (error) {
                 console.log('Error: ', error);
             };
         }
         formProd.reset()
-
     })
 
+});
 
 
-    /* Invocamos utilizando la función fetch la API Cacheros con el método POST que guardará al producto que enviaremos en formato JSON
-    const url = ;
+function enviarDatos(formData) {
+    const url = 'http://localhost:8080/productos/new';
     const settings = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData)
-    }
- 
+    };
+
     fetch(url, settings)
-        .then(response => response.json())
+        .then(response => {
+            if (response.status == 200) {
+                return response.json();
+            } else {
+                return response.json().then(data => {
+                    throw new Error(data.message);
+                });
+            }
+        })
         .then(data => {
-            let successAlert = <p> Producto agregado correctamente. </p>
- 
+            let successAlert = '<p> Producto agregado correctamente. </p>';
             console.log(successAlert);
- 
             document.querySelector('#response').innerHTML = successAlert;
             document.querySelector('#response').style.display = 'block';
-            formProd.reset()
- 
+            console.log(data);
+
         })
         .catch(error => {
-            //Lógica para consultar al back si el nombre del producto esta repetido. 
-            //Si el nombre esta repetido. 
-            let errorAlert = <p> Error al agregar el producto: ya existe un producto con ese nombre.</p>
- 
+            let errorAlert = '<p> Error al agregar el producto: ya existe un producto con ese nombre.</p>';
             document.querySelector('#response').innerHTML = errorAlert;
             document.querySelector('#response').style.display = "block";
-
-            formProd.reset()
-        })*/
-
-})
-
-
-
-
+            console.log(error);
+        });
+}
 

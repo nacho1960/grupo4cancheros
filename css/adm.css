@@ -93,7 +93,7 @@ h4 {
     background-color: var(--color-text);
 }
 
-#prodTabla th, #catTabla th {
+#prodTabla th, #catTabla th, #prodTabla tr, #catTabla tr {
     padding: 12px;
     text-align: center;
     background-color: var(--bg-primary-button-pan-adm);

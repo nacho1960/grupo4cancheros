@@ -56,7 +56,6 @@
             <input type="text" id="nombreProd" required />
 
             <div id="radioCat">
-                <h4>Categoría</h4>
             </div>
 
             <div id="image">
@@ -88,6 +87,8 @@
             <button type="submit">Agregar categoría</button>
         </form>
 
+        <div id="response"></div>
+
         <!---Listado de productos--->
         <div id="divProdTabla">
             <h2>Lista de productos</h2>
@@ -96,6 +97,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
+                        <th>Categoria</th>
                         <th>Acciones</th>
                     </tr>
                     <tbody id="prodTablaBody">
@@ -113,6 +115,7 @@
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
+                        <th>Precio</th>
                     </tr>
                     <tbody id="catTablaBody">
                     </tbody>

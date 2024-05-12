@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,11 +28,21 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
-    public void guardar(Producto producto) {
+    public void guardar(Producto producto) throws Exception {
         try {
-            LOGGER.info("Guardando producto con id: " + producto.getIdProducto());
-            repository.save(producto);
-            LOGGER.info("Producto guardado con éxito.");
+            ArrayList<Producto> productosExistentes = new ArrayList<Producto>();
+            for (Producto prod : productosExistentes) {
+
+                if (prod.getNombreProducto()==producto.getNombreProducto()){
+                    throw new Exception("ya existe un producto con ese nombre" + producto.getNombreProducto());
+                }
+                repository.save(producto);
+                LOGGER.info("Producto guardado con exito.");
+
+
+            }
+
+
         } catch (Exception e) {
             LOGGER.error(e);
         }
@@ -40,7 +51,7 @@ public class ProductoServiceImpl implements IProductoService {
     @Override
     public List<Producto> listarTodos() {
         LOGGER.info("Listando todos los productos.");
-        List<Producto> productos = repository.findAllProductoOrdered();
+        List<Producto> productos = repository.findAll();
         return productos;
     }
 

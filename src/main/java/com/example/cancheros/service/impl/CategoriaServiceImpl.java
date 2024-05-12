@@ -31,10 +31,10 @@ public class CategoriaServiceImpl implements ICategoriaService {
         }
     }
 
-    @Override
+   @Override
     public List<Categoria> listarTodos() {
         LOGGER.info("Listando todas las categorías.");
-        List<Categoria> categorias = repository.findAllCategoriaOrdered();
+        List<Categoria> categorias = repository.findAll();
         return categorias;
     }
 

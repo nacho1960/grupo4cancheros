@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface ICategoriaRepository extends JpaRepository<Categoria,Long> {
-    List<Categoria> findAllCategoriaOrdered();
+    //List<Categoria> findAllCategoriaOrdered();
 }

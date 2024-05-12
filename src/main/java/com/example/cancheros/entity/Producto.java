@@ -19,9 +19,11 @@ public class Producto {
 
     @Column(name = "Imagen", nullable = false)
     private String rutaImagenProducto;
+    @OneToOne
+    @JoinColumn (name="id_categoria", referencedColumnName="idCategoria", nullable = false)
 
-    @ManyToOne
-    @JoinColumn(name= "producto_id", referencedColumnName = "id", nullable = false)
     private Categoria categoria;
+
+
 
 }

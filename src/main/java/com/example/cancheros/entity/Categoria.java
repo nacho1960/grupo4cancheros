@@ -22,5 +22,9 @@ public class Categoria {
 
     @Column(name = "Precio", nullable = false)
     private Double precioHora;
+    @ManyToOne
+    @JoinColumn (name="id_Producto", referencedColumnName="idProducto", nullable = false)
+    private Producto producto;
+
 
 }

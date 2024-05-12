@@ -22,8 +22,9 @@ public class ProductoController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<?> guardar(@RequestBody Producto producto) {
+    public ResponseEntity<?> guardar(@RequestBody Producto producto)throws Exception {
         productoService.guardar(producto);
+
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -33,7 +34,7 @@ public class ProductoController {
         return new ResponseEntity<>(producto, HttpStatus.OK);
     }
 
-    @GetMapping("/listarTodos")
+   @GetMapping("/listarTodos")
     public List<Producto> listarTodos() {
         return productoService.listarTodos();
     }

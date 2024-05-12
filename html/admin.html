@@ -13,8 +13,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+
     <script type="text/javascript" src="../js/addProd.js"></script>
     <script type="text/javascript" src="../js/addCat.js"></script>
+    <script type="text/javascript" src="../js/listProd.js"></script>
+    <script type="text/javascript" src="../js/listCat.js"></script>
 </head>
 
 <body>
@@ -26,12 +29,19 @@
         </div>
     </header>
 
+    <div id="noResponsive">
+        <h3>Lo sentimos, esta página no está optimizada para dispositivos móviles.</h3>
+        <p>Te recomendamos visitarla desde un dispositivo de escritorio.</p>
+    </div>
+
     <main>
         <!---Panel de administración--->
         <div id="panelAdm">
             <h2>Bienvenido Administrador</h2>
             <button id="addProd">Agregar producto</button>
             <button id="addCat">Agregar categoría</button>
+            <button id="listProd">Lista de productos</button>
+            <button id="listCat">Lista de categorias</button>
         </div>
 
         <!---Formulario para agregar producto--->
@@ -57,7 +67,6 @@
         </form>
 
         <!---Formulario para agregar categoría--->
-
         <form id="formCat">
             <h2>Agregar categoría</h2>
 
@@ -68,18 +77,46 @@
 
             <div id="desCat">
                 <h4>Descripción</h4>
-                <label for="campo">Tamaño del campo en m (L x A)</label>
-                <input type="text" name="campo" id="campo" required>
+                <textarea name="" id="descripcion" required></textarea>
 
-                <label for="">Material del campo</label>
-                <input type="text" name="material" id="material" required>
-
-                <label for="">Precio ($)</label>
+                <h4>Precio ($)</h4>
                 <input type="text" name="precio" id="precio" required>
             </div>
 
             <button type="submit">Agregar categoría</button>
         </form>
+
+        <!---Listado de productos--->
+        <div id="divProdTabla">
+            <h2>Lista de productos</h2>
+            <div id="tabla">
+                <table id="prodTabla">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <tbody id="prodTablaBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!---Listado de categorías--->
+        <div id="divCatTabla">
+            <h2>Lista de categorías</h2>
+            <div id="tabla">
+                <table id="catTabla">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tbody id="catTablaBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </main>
 
     <footer>

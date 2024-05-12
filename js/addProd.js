@@ -2,14 +2,20 @@ window.addEventListener('load', function () {
     const buttonAddProduct = document.getElementById('addProd');
     const formProd = document.getElementById('formProd');
     const formCat = document.getElementById('formCat');
-    var radioCat = document.getElementById('radioCat')
+    var radioCat = document.getElementById('radioCat');
+    const tableDivProd = document.getElementById("divProdTabla");
+    const tableDivCat = document.getElementById("divCatTabla");
     
     formProd.style.display = 'none';
     formCat.style.display = 'none';
+    tableDivProd.style.display = 'none';
+    tableDivCat.style.display = 'none';
 
     buttonAddProduct.addEventListener('click', function () {
         formProd.style.display = 'block';
         formCat.style.display = 'none';
+        tableDivProd.style.display = 'none';
+        tableDivCat.style.display = 'none';
     });
 
     //Obtener las categorias desde la API

@@ -1,13 +1,22 @@
 package com.example.cancheros.controller;
 
-import com.example.cancheros.entity.Producto;
-import com.example.cancheros.service.impl.ProductoServiceImpl;
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.example.cancheros.entity.Producto;
+import com.example.cancheros.service.impl.ProductoServiceImpl;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -38,7 +47,7 @@ public class ProductoController {
         return new ResponseEntity<>(producto, HttpStatus.OK);
     }
 
-   @GetMapping("/listarTodos")
+    @GetMapping("/listarTodos")
     public List<Producto> listarTodos() {
         return productoService.listarTodos();
     }
@@ -49,5 +58,11 @@ public class ProductoController {
         return ResponseEntity.ok(HttpStatus.NO_CONTENT);
     }
 
-}
+    @GetMapping("/home")
+    public List<Producto> getHomeProducts() {
+        List<Producto> allProducts = productoService.listarTodos();
+        Collections.shuffle(allProducts);
+        return allProducts.subList(0, Math.min(10, allProducts.size()));
+    }
 
+}

@@ -1,11 +1,13 @@
-:root{
+:root {
     font-family: "Barlow Condensed", sans-serif;
     --bg-nav-foot: #0F2948;
     --color-text: #F6BF0F;
     --bg-primary-button-pan-adm: #FFEDB1;
+
 }
 
-body, :root{
+body,
+:root {
     width: 100%;
     height: 100vh;
     margin: 0;
@@ -13,29 +15,43 @@ body, :root{
     flex-direction: column;
 }
 
-header, footer{
+header,
+footer {
     display: flex;
     align-items: center;
     background-color: var(--bg-nav-foot);
-    padding: 15px; 
+    padding: 15px;
     color: var(--color-text)
 }
 
-header{
+header {
     position: sticky;
     top: 0;
     justify-content: space-between;
     box-shadow: 0px 5px 5px var(--bg-nav-foot);
+    box-sizing: border-box;
+    padding: 7px 10px 0px 10px;
+}
+
+header a img,
+footer img {
+    width: 100px;
+    height: auto;
+
 }
 
 header button {
     border: none;
-    background-color: transparent;
+    background-color: #235C9F;
     color: var(--color-text);
     font-family: "Barlow Condensed", sans-serif;
+    border-radius: 36px;
+    padding: 15px;
+    font-size: 18px;
+
 }
 
-footer{
+footer {
     justify-content: left;
     gap: 10px;
     bottom: 0;
@@ -45,13 +61,104 @@ footer{
     box-shadow: 5px 0px 5px var(--bg-nav-foot);
 }
 
-button:hover{
+button:hover,
+input:hover,
+select:hover {
     cursor: pointer;
 }
 
+/*Buscador*/
+#buscador {
+    position: relative;
+    height: 406px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
 
-@media (max-width: 600px){
-    header, footer{
+#buscador::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/bg-buscador.png);
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+    z-index: -1;
+    content: "";
+}
+
+#buscador #text {
+    display: flex;
+    flex-direction: column;
+    width: 518px;
+    justify-content: space-between;
+}
+
+#buscador #text #text2 {
+    font-size: 32px;
+    color: #FFF6D9;
+    margin-top: 0%;
+}
+
+#buscador #text #text1 {
+    font-size: 64px;
+    color: #FFF6D9;
+    text-align: center;
+}
+
+#buscadorInput {
+    height: 86px;
+}
+
+#buscadorInput input,
+#buscadorInput #categoria,
+#buscadorInput #categoria option {
+    padding: 15px;
+    background-color: #235C9F;
+    color: #FFF6D9;
+    border: none;
+    border-radius: 36px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 18px;
+}
+
+#buscadorInput #buscar:hover {
+    color: #235C9F;
+    background-color: #FFF6D9;
+}
+
+/*Categorias*/
+#viewCategorias{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px;
+}
+
+#viewCategorias button {
+    border: none;
+    background-color: #ffe07f;
+    color: #0F2948;
+    font-family: "Barlow Condensed", sans-serif;
+    border-radius: 36px;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+#viewCategorias button:hover{
+    background-color: var(--color-text);
+}
+
+/*Header */
+@media (max-width: 600px) {
+
+    header,
+    footer {
         flex-direction: column;
     }
 }

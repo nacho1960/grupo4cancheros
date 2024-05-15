@@ -1,0 +1,218 @@
+:root {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 16px;
+    --color-primary: #F6BF0F;
+    --color-secondary: #FFE07E;
+    --color-terceray: #FFF6D9;
+    --color-quaternary: #235C9F;
+    --color-quintenary: #0F2948;;
+    box-sizing: border-box;
+    color: var(--color-terceray);
+     
+}
+
+body,
+:root {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header,
+footer {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-quintenary);
+    padding: 0.938rem;
+    color: var(--color-primary);
+}
+
+header {
+    position: sticky;
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+    justify-content: space-between;
+    box-shadow: 0px 5px 5px var(--color-quintenary);
+    box-sizing: border-box;
+    padding: 7px 10px 0px 10px;
+}
+
+header a img,
+footer img {
+    width: 6.250em;
+    height: auto;
+}
+
+header button {
+    border: none;
+    background-color: var(--color-quaternary);
+    color: var(--color-text);
+    font-family: "Barlow Condensed", sans-serif;
+    border-radius: 2.25rem;
+    padding: 0.938em;
+    font-size: 1.125em;
+}
+
+footer {
+    justify-content: left;
+    gap: 0.625rem;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 5px 0px 5px var(--color-quintenary);;
+}
+
+button:hover,
+input:hover,
+select:hover {
+    cursor: pointer;
+}
+
+/*Buscador*/
+#buscador {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#buscador::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/bg-buscador.png);
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+    z-index: -1;
+    content: "";
+}
+
+#buscador #text {
+    display: flex;
+    flex-direction: column;
+    max-width: 32rem;
+    justify-content: space-between;
+}
+
+#buscador #text #text2 {
+    font-size: 2em;
+    margin-top: 0%;
+}
+
+#buscador #text #text1 {
+    font-size: 4em;
+    text-align: center;
+}
+
+#buscadorInput input,
+#buscadorInput #categoria,
+#buscadorInput #categoria option {
+    padding: 0.938em;
+    background-color: var(--color-quaternary);
+    border: none;
+    border-radius: 2.25em;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.125em;
+    color: var(--color-terceray);
+}
+
+#buscadorInput #buscar:hover {
+    color: var(--color-quaternary);
+    background-color: var(--color-terceray);
+}
+
+#buscadorInput #buscar{
+    background-color: var(--color-primary);
+}
+
+/*Categorias*/
+#viewCategorias{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px;
+}
+
+#viewCategorias button {
+    border: none;
+    background-color: var(--color-secondary);
+    color: var(--color-quintenary);
+    font-family: "Barlow Condensed", sans-serif;
+    border-radius: 36px;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+#viewCategorias button:hover{
+    background-color: var(--color-primary);
+}
+
+/*Productos body*/
+/*Estilos para los productos dentro del div viewCategorias */
+#showProductos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* La cuadrícula se ajustará automáticamente */
+    gap: 20px; 
+}
+
+.producto {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.producto h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #F6BF0F; 
+}
+
+.producto p {
+    font-size: 1rem;
+    color: rgb(10, 10, 10); 
+}
+
+.producto p.descripcion {
+    color: rgb(12, 12, 12); 
+}
+
+.producto p.precio {
+    color: rgb(8, 8, 8); 
+    font-weight: bold; 
+}
+
+
+@media (max-width: 800px) {
+    header,
+    footer, 
+    #buscador, 
+    #buscadorInput {
+        flex-direction: column;
+    }
+
+    #buscador{
+        text-align: center;
+    }
+
+    #buscadorInput{
+        display: flex;
+        justify-content: space-between; 
+    }
+
+    #buscadorInput input, #buscadorInput select, #buscadorInput #buscar{
+        margin-bottom: 0.25rem;
+    }
+
+
+
+    
+    
+}

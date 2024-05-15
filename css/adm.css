@@ -3,10 +3,12 @@ main {
     gap: 50px;
     grid-template-columns: 1fr 2fr;
     flex-grow: 1;
+    color: var(--color-quintenary);
+    padding: 2rem 0rem 0rem 15rem;
 }
 
 h2 {
-    color: var(--color-text);
+    color: var(--color-primary);
 }
 
 h4 {
@@ -24,14 +26,16 @@ h4 {
     gap: 5px;
 }
 
-#panelAdm button {
+#panelAdm button, #prodTabla th, #catTabla th, #prodTabla tr, #catTabla tr{
     border: none;
     padding: 10px;
-    background-color: var(--bg-primary-button-pan-adm);
+    background-color: var(--color-quaternary);
+    color: var(--color-terceray);
 }
 
-#panelAdm button:hover {
-    background-color: var(--color-text);
+#panelAdm button:hover, #prodTabla tr:hover, #catTabla tr:hover {
+    background-color: var(--color-primary);
+    color: var(--color-quaternary);
 }
 
 #panelAdm h2 {
@@ -59,7 +63,7 @@ h4 {
     border-radius: 38px;
     padding: 10px;
     border: none;
-    color: #F6BF0F;
+    color: var(--color-primary);
     font-weight: 600;
 }
 
@@ -90,13 +94,17 @@ h4 {
 }
 
 #prodTabla tr:hover, #catTabla tr:hover {
-    background-color: var(--color-text);
+    background-color: var(--color-primary);
 }
 
 #prodTabla th, #catTabla th, #prodTabla tr, #catTabla tr {
     padding: 12px;
     text-align: center;
-    background-color: var(--bg-primary-button-pan-adm);
+}
+
+#response{
+    grid-column: 2;
+    margin: 0;
 }
 
 /*No responsive*/
@@ -107,5 +115,7 @@ h4 {
 
     #noResponsive {
         display: block;
+        color: var(--color-quintenary);
+        padding: 2rem;
     }
 }

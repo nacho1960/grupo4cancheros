@@ -32,7 +32,7 @@ footer {
 header {
     position: sticky;
     z-index: 1000;
-    width: 100vw;
+    width: 100%;
     top: 0;
     justify-content: space-between;
     box-shadow: 0px 5px 5px var(--color-quintenary);
@@ -59,9 +59,7 @@ header button {
 footer {
     justify-content: left;
     gap: 0.625rem;
-    bottom: 0;
-    position: absolute;
-    width: 100vw;
+    width: 100%;
     box-sizing: border-box;
     box-shadow: 5px 0px 5px var(--color-quintenary);;
 }
@@ -143,7 +141,7 @@ select:hover {
 
 #viewCategorias button {
     border: none;
-    background-color: #ffe07f;
+    background-color: var(--color-secondary);
     color: var(--color-quintenary);
     font-family: "Barlow Condensed", sans-serif;
     border-radius: 36px;
@@ -159,7 +157,7 @@ select:hover {
 
 /*Productos body*/
 /*Estilos para los productos dentro del div viewCategorias */
-#viewCategorias {
+#showProductos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* La cuadrícula se ajustará automáticamente */
     gap: 20px; 
@@ -179,15 +177,15 @@ select:hover {
 
 .producto p {
     font-size: 1rem;
-    color: white; 
+    color: rgb(10, 10, 10); 
 }
 
 .producto p.descripcion {
-    color: white; 
+    color: rgb(12, 12, 12); 
 }
 
 .producto p.precio {
-    color: white; 
+    color: rgb(8, 8, 8); 
     font-weight: bold; 
 }
 

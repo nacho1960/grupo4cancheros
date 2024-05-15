@@ -1,5 +1,5 @@
 window.addEventListener('load', function () {
-    const viewCategorias = document.getElementById('viewCategorias');
+    const showProductos = document.getElementById('showProductos');
 
     // Solicitar todos los productos a la API
     const url = 'http://localhost:8080/productos/listarTodos';
@@ -28,7 +28,7 @@ window.addEventListener('load', function () {
 
     function mostrarProductosEnDiv(productos) {
         // Limpiar el div viewCategorias
-        viewCategorias.innerHTML = '';
+        showProductos.innerHTML = '';
 
         // Mostrar cada producto en el div
         productos.forEach(producto => {
@@ -39,16 +39,16 @@ window.addEventListener('load', function () {
             nombre.textContent = producto.nombreProducto;
 
             const descripcion = document.createElement('p');
-            descripcion.textContent = producto.descripcion;
+            descripcion.textContent = producto.categoria.descripcion;
 
             const precio = document.createElement('p');
-            precio.textContent = 'Precio: ' + producto.precio;
+            precio.textContent = 'Precio: ' + producto.categoria.precioHora;
 
             productoDiv.appendChild(nombre);
             productoDiv.appendChild(descripcion);
             productoDiv.appendChild(precio);
 
-            viewCategorias.appendChild(productoDiv);
+            showProductos.appendChild(productoDiv);
         });
     }
 });

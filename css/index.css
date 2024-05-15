@@ -159,12 +159,13 @@ select:hover {
 /*Estilos para los productos dentro del div viewCategorias */
 #showProductos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* La cuadrícula se ajustará automáticamente */
+    grid-template-columns: 1fr 1fr; /* La cuadrícula se ajustará automáticamente */
     gap: 20px; 
 }
 
 .producto {
     border: 1px solid #ccc;
+    background-color: #235C9F;
     border-radius: 10px;
     padding: 20px;
 }
@@ -177,7 +178,7 @@ select:hover {
 
 .producto p {
     font-size: 1rem;
-    color: rgb(10, 10, 10); 
+    color: rgb(255, 255, 255); 
 }
 
 .producto p.descripcion {
@@ -189,6 +190,33 @@ select:hover {
     font-weight: bold; 
 }
 
+#recomendaciones{
+    text-align: center;
+}
+
+#tituloRecomendaciones{
+    color:#F6BF0F;
+}
+
+/* Estilos solo para el botón "Ver más" */
+.ver-mas-button {
+    border: none;
+    border-radius: 20px; 
+    background-color: #FFE07E; 
+    color: #00008b; 
+    padding: 5px 10px; 
+    font-size: 11px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    float: right; 
+    margin-top: 10px; 
+    font-weight: bold;
+}
+
+
+.ver-mas-button:hover {
+    background-color: #F6BF0F; /* Amarillo más claro al pasar el mouse */
+}
 
 @media (max-width: 800px) {
     header,

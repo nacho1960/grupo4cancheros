@@ -63,7 +63,11 @@ footer {
     box-sizing: border-box;
     box-shadow: 5px 0px 5px var(--color-quintenary);;
 }
+.menu-icon {
+   
+    display: none;
 
+}
 button:hover,
 input:hover,
 select:hover {
@@ -225,6 +229,22 @@ select:hover {
     #buscadorInput {
         flex-direction: column;
     }
+    header button{
+        display:none;  /* Ocultamos los botones de "Iniciar Sesión" y "Registrarse" en dispositivos móviles */
+    
+    }
+    
+     .menu-icon {
+        display:block;  /* Mostrar el icono del menú hamburguesa en dispositivos móviles */
+    }
+
+    .menu-icon .fa-bars {
+        visibility: visible;
+        display: block;
+        font-size: 1rem;
+    } 
+
+}
 
     #buscador{
         text-align: center;
@@ -243,4 +263,3 @@ select:hover {
 
     
     
-}

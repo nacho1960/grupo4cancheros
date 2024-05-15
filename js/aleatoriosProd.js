@@ -35,20 +35,41 @@ window.addEventListener('load', function () {
             const productoDiv = document.createElement('div');
             productoDiv.classList.add('producto');
 
+            const imagen = document.createElement('img');
+            imagen.src = producto.imagen;
+            imagen.style.maxWidth = '100%';
+
             const nombre = document.createElement('h2');
             nombre.textContent = producto.nombreProducto;
 
             const descripcion = document.createElement('p');
             descripcion.textContent = producto.categoria.descripcion;
 
-            const precio = document.createElement('p');
-            precio.textContent = 'Precio: ' + producto.categoria.precioHora;
+            const preciotitulo = document.createElement('h2');
+            preciotitulo.textContent = 'Precio por Hora: ' 
 
+            const precio = document.createElement('p');
+            precio.textContent = producto.categoria.precioHora;
+
+            const verMasButton = document.createElement('button');
+            verMasButton.textContent = 'Ver más';
+            verMasButton.classList.add('ver-mas-button');
+
+            verMasButton.addEventListener('click', () => {
+                console.log('Botón "Ver más" ');
+            });
+
+            
+            productoDiv.appendChild(imagen);
             productoDiv.appendChild(nombre);
             productoDiv.appendChild(descripcion);
+            productoDiv.appendChild(preciotitulo);
             productoDiv.appendChild(precio);
+            productoDiv.appendChild(verMasButton);
 
             showProductos.appendChild(productoDiv);
         });
     }
+    
+    
 });

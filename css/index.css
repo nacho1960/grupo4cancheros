@@ -157,9 +157,15 @@ select:hover {
 
 /*Productos body*/
 /*Estilos para los productos dentro del div viewCategorias */
+#recomendaciones {
+    text-align: center;
+}
+#titulorecomendaciones{
+    color: #f6be07;
+}
 #showProductos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* La cuadrícula se ajustará automáticamente */
+    grid-template-columns: 1fr 1fr;/*repeat(auto-fit, minmax(200px, 1fr)); */
     gap: 20px; 
 }
 
@@ -167,6 +173,7 @@ select:hover {
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 20px;
+    background-color: #235C9F
 }
 
 .producto h2 {
@@ -177,16 +184,34 @@ select:hover {
 
 .producto p {
     font-size: 1rem;
-    color: rgb(10, 10, 10); 
+    color: rgb(255, 255, 255); 
 }
 
 .producto p.descripcion {
     color: rgb(12, 12, 12); 
 }
 
-.producto p.precio {
-    color: rgb(8, 8, 8); 
-    font-weight: bold; 
+.producto {
+    font-size: 0.8 rem;
+    color: #F6BF0F; 
+}
+
+
+.ver-mas-button {
+    border: none;
+    border-radius: 20px; 
+    background-color: #eed891;
+    color: #235C9F; 
+    padding: 10px 20px; 
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    float: right;
+}
+
+.ver-mas-button:hover {
+    background-color: #F6BF0F; 
 }
 
 

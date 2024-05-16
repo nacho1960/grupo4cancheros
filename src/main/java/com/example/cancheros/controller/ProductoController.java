@@ -58,11 +58,4 @@ public class ProductoController {
         return ResponseEntity.ok(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/home")
-    public List<Producto> getHomeProducts() {
-        List<Producto> allProducts = productoService.listarTodos();
-        Collections.shuffle(allProducts);
-        return allProducts.subList(0, Math.min(10, allProducts.size()));
-    }
-
 }

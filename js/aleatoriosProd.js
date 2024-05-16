@@ -6,8 +6,8 @@ window.addEventListener('load', function () {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            // Obtener 8 productos aleatorios
-            const productosAleatorios = obtenerProductosAleatorios(data, 8);
+            // Obtener 10 productos aleatorios
+            const productosAleatorios = obtenerProductosAleatorios(data, 10);
             // Mostrar los detalles de los productos en el div viewCategorias
             mostrarProductosEnDiv(productosAleatorios);
         })
@@ -46,26 +46,23 @@ window.addEventListener('load', function () {
             descripcion.textContent = producto.categoria.descripcion;
 
             const preciotitulo = document.createElement('h2');
-            preciotitulo.textContent = 'Precio por Hora: ' 
+            preciotitulo.textContent = 'Precio por Hora (U$$) ' 
 
             const precio = document.createElement('p');
             precio.textContent = producto.categoria.precioHora;
 
-            const verMasButton = document.createElement('button');
-            verMasButton.textContent = 'Ver más';
-            verMasButton.classList.add('ver-mas-button');
+            const verMasLink = document.createElement('a');
+            verMasLink.textContent = 'Ver más';
+            verMasLink.classList.add('ver-mas-link');
+            verMasLink.href = '../html/detailProd.html?id=' + producto.idProducto;
 
-            verMasButton.addEventListener('click', () => {
-                console.log('Botón "Ver más" ');
-            });
-
-            
+        
             productoDiv.appendChild(imagen);
             productoDiv.appendChild(nombre);
             productoDiv.appendChild(descripcion);
             productoDiv.appendChild(preciotitulo);
             productoDiv.appendChild(precio);
-            productoDiv.appendChild(verMasButton);
+            productoDiv.appendChild(verMasLink);
 
             showProductos.appendChild(productoDiv);
         });

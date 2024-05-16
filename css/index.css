@@ -8,7 +8,6 @@
     --color-quintenary: #0F2948;;
     box-sizing: border-box;
     color: var(--color-terceray);
-     
 }
 
 body,
@@ -60,14 +59,15 @@ footer {
     justify-content: left;
     gap: 0.625rem;
     width: 100%;
+    bottom: 0;
     box-sizing: border-box;
     box-shadow: 5px 0px 5px var(--color-quintenary);;
 }
-.menu-icon {
-   
-    display: none;
 
+.menu-icon {
+    display: none;
 }
+
 button:hover,
 input:hover,
 select:hover {
@@ -116,7 +116,7 @@ select:hover {
 
 #buscadorInput input,
 #buscadorInput #categoria,
-#buscadorInput #categoria option {
+#buscadorInput #categoria option, .buttonReserva {
     padding: 0.938em;
     background-color: var(--color-quaternary);
     border: none;
@@ -126,7 +126,7 @@ select:hover {
     color: var(--color-terceray);
 }
 
-#buscadorInput #buscar:hover {
+#buscadorInput #buscar:hover{
     color: var(--color-quaternary);
     background-color: var(--color-terceray);
 }
@@ -160,24 +160,28 @@ select:hover {
 }
 
 /*Productos body*/
-/*Estilos para los productos dentro del div viewCategorias */
+/*Estilos para los productos dentro del div showProductos */
 #showProductos {
     display: grid;
     grid-template-columns: 1fr 1fr; /* La cuadrícula se ajustará automáticamente */
-    gap: 20px; 
+    gap: 1em; 
+    margin-bottom: 3rem;
+    justify-items: center;
+    align-items: center;
 }
 
 .producto {
     border: 1px solid #ccc;
-    background-color: #235C9F;
+    background-color: var(--color-quaternary);
     border-radius: 10px;
-    padding: 20px;
+    padding: 1.250em;
+    width: 20vw;
 }
 
 .producto h2 {
     font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #F6BF0F; 
+    margin-bottom: 0.625em;
+    color: var(--color-primary); 
 }
 
 .producto p {
@@ -199,43 +203,46 @@ select:hover {
 }
 
 #tituloRecomendaciones{
-    color:#F6BF0F;
+    color: var(--color-primary);
 }
 
 /* Estilos solo para el botón "Ver más" */
-.ver-mas-button {
+.ver-mas-link {
     border: none;
     border-radius: 20px; 
-    background-color: #FFE07E; 
+    background-color:var(--color-secondary); 
     color: #00008b; 
-    padding: 5px 10px; 
-    font-size: 11px; 
+    padding: 0.313em 0.625em; 
+    font-size: 0.688em; 
     cursor: pointer;
     transition: background-color 0.3s ease; 
     float: right; 
-    margin-top: 10px; 
+    margin-top: 0.625em; 
     font-weight: bold;
+    text-decoration: none;    
 }
 
-
-.ver-mas-button:hover {
-    background-color: #F6BF0F; /* Amarillo más claro al pasar el mouse */
+.ver-mas-link:hover {
+    background-color: var(--color-primary); /* Amarillo más claro al pasar el mouse */
 }
 
 @media (max-width: 800px) {
     header,
     footer, 
     #buscador, 
-    #buscadorInput {
+    #buscadorInput,
+    #descripcionYcard {
         flex-direction: column;
     }
+
+    /*Ocultamos los botones de "Iniciar Sesión" y "Registrarse".*/
     header button{
-        display:none;  /* Ocultamos los botones de "Iniciar Sesión" y "Registrarse" en dispositivos móviles */
-    
+        display:none;  
     }
     
-     .menu-icon {
-        display:block;  /* Mostrar el icono del menú hamburguesa en dispositivos móviles */
+    /*Mostrar el icono del menú hamburguesa.*/
+    .menu-icon {
+        display:block;  
     }
 
     .menu-icon .fa-bars {
@@ -243,8 +250,6 @@ select:hover {
         display: block;
         font-size: 1rem;
     } 
-
-}
 
     #buscador{
         text-align: center;
@@ -259,6 +264,9 @@ select:hover {
         margin-bottom: 0.25rem;
     }
 
+    /*DetailProduct*/
+    
+}
 
 
     

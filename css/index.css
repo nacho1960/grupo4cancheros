@@ -8,6 +8,7 @@
     --color-quintenary: #0F2948;;
     box-sizing: border-box;
     color: var(--color-terceray);
+    background-color: var(--color-terceray);
 }
 
 body,
@@ -17,6 +18,9 @@ body,
     margin: 0;
     display: flex;
     flex-direction: column;
+
+   
+
 }
 
 header,
@@ -231,6 +235,7 @@ select:hover {
     footer, 
     #buscador, 
     #buscadorInput,
+    #viewCategorias,
     #descripcionYcard {
         flex-direction: column;
     }

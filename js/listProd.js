@@ -51,9 +51,10 @@ window.addEventListener('load', function () {
 
                     //Por cada producto creamos un botón delete que agregaremos en cada fila para poder eliminar la misma:
                     let deleteButton = '<button id=' + '\"' + 'btn_delete_' + producto.idProducto + '\"' + ' type="button" onclick="confirmDelete(' + producto.idProducto + ')"> Eliminar </button>';
+                    let editButton = '<button id="btn_edit_' + producto.idProducto + '" type="button" onclick="editProduct(' + producto.idProducto + ')">Editar</button>';
 
                     let borrarCelda = productoRow.insertCell();
-                    borrarCelda.innerHTML = deleteButton;
+                    borrarCelda.innerHTML = deleteButton + ' ' + editButton;
 
                 };
                 tableDivProd.style.display = 'block';
@@ -76,6 +77,57 @@ function confirmDelete(id) {
             let row_id = "#tr_" + id;
             document.querySelector(row_id).remove();
         }
+}
+
+function editProduct(id) {
+    const url = 'http://localhost:8080/productos/' + id;
+    const settings = {
+        method: 'GET'
+    }
+    fetch(url, settings)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('nombreProd').value = data.nombreProducto;
+            // Set category and other fields similarly
+            // Show the form for editing
+            formProd.style.display = 'block';
+            tableDivProd.style.display = 'none';
+            document.getElementById('formProd').onsubmit = function (event) {
+                event.preventDefault();
+                updateProduct(id);
+            }
+        });
+}
+
+function updateProduct(id) {
+    const nombreProducto = document.getElementById('nombreProd').value;
+    const idCategoria = document.querySelector('input[name="categoria"]:checked').value; 
+    const imagen = document.getElementById('imagen').files[0]; 
+
+    const url = 'http://localhost:8080/productos/' + id;
+
+    // Crear un FormData para enviar datos y archivos
+    const formData = new FormData();
+    formData.append('idProducto', id);
+    formData.append('nombreProducto', nombreProducto);
+    formData.append('categoria', idCategoria);
+    if (imagen) {
+        formData.append('imagen', imagen); 
+    }
+
+    const settings = {
+        method: 'PUT',
+        body: formData
+    }
+
+    fetch(url, settings)
+        .then(response => response.json())
+        .then(data => {
+            alert('Producto actualizado exitosamente');
+            formProd.style.display = 'none';
+            tableDivProd.style.display = 'block';
+            botonListar.click();  
+        });
 }
 
 

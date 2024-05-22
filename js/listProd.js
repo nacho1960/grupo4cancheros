@@ -218,51 +218,55 @@ function editProduct(id) {
 }
 
 function updateProduct(id) {
-    const url = 'http://localhost:8080/productos/update'; 
+    const url = 'http://localhost:8080/productos/update';
 
-    const formData = new FormData();
-    formData.append('idProducto', id);
-    formData.append('nombreProducto', document.querySelector('#nombreProd').value);
+    const nombreProducto = document.querySelector('#nombreProd').value;
 
     const imagenInput = document.querySelector('#imagen');
+    let base64Image = null;
     if (imagenInput.files.length > 0) {
-        formData.append('imagen', imagenInput.files[0]);
-    }
-
-    const categoriaSeleccionada = document.querySelector('input[name="tipo"]:checked');
-    if (categoriaSeleccionada) {
-        formData.append('categoria', parseInt(categoriaSeleccionada.value));
-    }
-
-    if (formData.imagen) {
         const reader = new FileReader();
-        reader.readAsDataURL(formData.imagen);
+        reader.readAsDataURL(imagenInput.files[0]);
         reader.onload = function () {
-            const base64Image = reader.result;
-            formData.imagen = base64Image;
-            console.log(formData);
+            base64Image = reader.result;
+            enviarSolicitud(); // Enviar la solicitud después de convertir la imagen
         };
         reader.onerror = function (error) {
             console.log('Error: ', error);
         };
+    } else {
+        enviarSolicitud(); // Enviar la solicitud inmediatamente si no hay imagen
     }
 
+    function enviarSolicitud() {
+        const categoriaSeleccionada = document.querySelector('input[name="tipo"]:checked');
+        const categoria = categoriaSeleccionada ? parseInt(categoriaSeleccionada.value) : null;
 
-    fetch(url, {
-        method: 'PUT',
-        body: formData//JSON.stringify(formData)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error al actualizar el producto');
-        }
-        alert('Producto actualizado exitosamente');
-        formProd.style.display = 'none';
-        tableDivProd.style.display = 'block';
-        document.getElementById('listProd').click();
-    })
-    .catch(error => {
-        console.error('Error al actualizar el producto:', error);
-    });
+        const data = {
+            idProducto: id,
+            nombreProducto: nombreProducto,
+            imagen: base64Image,
+            categoria: categoria
+        };
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al actualizar el producto');
+            }
+            alert('Producto actualizado exitosamente');
+            formProd.style.display = 'none';
+            tableDivProd.style.display = 'block';
+            document.getElementById('listProd').click();
+        })
+        .catch(error => {
+            console.error('Error al actualizar el producto:', error);
+        });
+    }
 }
-

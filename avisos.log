@@ -520,3 +520,7 @@
 [2024-05-22 10:20:29] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
 [2024-05-22 10:20:29] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
 [2024-05-22 10:20:29] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 10:27:52] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 1
+[2024-05-22 10:27:53] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 10:28:32] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 10:28:32] [INFO ] [ProductoServiceImpl:62] Producto encontrado.

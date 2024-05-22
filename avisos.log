@@ -524,3 +524,11 @@
 [2024-05-22 10:27:53] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
 [2024-05-22 10:28:32] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
 [2024-05-22 10:28:32] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 10:53:43] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 10:53:45] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 10:53:45] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 10:53:45] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 10:57:42] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 10:57:44] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 10:57:44] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 10:57:44] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.

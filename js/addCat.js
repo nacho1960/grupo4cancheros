@@ -17,6 +17,7 @@ window.addEventListener('load', function () {
     //Ante un submit del formulario se ejecutará la siguiente funcion
     formCat.addEventListener('submit', function (event) {
         event.preventDefault();
+
         //Creamos un JSON que tendrá los datos de la nueva categoría
         const formData = {
             nombre: document.querySelector('#nombreCat').value,

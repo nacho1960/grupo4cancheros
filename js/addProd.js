@@ -21,6 +21,19 @@ window.addEventListener('load', function () {
         response.style.display = 'none';
         radioCat.innerHTML = '<h4>Categoría</h4>'
 
+        const titulo = document.getElementById('Titulo');
+        titulo.textContent = 'Agregar producto';
+
+        const btnActualizar = document.getElementById('btnActualizar');
+        const btnCancelar = document.getElementById('btnCancelar');
+        btnActualizar.style.display = 'none';
+        btnCancelar.style.display = 'none';
+
+        const botonesSubmit = document.querySelectorAll('form button[type="submit"]');
+            botonesSubmit.forEach(boton => {
+                boton.style.display = 'inline-block';
+            });
+
         //Obtener las categorias desde la API
         const url = 'http://localhost:8080/categorias/listarTodos';
         const settings = {

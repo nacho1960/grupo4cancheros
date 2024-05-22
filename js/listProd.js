@@ -98,6 +98,10 @@ function editProduct(id) {
     .then(data => {
         console.log('Datos del producto:', data); // Verificar los datos recibidos
 
+        const titulo = document.getElementById('Titulo');
+        titulo.textContent = 'Editar producto';
+
+
         // Rellenar los campos del formulario con los datos del producto
         console.log('Nombre del producto:', data.nombreProducto);
         document.getElementById('nombreProd').value = data.nombreProducto;
@@ -156,17 +160,37 @@ function editProduct(id) {
                 nombreImagenSpan.textContent = ''; // Limpiar el contenido del span
             });
         
+            const botonesSubmit = document.querySelectorAll('form button[type="submit"]');
 
+            // Ocultar todos los botones de tipo 'submit'
+            botonesSubmit.forEach(boton => {
+                boton.style.display = 'none';
+            });
+        
         // Mostrar el formulario de edición y ocultar la tabla de productos
         const formProd = document.getElementById('formProd');
         formProd.style.display = 'block';
 
-        // Mostrar botones de Actualizar y Cancelar
-        const btnActualizar = document.getElementById('btnActualizar');
-        btnActualizar.style.display = 'inline-block';
+        const tableDivProd = document.getElementById("divProdTabla");
+        tableDivProd.style.display = 'none';
 
-        const btnCancelar = document.getElementById('btnCancelar');
-        btnCancelar.style.display = 'inline-block';
+        // Crear botón de Actualizar
+        const btnActualizar = document.createElement('button');
+        btnActualizar.setAttribute('id', 'btnActualizar');
+        btnActualizar.setAttribute('type', 'button');
+        btnActualizar.style.display = 'none';
+        btnActualizar.textContent = 'Actualizar';
+
+        // Crear botón de Cancelar
+        const btnCancelar = document.createElement('button');
+        btnCancelar.setAttribute('id', 'btnCancelar');
+        btnCancelar.setAttribute('type', 'button');
+        btnCancelar.style.display = 'none';
+        btnCancelar.textContent = 'Cancelar';
+
+        // Agregar los botones al formulario de edición
+        formProd.appendChild(btnActualizar);
+        formProd.appendChild(btnCancelar);
 
         // Asignar funciones a los botones de Actualizar y Cancelar
         btnActualizar.onclick = function () {
@@ -180,6 +204,12 @@ function editProduct(id) {
             btnActualizar.style.display = 'none'; // Ocultar botón de Actualizar
             btnCancelar.style.display = 'none'; // Ocultar botón de Cancelar
         };
+
+        // Mostrar los botones
+
+        btnActualizar.style.display = 'inline-block';
+        btnCancelar.style.display = 'inline-block';
+
     })
     .catch(error => {
         console.error('Error al obtener los datos del producto:', error);
@@ -188,28 +218,45 @@ function editProduct(id) {
 }
 
 function updateProduct(id) {
-    const url = 'http://localhost:8080/productos/' + id;
-    const formData = new FormData();
+    const url = 'http://localhost:8080/productos/update'; 
 
-    formData.append('nombreProducto', document.getElementById('nombreProd').value);
-    formData.append('imagen', document.getElementById('imagen').files[0]);
+    const formData = new FormData();
+    formData.append('idProducto', id);
+    formData.append('nombreProducto', document.querySelector('#nombreProd').value);
+
+    const imagenInput = document.querySelector('#imagen');
+    if (imagenInput.files.length > 0) {
+        formData.append('imagen', imagenInput.files[0]);
+    }
 
     const categoriaSeleccionada = document.querySelector('input[name="tipo"]:checked');
     if (categoriaSeleccionada) {
         formData.append('categoria', parseInt(categoriaSeleccionada.value));
     }
 
+    if (formData.imagen) {
+        const reader = new FileReader();
+        reader.readAsDataURL(formData.imagen);
+        reader.onload = function () {
+            const base64Image = reader.result;
+            formData.imagen = base64Image;
+            console.log(formData);
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    }
+
+
     fetch(url, {
         method: 'PUT',
-        body: formData
+        body: formData//JSON.stringify(formData)
     })
     .then(response => {
         if (!response.ok) {
             throw new Error('Error al actualizar el producto');
         }
         alert('Producto actualizado exitosamente');
-        const formProd = document.getElementById('formProd');
-        const tableDivProd = document.getElementById("divProdTabla");
         formProd.style.display = 'none';
         tableDivProd.style.display = 'block';
         document.getElementById('listProd').click();
@@ -218,3 +265,4 @@ function updateProduct(id) {
         console.error('Error al actualizar el producto:', error);
     });
 }
+

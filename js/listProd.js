@@ -3,8 +3,8 @@ window.addEventListener('load', function () {
     const tableDivProd = document.getElementById("divProdTabla");
     const formProd = document.getElementById('formProd');
     const formCat = document.getElementById('formCat');
-    const tableDivCat = document.getElementById("divCatTabla");
-    const response = document.getElementById("response")
+    const tableDivCat = document.getElementById('divCatTabla');
+    const response = document.getElementById('response');
 
     formProd.style.display = 'none';
     formCat.style.display = 'none';
@@ -19,115 +19,202 @@ window.addEventListener('load', function () {
         tableDivCat.style.display = 'none';
         response.style.display = 'none';
 
-        //Invocamos a la API de Canhceros con el método GET nos devolverá un JSON con una colección de productos
         const url = 'http://localhost:8080/productos/listarTodos';
         const settings = {
             method: 'GET'
-        }
+        };
 
         fetch(url, settings)
             .then(response => response.json())
             .then(data => {
-                const table = document.getElementById("prodTablaBody");
+                const table = document.getElementById('prodTablaBody');
                 table.innerHTML = '';
 
-                //Recorremos la colección de productos del JSON:
-                for (producto of data) {
+                data.forEach(producto => {
+                    const productoRow = table.insertRow();
+                    productoRow.id = 'tr_' + producto.idProducto;
 
-                    //Por cada producto armaremos una fila de la tabla:
-                    var productoRow = table.insertRow();
-                    let tr_id = 'tr_' + producto.idProducto;
-                    productoRow.id = tr_id;
-
-                    // Añadimos las celdas con los datos del producto
-                    let idCelda = productoRow.insertCell();
+                    const idCelda = productoRow.insertCell();
                     idCelda.textContent = producto.idProducto;
 
-                    let nombreCelda = productoRow.insertCell();
+                    const nombreCelda = productoRow.insertCell();
                     nombreCelda.textContent = producto.nombreProducto;
 
-                    let categoriaCelda = productoRow.insertCell();
-                    categoriaCelda.textContent = producto.categoria.nombre;
+                    const categoriaCelda = productoRow.insertCell();
+                    categoriaCelda.textContent = producto.categoria ? producto.categoria.nombre : 'Sin categoría';
 
-                    //Por cada producto creamos un botón delete que agregaremos en cada fila para poder eliminar la misma:
-                    let deleteButton = '<button id=' + '\"' + 'btn_delete_' + producto.idProducto + '\"' + ' type="button" onclick="confirmDelete(' + producto.idProducto + ')"> Eliminar </button>';
-                    let editButton = '<button id="btn_edit_' + producto.idProducto + '" type="button" onclick="editProduct(' + producto.idProducto + ')">Editar</button>';
+                    // Dentro del bucle forEach para crear botones de edición
+                    const editButton = document.createElement('button');
+                    editButton.textContent = 'Editar';
+                    editButton.setAttribute('id', 'btn_edit_' + producto.idProducto);
+                    editButton.setAttribute('type', 'button');
+                    editButton.onclick = () => editProduct(producto.idProducto);
 
-                    let borrarCelda = productoRow.insertCell();
-                    borrarCelda.innerHTML = deleteButton + ' ' + editButton;
+                    const editCelda = productoRow.insertCell();
+                    editCelda.appendChild(editButton);
 
-                };
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Eliminar';
+                    deleteButton.setAttribute('id', 'btn_delete_' + producto.idProducto);
+                    deleteButton.setAttribute('type', 'button');
+                    deleteButton.onclick = () => confirmDelete(producto.idProducto);
+
+                    const deleteCelda = productoRow.insertCell();
+                    deleteCelda.appendChild(deleteButton);
+                });
+
                 tableDivProd.style.display = 'block';
                 tableDivProd.style.width = '100%';
-
             });
     });
-
 });
 
 function confirmDelete(id) {
-        if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
-            const url = 'http://localhost:8080/productos/' + id;
-            const settings = {
-                method: 'DELETE'
-            }
-            fetch(url, settings)
-                .then(response => response.json())
+    if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+        const url = 'http://localhost:8080/productos/' + id;
+        const settings = {
+            method: 'DELETE'
+        };
 
-            let row_id = "#tr_" + id;
-            document.querySelector(row_id).remove();
-        }
+        fetch(url, settings)
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('tr_' + id).remove();
+                } else {
+                    alert('No se pudo eliminar el producto.');
+                }
+            });
+    }
 }
 
 function editProduct(id) {
-    const url = 'http://localhost:8080/productos/update' + id;
+    const url = 'http://localhost:8080/productos/' + id;
     const settings = {
         method: 'GET'
-    }
+    };
+
     fetch(url, settings)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('nombreProd').value = data.nombreProducto;
-            // Set category and other fields similarly
-            // Show the form for editing
-            formProd.style.display = 'block';
-            tableDivProd.style.display = 'none';
-            document.getElementById('formProd').onsubmit = function (event) {
-                event.preventDefault();
-                updateProduct(id);
+    .then(response => response.json())
+    .then(data => {
+        console.log('Datos del producto:', data); // Verificar los datos recibidos
+
+        // Rellenar los campos del formulario con los datos del producto
+        console.log('Nombre del producto:', data.nombreProducto);
+        document.getElementById('nombreProd').value = data.nombreProducto;
+
+        radioCat.innerHTML = '<h4>Categoría</h4>';
+
+        // Obtener las categorias desde la API
+        const urlCategorias = 'http://localhost:8080/categorias/listarTodos';
+        const settingsCategorias = {
+            method: 'GET'
+        };
+
+        fetch(urlCategorias, settingsCategorias)
+            .then(response => response.json())
+            .then(categoriasData => {
+                // Recorremos la colección de categorias del JSON:
+                categoriasData.forEach(categoria => {
+                    // Por cada categoría crea un radio
+                    var radioLabel = document.createElement("label");
+                    var radioInput = document.createElement("input");
+                    radioInput.type = "radio";
+                    radioInput.value = categoria.idCategoria;
+                    radioInput.name = "tipo";
+                    radioLabel.appendChild(radioInput);
+                    radioLabel.style.marginRight = "10px";
+                    radioLabel.appendChild(document.createTextNode(categoria.nombre));
+                    radioCat.appendChild(radioLabel);
+                });
+
+                // Si el producto tiene una categoría asignada, seleccionar el botón de radio correspondiente
+                const categoriaId = data.categoria ? data.categoria.idCategoria : null;
+                if (categoriaId) {
+                    const categoriaCheckbox = document.querySelector(`input[name="tipo"][value="${categoriaId}"]`);
+                    if (categoriaCheckbox) {
+                        categoriaCheckbox.checked = true;
+                    } else {
+                        console.log('No se encontró la categoría correspondiente.');
+                    }
+                } else {
+                    console.log('El producto no tiene categoría.');
+                }
+            })
+            .catch(error => {
+                console.error('Error al obtener las categorías:', error);
+            });
+
+            if (data.imagen) {
+                // Mostrar el nombre de la imagen al lado del campo de entrada
+                const nombreImagenSpan = document.getElementById('nombreImagen');
+                nombreImagenSpan.textContent = data.imagen; // Cambia esto por el campo de la imagen de tu objeto de datos
             }
-        });
+
+            const inputImagen = document.getElementById('imagen');
+            inputImagen.addEventListener('change', function() {
+                const nombreImagenSpan = document.getElementById('nombreImagen');
+                nombreImagenSpan.textContent = ''; // Limpiar el contenido del span
+            });
+        
+
+        // Mostrar el formulario de edición y ocultar la tabla de productos
+        const formProd = document.getElementById('formProd');
+        formProd.style.display = 'block';
+
+        // Mostrar botones de Actualizar y Cancelar
+        const btnActualizar = document.getElementById('btnActualizar');
+        btnActualizar.style.display = 'inline-block';
+
+        const btnCancelar = document.getElementById('btnCancelar');
+        btnCancelar.style.display = 'inline-block';
+
+        // Asignar funciones a los botones de Actualizar y Cancelar
+        btnActualizar.onclick = function () {
+            updateProduct(id);
+        };
+
+        btnCancelar.onclick = function () {
+            formProd.reset(); // Reiniciar el formulario
+            formProd.style.display = 'none'; // Ocultar el formulario
+            tableDivProd.style.display = 'block'; // Mostrar la tabla de productos
+            btnActualizar.style.display = 'none'; // Ocultar botón de Actualizar
+            btnCancelar.style.display = 'none'; // Ocultar botón de Cancelar
+        };
+    })
+    .catch(error => {
+        console.error('Error al obtener los datos del producto:', error);
+    });
+
 }
 
 function updateProduct(id) {
-    const nombreProducto = document.getElementById('nombreProd').value;
-    const idCategoria = document.querySelector('input[name="categoria"]:checked').value; 
-    const imagen = document.getElementById('imagen').files[0]; 
-
     const url = 'http://localhost:8080/productos/' + id;
-
-    // Crear un FormData para enviar datos y archivos
     const formData = new FormData();
-    formData.append('idProducto', id);
-    formData.append('nombreProducto', nombreProducto);
-    formData.append('categoria', idCategoria);
-    if (imagen) {
-        formData.append('imagen', imagen); 
+
+    formData.append('nombreProducto', document.getElementById('nombreProd').value);
+    formData.append('imagen', document.getElementById('imagen').files[0]);
+
+    const categoriaSeleccionada = document.querySelector('input[name="tipo"]:checked');
+    if (categoriaSeleccionada) {
+        formData.append('categoria', parseInt(categoriaSeleccionada.value));
     }
 
-    const settings = {
+    fetch(url, {
         method: 'PUT',
         body: formData
-    }
-
-    fetch(url, settings)
-        .then(response => response.json())
-        .then(data => {
-            alert('Producto actualizado exitosamente');
-            formProd.style.display = 'none';
-            tableDivProd.style.display = 'block';
-            botonListar.click();  
-        });
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al actualizar el producto');
+        }
+        alert('Producto actualizado exitosamente');
+        const formProd = document.getElementById('formProd');
+        const tableDivProd = document.getElementById("divProdTabla");
+        formProd.style.display = 'none';
+        tableDivProd.style.display = 'block';
+        document.getElementById('listProd').click();
+    })
+    .catch(error => {
+        console.error('Error al actualizar el producto:', error);
+    });
 }
-
-

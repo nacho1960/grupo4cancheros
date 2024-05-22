@@ -1,0 +1,388 @@
+[2024-05-22 05:35:42] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-22 05:35:51] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 05:35:56] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:35:57] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 05:36:15] [INFO ] [ProductoServiceImpl:41] Producto guardado con exito.
+[2024-05-22 05:36:18] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:37:29] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:37:31] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 05:37:32] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:37:33] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 05:37:50] [INFO ] [ProductoServiceImpl:41] Producto guardado con exito.
+[2024-05-22 05:37:52] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:37:55] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 05:37:57] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:37:58] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 05:37:59] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:38:03] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:38:05] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 05:38:20] [ERROR] [ProductoServiceImpl:43] java.lang.Exception: Ya existe un producto con ese nombre: Cancha Federer
+[2024-05-22 05:38:23] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:38:27] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 05:38:29] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:47:13] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:47:14] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 05:47:15] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 05:53:38] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:02:44] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:02:45] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 06:02:46] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:02:48] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 06:03:00] [INFO ] [ProductoServiceImpl:41] Producto guardado con exito.
+[2024-05-22 06:03:02] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:03:05] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:03:53] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:04:36] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:04:39] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 06:04:44] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 06:04:59] [INFO ] [CategoriaServiceImpl:27] Categoría guardado con éxito.
+[2024-05-22 06:05:01] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 06:05:15] [INFO ] [ProductoServiceImpl:41] Producto guardado con exito.
+[2024-05-22 06:05:17] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:05:19] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 06:05:21] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:07:37] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:07:38] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:08:12] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:10:17] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 06:10:19] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 06:11:15] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:13:31] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:13:33] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 06:13:33] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:13:36] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 06:13:37] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:14:05] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:15:51] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:16:19] [INFO ] [ProductoServiceImpl:68] Eliminando producto: 4
+[2024-05-22 06:16:19] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 4
+[2024-05-22 06:16:19] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 06:16:19] [INFO ] [ProductoServiceImpl:77] Producto eliminado con éxito: 4
+[2024-05-22 06:16:21] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 1
+[2024-05-22 06:16:21] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 06:16:29] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 06:16:32] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 06:16:32] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 06:16:39] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:03:10] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 07:03:10] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:09:15] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:09:18] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:09:18] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:09:24] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:09:24] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:09:25] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:09:25] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:09:25] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:09:25] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:09:25] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:09:25] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:09:25] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:09:26] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:12:11] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:12:13] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:12:13] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:12:16] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:12:16] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:12:16] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:12:16] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:12:16] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:12:16] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:12:16] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:12:16] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:12:16] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:12:16] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:12:17] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:12:17] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:12:17] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:12:17] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:12:17] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:12:17] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:13:49] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:13:51] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 07:13:51] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:13:53] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 07:13:53] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:13:53] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 07:13:53] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:13:54] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 07:13:54] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:13:54] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 07:13:54] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:13:55] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 07:13:55] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:13:57] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 07:13:57] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:18:44] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:18:46] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:18:46] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:18:48] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:18:48] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:18:49] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:18:49] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:18:49] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:18:49] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:18:52] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:18:52] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:22:20] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:22:21] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:22:21] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:22:22] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:22:22] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:22:22] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:22:22] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:22:23] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:22:23] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:23:48] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:23:48] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:28:33] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:28:34] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:28:34] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:31:48] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:34:23] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:34:24] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:34:24] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:35:28] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:35:29] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:35:29] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:38:29] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:38:30] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:38:30] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:40:44] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:40:49] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:41:59] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:42:00] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:42:00] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:42:07] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:42:11] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:42:12] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:42:12] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:42:18] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:42:20] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:42:21] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:42:21] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:42:23] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:42:36] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:43:32] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:43:34] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:43:35] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:43:35] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:44:12] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:44:13] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:44:15] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:44:15] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:44:40] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:44:42] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:44:44] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:44:44] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:44:45] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:44:47] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:44:47] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:45:31] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:45:33] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 1
+[2024-05-22 07:45:33] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:45:39] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:45:41] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:45:45] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 1
+[2024-05-22 07:45:45] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:45:54] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 07:45:55] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:45:56] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 07:45:56] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:47:52] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:47:53] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:47:53] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:50:56] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:50:57] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:50:57] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:53:09] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:53:11] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:53:11] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:54:16] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 07:54:17] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:54:17] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 07:56:49] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 07:56:49] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:02:38] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:02:39] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:02:39] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:03:51] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:03:52] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:03:52] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:04:24] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:04:25] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:04:25] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:05:43] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:05:44] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:05:44] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:05:46] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:05:46] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:05:57] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:05:57] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:06:22] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:06:23] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:06:23] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:07:01] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:07:02] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:07:02] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:07:09] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:07:09] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:07:13] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:07:13] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:08:20] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:08:22] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:08:22] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:11:24] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:11:25] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:11:25] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:11:47] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:11:48] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 08:11:48] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:14:59] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:15:07] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:15:21] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:16:02] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:16:11] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:16:23] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:16:43] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:16:51] [INFO ] [ProductoServiceImpl:41] Producto guardado con exito.
+[2024-05-22 08:17:06] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:18:03] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:18:03] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:18:32] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:18:33] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:18:33] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:20:17] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:20:19] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:20:19] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:20:51] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:20:53] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:20:53] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:22:25] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:22:26] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:22:26] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:22:32] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:22:32] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:22:35] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:22:35] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:23:00] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:23:01] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 08:23:01] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:29:26] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:29:27] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:29:27] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:29:35] [ERROR] [ProductoServiceImpl:43] java.lang.Exception: Ya existe un producto con ese nombre: Cancha Nat
+[2024-05-22 08:33:41] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:33:42] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:33:44] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:33:44] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:35:39] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:35:40] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:35:40] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:35:40] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:36:07] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:36:08] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:36:08] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:36:08] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:38:39] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:38:40] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:38:40] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:38:40] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:40:56] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:40:57] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:40:57] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:40:57] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:41:13] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:41:13] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:41:13] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:41:18] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:41:32] [INFO ] [ProductoServiceImpl:41] Producto guardado con exito.
+[2024-05-22 08:41:34] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:41:36] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 6
+[2024-05-22 08:41:36] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:41:36] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:45:14] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:45:14] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:45:14] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:45:25] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:45:25] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:45:25] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:46:21] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:46:23] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:46:23] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:46:23] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:46:26] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:46:26] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:46:26] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:48:01] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:48:03] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:48:03] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:48:03] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:52:57] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:52:58] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:52:58] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:52:58] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:53:55] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:53:55] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:53:55] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:54:23] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:54:24] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 2
+[2024-05-22 08:54:24] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:54:24] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:54:40] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:54:41] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:54:41] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:54:41] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:54:42] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:54:42] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:54:43] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:55:57] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:55:57] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 08:55:57] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:55:58] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:57:20] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:57:53] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 08:57:54] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 08:57:54] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 08:57:54] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:58:15] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 08:58:19] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 09:00:16] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 09:00:18] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 3
+[2024-05-22 09:00:18] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 09:00:18] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 09:00:54] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 09:00:56] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 6
+[2024-05-22 09:00:56] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 09:00:56] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 09:02:19] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 09:02:20] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 6
+[2024-05-22 09:02:20] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 09:02:20] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 09:02:28] [ERROR] [ProductoServiceImpl:43] java.lang.Exception: Ya existe un producto con ese nombre: Cancha James
+[2024-05-22 09:06:14] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 09:06:16] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 6
+[2024-05-22 09:06:16] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 09:06:16] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 09:06:28] [ERROR] [ProductoServiceImpl:43] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Producto.imagen
+[2024-05-22 09:06:33] [ERROR] [ProductoServiceImpl:43] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Producto.imagen
+[2024-05-22 09:07:53] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 09:07:54] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 6
+[2024-05-22 09:07:54] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 09:07:54] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 09:08:05] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 6
+[2024-05-22 09:08:05] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 09:08:05] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 09:10:10] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 09:10:11] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 6
+[2024-05-22 09:10:11] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 09:10:11] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 09:10:23] [ERROR] [ProductoServiceImpl:43] org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value : com.example.cancheros.entity.Producto.imagen
+[2024-05-22 09:12:57] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 09:12:58] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 09:12:58] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 09:12:58] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.
+[2024-05-22 09:15:35] [INFO ] [ProductoServiceImpl:50] Listando todos los productos.
+[2024-05-22 09:15:36] [INFO ] [ProductoServiceImpl:57] Buscando Producto con el ID: 5
+[2024-05-22 09:15:36] [INFO ] [ProductoServiceImpl:62] Producto encontrado.
+[2024-05-22 09:15:36] [INFO ] [CategoriaServiceImpl:36] Listando todas las categorías.

@@ -88,6 +88,11 @@ h4 {
    border-collapse: collapse;
 }
 
+#prodTabla th, #catTabla th, #prodTabla tr, #catTabla tr {
+    padding: 12px;
+    text-align: center;
+}
+
 #prodTabla th, #catTabla th {
     border: 1px solid #ddd;
     padding: 8px;
@@ -106,6 +111,7 @@ h4 {
     grid-column: 2;
     margin: 0;
 }
+
 
 /*No responsive*/
 @media (max-width: 780px) {

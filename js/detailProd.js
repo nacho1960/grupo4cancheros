@@ -1,4 +1,4 @@
-window.addEventListener('load', function () {
+window.addEventListener('load', function (){
     const urlParams = new URLSearchParams(window.location.search);
     const idProducto = urlParams.get('id');
     const divDetail = document.getElementById("detail");

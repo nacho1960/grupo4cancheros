@@ -80,7 +80,7 @@ function confirmDelete(id) {
 }
 
 function editProduct(id) {
-    const url = 'http://localhost:8080/productos/' + id;
+    const url = 'http://localhost:8080/productos/update' + id;
     const settings = {
         method: 'GET'
     }

@@ -56,11 +56,16 @@ window.addEventListener('load', function () {
         //Creamos un JSON que tendrá los datos del nuevo producto
         const formData = {
             nombreProducto: document.querySelector('#nombreProd').value,
-            categoria: {
-                idCategoria: parseInt(document.querySelector('input[name="tipo"]:checked').value)
-            },
             imagen: document.querySelector('#imagen').files[0]
-        };
+        }
+
+        //Obtener la categoria seleccionada (en el caso de que exista)
+        const categoriaSeleccionada = document.querySelector('input[name="tipo"]:checked');
+        if (categoriaSeleccionada) {
+            formData.categoria = {
+                idCategoria: parseInt(categoriaSeleccionada.value)
+            };
+        }
 
         // Convertir imagen a base64
         if (formData.imagen) {

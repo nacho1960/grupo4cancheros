@@ -22,7 +22,7 @@ public class Producto {
     private String imagen;
 
     @ManyToOne //Muchos productos pueden tener la misma categoria
-    @JoinColumn (name="id_categoria", nullable = false)
+    @JoinColumn (name="id_categoria")
     private Categoria categoria;
 
 

@@ -1,6 +1,7 @@
 package com.example.cancheros.service.impl;
 
 import com.example.cancheros.entity.Producto;
+import com.example.cancheros.exceptions.ResourceNotFoundException;
 import com.example.cancheros.repository.IProductoRepository;
 import com.example.cancheros.service.IProductoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -52,11 +53,11 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
-    public Producto buscar(Long id) throws Exception {
+    public Producto buscar(Long id) throws ResourceNotFoundException {
         LOGGER.info("Buscando Producto con el ID: " + id);
         Optional<Producto> producto = repository.findById(id);
         if (!producto.isPresent()){
-            throw new Exception("No existe el producto solicitado: " + id);
+            throw new ResourceNotFoundException("No existe el producto solicitado: " + id);
         }
         LOGGER.info("Producto encontrado.");
         return mapper.convertValue(producto, Producto.class);
@@ -74,6 +75,16 @@ public class ProductoServiceImpl implements IProductoService {
         }
         repository.deleteById(id);
         LOGGER.info("Producto eliminado con éxito: " + id);
+    }
+
+    @Override
+    public void actualizar(Producto producto) throws ResourceNotFoundException {
+        LOGGER.info("Actualizando el producto con id: " + producto.getIdProducto());
+        if (buscar(producto.getIdProducto()) == null){
+            throw new ResourceNotFoundException("No existe el producto que intenta actualizar: " + producto.getIdProducto());
+        }
+        repository.save(producto);
+        LOGGER.info("El producto fue actualizado con exito");
     }
 
 }

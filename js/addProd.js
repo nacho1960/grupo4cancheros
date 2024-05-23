@@ -13,6 +13,9 @@ window.addEventListener('load', function () {
     tableDivCat.style.display = 'none';
     response.style.display = 'none';
 
+    const nombreImagenSpan = document.getElementById('nombreImagen');
+    nombreImagenSpan.textContent = '';
+
     buttonAddProduct.addEventListener('click', function () {
         formProd.style.display = 'block';
         formCat.style.display = 'none';

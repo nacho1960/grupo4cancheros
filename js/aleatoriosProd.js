@@ -120,13 +120,13 @@ function obtenerProductosPorCategoria(categoriaNombre) {
         .then(categorias => {
             // Buscar la categoría por su nombre
             const categoriaEncontrada = categorias.find(categoria => categoria.nombre === categoriaNombre);
-            const idCategoriaEncontrada = categoriaEncontrada.idCategoria;
-            console.log(categoriaEncontrada)
-            console.log(categoriaEncontrada.idCategoria)
-
-
+            
             // Si se encontró la categoría, obtener su ID y hacer la solicitud a la API de productos
             if (categoriaEncontrada) {
+                const idCategoriaEncontrada = categoriaEncontrada.idCategoria;
+                //console.log(categoriaEncontrada);
+                //console.log(categoriaEncontrada.idCategoria);
+
                 const urlProductos = `http://localhost:8080/productos/listarTodos?idCategoria=${idCategoriaEncontrada}`;
                 const settingsProductos = {
                     method: 'GET'
@@ -136,10 +136,18 @@ function obtenerProductosPorCategoria(categoriaNombre) {
                 fetch(urlProductos, settingsProductos)
                     .then(response => response.json())
                     .then(productos => {
-                        //const idCategoriaEncontrada = productos[0].categoria.idCategoria;
-                        console.log(productos)
+                        let productosCategoria = [];
+
+                        // Iterar sobre los productos y acceder al idCategoria de cada uno
+                        productos.forEach(producto => {
+                            if (producto.categoria && categoriaEncontrada.idCategoria === producto.categoria.idCategoria) {
+                                //console.log(producto.categoria.idCategoria);
+                                productosCategoria.push(producto);
+                            } 
+                        });
+
                         // Mostrar los productos en el div correspondiente
-                        mostrarProductosEnDiv(productos);
+                        mostrarProductosEnDiv(productosCategoria);
                     })
                     .catch(error => {
                         console.error('Error al obtener los productos por categoría:', error);
@@ -152,5 +160,3 @@ function obtenerProductosPorCategoria(categoriaNombre) {
             console.error('Error al obtener las categorías:', error);
         });
 }
-
-

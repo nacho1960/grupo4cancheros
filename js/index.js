@@ -16,6 +16,7 @@ window.addEventListener('load', function () {
             data.forEach(categoria => {
                 const buttonCat = document.createElement("button");
                 buttonCat.textContent = categoria.nombre;
+                buttonCat.classList.add('categoria-button');
                 divCategoria.appendChild(buttonCat);
 
                 const optionCat = document.createElement("option");

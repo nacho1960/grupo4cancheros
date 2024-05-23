@@ -1,72 +1,156 @@
 window.addEventListener('load', function () {
-    const showProductos = document.getElementById('showProductos');
+    mostrarProductosAleatorios();
 
-    // Solicitar todos los productos a la API
+    // Vincular el evento de clic para el botón "Todas las categorías"
+    document.getElementById('BotonTodasCategorias').addEventListener('click', function () {
+        mostrarProductosAleatorios();
+    });
+
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('categoria-button')) {
+            const categoriaNombre = event.target.textContent;
+            console.log(categoriaNombre);
+            obtenerProductosPorCategoria(categoriaNombre);
+            
+        }
+    });
+    
+});
+
+// Función para mostrar productos aleatorios
+function mostrarProductosAleatorios() {
+    const showProductos = document.getElementById('showProductos');
     const url = 'http://localhost:8080/productos/listarTodos';
+    
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            // Obtener 10 productos aleatorios
             const productosAleatorios = obtenerProductosAleatorios(data, 10);
-            // Mostrar los detalles de los productos en el div viewCategorias
             mostrarProductosEnDiv(productosAleatorios);
         })
         .catch(error => {
             console.error('Error al obtener los productos:', error);
         });
+}
 
-    function obtenerProductosAleatorios(productos, cantidad) {
-        // Obtener una muestra aleatoria de productos
-        const productosAleatorios = [];
-        const copiaProductos = [...productos]; // Copiar la lista de productos para no modificar la original
-        for (let i = 0; i < cantidad && copiaProductos.length > 0; i++) {
-            const indiceAleatorio = Math.floor(Math.random() * copiaProductos.length);
-            productosAleatorios.push(copiaProductos.splice(indiceAleatorio, 1)[0]);
-        }
-        return productosAleatorios;
+// Función para obtener una muestra aleatoria de productos
+function obtenerProductosAleatorios(productosConCategoria, productosSinCategoria) {
+    const productosAleatorios = [];
+
+    // Agregar productos sin categoría
+    if (productosSinCategoria.length > 0) {
+        const indiceAleatorio = Math.floor(Math.random() * productosSinCategoria.length);
+        productosAleatorios.push(productosSinCategoria.splice(indiceAleatorio, 1)[0]);
     }
 
-    function mostrarProductosEnDiv(productos) {
-        // Limpiar el div viewCategorias
-        showProductos.innerHTML = '';
+    // Determinar cuántos productos aleatorios restantes necesitamos
+    let cantidadRestante = 10 - productosAleatorios.length;
 
-        // Mostrar cada producto en el div
-        productos.forEach(producto => {
-            const productoDiv = document.createElement('div');
-            productoDiv.classList.add('producto');
+    // Agregar productos con categoría aleatorios
+    while (cantidadRestante > 0 && productosConCategoria.length > 0) {
+        const indiceAleatorio = Math.floor(Math.random() * productosConCategoria.length);
+        productosAleatorios.push(productosConCategoria.splice(indiceAleatorio, 1)[0]);
+        cantidadRestante--;
+    }
 
-            const imagen = document.createElement('img');
-            imagen.src = producto.imagen;
-            imagen.style.maxWidth = '100%';
+    return productosAleatorios;
+}
 
-            const nombre = document.createElement('h2');
-            nombre.textContent = producto.nombreProducto;
 
-            const descripcion = document.createElement('p');
-            descripcion.textContent = producto.categoria.descripcion;
+// Función para mostrar productos en el div
+function mostrarProductosEnDiv(productos) {
+    const showProductos = document.getElementById('showProductos');
+    showProductos.innerHTML = '';
 
-            const preciotitulo = document.createElement('h2');
-            preciotitulo.textContent = 'Precio por Hora (U$$) ' 
+    if (productos.length === 0) {
+        const noProductos = document.createElement('p');
+        noProductos.textContent = 'No se encontraron productos.';
+        showProductos.appendChild(noProductos);
+        return;
+    }
 
-            const precio = document.createElement('p');
-            precio.textContent = producto.categoria.precioHora;
+    productos.forEach(producto => {
+        const productoDiv = document.createElement('div');
+        productoDiv.classList.add('producto');
 
-            const verMasLink = document.createElement('a');
-            verMasLink.textContent = 'Ver más';
-            verMasLink.classList.add('ver-mas-link');
-            verMasLink.href = '../html/detailProd.html?id=' + producto.idProducto;
+        const imagen = document.createElement('img');
+        imagen.src = producto.imagen;
+        imagen.style.maxWidth = '100%';
 
-        
-            productoDiv.appendChild(imagen);
-            productoDiv.appendChild(nombre);
-            productoDiv.appendChild(descripcion);
-            productoDiv.appendChild(preciotitulo);
-            productoDiv.appendChild(precio);
-            productoDiv.appendChild(verMasLink);
+        const nombre = document.createElement('h2');
+        nombre.textContent = producto.nombreProducto;
 
-            showProductos.appendChild(productoDiv);
+        const descripcion = document.createElement('p');
+        descripcion.textContent = producto.categoria ? producto.categoria.descripcion : 'Sin categoría';
+
+        const preciotitulo = document.createElement('h2');
+        preciotitulo.textContent = 'Precio por Hora (U$$) ';
+
+        const precio = document.createElement('p');
+        precio.textContent = producto.categoria ? producto.categoria.precioHora : 30;
+
+        const verMasLink = document.createElement('a');
+        verMasLink.textContent = 'Ver más';
+        verMasLink.classList.add('ver-mas-link');
+        verMasLink.href = '../html/detailProd.html?id=' + producto.idProducto;
+
+        productoDiv.appendChild(imagen);
+        productoDiv.appendChild(nombre);
+        productoDiv.appendChild(descripcion);
+        productoDiv.appendChild(preciotitulo);
+        productoDiv.appendChild(precio);
+        productoDiv.appendChild(verMasLink);
+
+        showProductos.appendChild(productoDiv);
+    });
+}
+
+
+
+
+// Función para obtener productos por categoría
+function obtenerProductosPorCategoria(categoriaNombre) {
+    // Realizar la solicitud a la API para obtener todas las categorías
+    const urlCategorias = 'http://localhost:8080/categorias/listarTodos';
+    const settings = {
+        method: 'GET'
+    };
+    fetch(urlCategorias, settings)
+        .then(response => response.json())
+        .then(categorias => {
+            // Buscar la categoría por su nombre
+            const categoriaEncontrada = categorias.find(categoria => categoria.nombre === categoriaNombre);
+            const idCategoriaEncontrada = categoriaEncontrada.idCategoria;
+            console.log(categoriaEncontrada)
+            console.log(categoriaEncontrada.idCategoria)
+
+
+            // Si se encontró la categoría, obtener su ID y hacer la solicitud a la API de productos
+            if (categoriaEncontrada) {
+                const urlProductos = `http://localhost:8080/productos/listarTodos?idCategoria=${idCategoriaEncontrada}`;
+                const settingsProductos = {
+                    method: 'GET'
+                };
+                
+                // Realizar la solicitud a la API para obtener productos por la categoría
+                fetch(urlProductos, settingsProductos)
+                    .then(response => response.json())
+                    .then(productos => {
+                        //const idCategoriaEncontrada = productos[0].categoria.idCategoria;
+                        console.log(productos)
+                        // Mostrar los productos en el div correspondiente
+                        mostrarProductosEnDiv(productos);
+                    })
+                    .catch(error => {
+                        console.error('Error al obtener los productos por categoría:', error);
+                    });
+            } else {
+                console.error('No se encontró la categoría:', categoriaNombre);
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener las categorías:', error);
         });
-    }
-    
-    
-});
+}
+
+

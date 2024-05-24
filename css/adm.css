@@ -19,6 +19,7 @@ h4 {
     display: none;
 }
 
+
 /*Panel administrador*/
 #panelAdm {
     display: flex;
@@ -57,7 +58,8 @@ h4 {
 }
 
 #formProd button,
-#formCat button {
+#formCat button,
+#formEditProd button{
     margin-top: 30px;
     background-color: #235C9F;
     border-radius: 38px;
@@ -123,5 +125,9 @@ h4 {
         display: block;
         color: var(--color-quintenary);
         padding: 2rem;
+    }
+
+    footer{
+        position: absolute;
     }
 }

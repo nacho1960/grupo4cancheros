@@ -4,14 +4,16 @@ window.addEventListener('load', function () {
     const formCat = document.getElementById('formCat');
     const tableDivProd = document.getElementById("divProdTabla");
     const tableDivCat = document.getElementById("divCatTabla");
-    const response = document.getElementById("response")
-
+    const response = document.getElementById("response");
+    const formEditProd = document.getElementById('formEditProd');
+    
     buttonAddCat.addEventListener('click', function () {
         formProd.style.display = 'none';
         formCat.style.display = 'block';
         tableDivProd.style.display = 'none';
         tableDivCat.style.display = 'none';
         response.style.display = 'none';
+        formEditProd.style.display = 'none';
     });
 
     //Ante un submit del formulario se ejecutará la siguiente funcion

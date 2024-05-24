@@ -4,13 +4,15 @@ window.addEventListener('load', function () {
     const formProd = document.getElementById('formProd');
     const formCat = document.getElementById('formCat');
     const tableDivProd = document.getElementById("divProdTabla");
-    const response = document.getElementById("response")
+    const response = document.getElementById("response");
+    const formEditProd = document.getElementById('formEditProd');
 
     formProd.style.display = 'none';
     formCat.style.display = 'none';
     tableDivCat.style.display = 'none';
     tableDivProd.style.display = 'none';
     response.style.display = 'none';
+    formEditProd.style.display = 'none';
 
     botonListar.addEventListener('click', function () {
         tableDivCat.style.display = 'block';
@@ -18,6 +20,7 @@ window.addEventListener('load', function () {
         formCat.style.display = 'none';
         tableDivProd.style.display = 'none';
         response.style.display = 'none';
+        formEditProd.style.display = 'none';
 
         //Invocamos a la API de Canhceros con el método GET nos devolverá un JSON con una colección de categorías
         const url = 'http://localhost:8080/categorias/listarTodos';

@@ -5,16 +5,17 @@ window.addEventListener('load', function () {
     var radioCat = document.getElementById('radioCat');
     const tableDivProd = document.getElementById("divProdTabla");
     const tableDivCat = document.getElementById("divCatTabla");
-    const response = document.getElementById("response")
+    const response = document.getElementById("response");
+    const formEditProd = document.getElementById('formEditProd');
+    const imagenInput = document.getElementById('imagen');
+    const imagenPreview = document.getElementById('imagenPreview');
 
     formProd.style.display = 'none';
     formCat.style.display = 'none';
     tableDivProd.style.display = 'none';
     tableDivCat.style.display = 'none';
     response.style.display = 'none';
-
-    const nombreImagenSpan = document.getElementById('nombreImagen');
-    nombreImagenSpan.textContent = '';
+    formEditProd.style.display = 'none';
 
     buttonAddProduct.addEventListener('click', function () {
         formProd.style.display = 'block';
@@ -22,20 +23,22 @@ window.addEventListener('load', function () {
         tableDivProd.style.display = 'none';
         tableDivCat.style.display = 'none';
         response.style.display = 'none';
+        formEditProd.style.display = 'none';
+
         radioCat.innerHTML = '<h4>Categoría</h4>'
 
         const titulo = document.getElementById('Titulo');
         titulo.textContent = 'Agregar producto';
 
-        const btnActualizar = document.getElementById('btnActualizar');
-        const btnCancelar = document.getElementById('btnCancelar');
-        btnActualizar.style.display = 'none';
-        btnCancelar.style.display = 'none';
+        //const btnActualizar = document.getElementById("btnActualizar");
+        //const btnCancelar = document.getElementById("btnCancelar");
+        //btnActualizar.style.display = 'none';
+        //btnCancelar.style.display = 'none';
 
         const botonesSubmit = document.querySelectorAll('form button[type="submit"]');
-            botonesSubmit.forEach(boton => {
-                boton.style.display = 'inline-block';
-            });
+        botonesSubmit.forEach(boton => {
+            boton.style.display = 'inline-block';
+        });
 
         //Obtener las categorias desde la API
         const url = 'http://localhost:8080/categorias/listarTodos';
@@ -65,7 +68,19 @@ window.addEventListener('load', function () {
     });
 
 
-
+    // Actualizar la vista previa de la imagen en tiempo real
+    imagenInput.addEventListener('change', function () {
+        const file = imagenInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagenPreview.src = e.target.result;
+                imagenPreview.style.width = "200px";
+                imagenPreview.style.height = "auto";
+            };
+            reader.readAsDataURL(file);
+        }
+    });
     //Ante un submit del formulario se ejecutará la siguiente función
     formProd.addEventListener('submit', function (event) {
         event.preventDefault();

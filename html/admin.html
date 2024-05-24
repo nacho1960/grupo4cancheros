@@ -36,6 +36,7 @@
             <button id="listProd">Lista de productos</button>
             <button id="listCat">Lista de categorias</button>
         </div>
+
         <form id="formProd">
             <h2 id ="Titulo">Agregar producto</h2>
             <label><h4>Nombre</h4></label>
@@ -44,12 +45,9 @@
             <div id="image">
                 <h4>Imagen</h4>
                 <input type="file" name="imagen" id="imagen" accept="image/*" />
-                <span id="nombreImagen"></span>
+                <img src="" alt="" id="imagenPreview">
             </div>
-            
-        
             <button type='submit'>Agregar producto</button>
-        
         </form>
         
         <form id="formCat">
@@ -64,6 +62,21 @@
             </div>
             <button type="submit">Agregar categoría</button>
         </form>
+
+        <form id="formEditProd">
+            <h2>Editar Producto</h2>
+            <label><h4>Nombre</h4></label>
+            <input type="text" id="nombreProdEdit" required />
+            <div id="radioCatEdit"></div>
+            <div id="imageEdit">
+                <h4>Imagen</h4>
+                <input type="file" name="imagen" id="imagenEdit" accept="image/*" />
+                <img src="" alt="" id="imagenPreviewEdit">
+            </div>
+            <button type="button" id="btnActualizar">Actualizar</button>
+            <button type="button" id="btnCancelar">Cancelar</button>
+        </form>
+
         <div id="response"></div>
         <div id="divProdTabla">
             <h2>Lista de productos</h2>

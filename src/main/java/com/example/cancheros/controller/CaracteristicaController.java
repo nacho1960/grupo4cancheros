@@ -43,7 +43,7 @@ public class CaracteristicaController {
     @GetMapping("/{id}")
     // devuelve una característica específica basada en su ID
     public Caracteristica getById(@PathVariable Long id) {
-        return caracteristicaService.findById(id).orElse(null);
+        return caracteristicaService.findById(id); //.orElse(null);
     }
 
     @PutMapping("/{id}")

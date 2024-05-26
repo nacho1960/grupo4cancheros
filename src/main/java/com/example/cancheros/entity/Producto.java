@@ -1,9 +1,20 @@
 package com.example.cancheros.entity;
 
-import jakarta.persistence.*;
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Entity
 @Data
@@ -25,6 +36,12 @@ public class Producto {
     @JoinColumn (name="id_categoria")
     private Categoria categoria;
 
+    @ManyToMany //relación de muchos a muchos entre Producto y Caracteristica
+    @JoinTable(
+        name = "producto_caracteristica",
+        joinColumns = @JoinColumn(name = "id_producto"),
+        inverseJoinColumns = @JoinColumn(name = "id_caracteristica"))
+    private List<Caracteristica> caracteristicas;
 
+   }
 
-}

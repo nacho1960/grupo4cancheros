@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script type="text/javascript" src="../js/addProd.js"></script>
     <script type="text/javascript" src="../js/addCat.js"></script>
+    <script type="text/javascript" src="../js/listCaract.js"></script>
     <script type="text/javascript" src="../js/listProd.js"></script>
     <script type="text/javascript" src="../js/listCat.js"></script>
 </head>
@@ -35,6 +36,7 @@
             <button id="addCat">Agregar categoría</button>
             <button id="listProd">Lista de productos</button>
             <button id="listCat">Lista de categorias</button>
+            <button id="listCaract">Agregar caracteristicas</button>
         </div>
 
         <form id="formProd">
@@ -111,7 +113,23 @@
                 </table>
             </div>
         </div>
+
+     
+         <form id="formCaract">
+            <h2>Agregar caracteristica </h2>
+            <label><h4>Nombre</h4></label>
+          <input type="text" id="nombreCaract" required>
+        <div id="imageEdit">
+            <h4>Imagen</h4>
+            <input type="file" name="imagen" id="imagenCaract" accept="image/*"required />
+            <img src="" alt="" id="imagenPreviewCaract">
+        </div>
+    
+      <button type='submit'>Agregar caracteristicas </button>
+      
+     </form>
     </main>
+
     <footer>
         <img src="../img/logo.png" alt="logo">
         <i class="fa-regular fa-copyright"></i>

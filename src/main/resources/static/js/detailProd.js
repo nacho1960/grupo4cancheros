@@ -20,7 +20,13 @@ window.addEventListener('load', function (){
             divTitulo.appendChild(nombreProducto);
 
             let descripcionDiv = document.createElement("div");
-            let descripcionTexto = producto.categoria.descripcion;
+            let descripcionTexto;
+            if (producto.categoria){
+                descripcionTexto = producto.categoria.descripcion;
+            } else {
+                descripcionTexto = "Descripción del producto"
+            }
+
             descripcionTexto = descripcionTexto.split('\n').join('<br>');
             descripcionDiv.innerHTML = descripcionTexto;
             descripcionDiv.style.fontWeight = 600;
@@ -29,7 +35,11 @@ window.addEventListener('load', function (){
             let divCard = document.createElement("div");
             divCard.classList.add('divCard');
             let precio = document.createElement("p");
-            precio.textContent = '$ ' + producto.categoria.precioHora + ' USD Por Hora';
+            if (producto.categoria){
+                 precio.textContent = '$ ' + producto.categoria.precioHora + ' USD Por Hora';
+            } else {
+                 precio.textContent = 'Precio sin definir';
+            }
             precio.style.fontWeight = 600;
 
             let divHorarios = document.createElement("div");

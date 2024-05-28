@@ -75,6 +75,11 @@ select:hover {
     cursor: pointer;
 }
 
+/*Detalle*/
+#detailUserMain {
+    color:black;
+}
+
 /*Buscador*/
 #buscador {
     position: relative;

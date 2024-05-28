@@ -47,21 +47,23 @@ public class CaracteristicaServiceImpl implements ICaracteristicaService {
         caracteristicaRepository.deleteById(id);
     }
 
+    public class CaracteristicaNotFoundException extends RuntimeException {
+        public CaracteristicaNotFoundException(String message) {
+            super(message);
+        }
+    }
+    
+    private static final Logger LOGGER = Logger.getLogger(CaracteristicaServiceImpl.class);
+
     @Override
-    // actualiza una característica específica basada en su ID
-    public void update(Caracteristica caracteristica) throws RuntimeException {
-        try {
-            if (findById(caracteristica.getIdCaracteristica()).isPresent()) {
-                caracteristicaRepository.save(caracteristica);
-            }
-        }
-        catch (Exception e) {
-            logger.error("Error al actualizar la caracteristica: " + e.getMessage());
-            throw new RuntimeException("Caracteristica not found");
-        }
+    public void actualizar(Caracteristica caracteristica) {
+        LOGGER.info("La caracteristica fue actualizada con exito");
+        caracteristicaRepository.save(caracteristica);
+    }
 }
 
-}
+
+
 
 
 

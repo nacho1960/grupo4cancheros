@@ -10,5 +10,11 @@ public interface ICaracteristicaService {
     List<Caracteristica> findAll(); // Listar todas las caracteristicas
     Optional<Caracteristica> findById(Long id); // Buscar una caracteristica por id
     void deleteById(Long id); // Eliminar una caracteristica por id
-    void update(Caracteristica caracteristica) throws RuntimeException; // Actualizar una caracteristica
+    void actualizar(Caracteristica caracteristica) throws ResourceNotFoundException; // Actualizar una caracteristica
+}
+
+class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
 }

@@ -1,0 +1,57 @@
+#detail{
+    color: var(--color-quintenary);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#titulo{
+    display: flex;
+    align-items: center;
+    gap: 1.250rem;
+    padding-left: 5rem;
+    font-size: 1.5em;
+    background-color: var(--color-quaternary);
+    margin-bottom: 10px;
+}
+
+h1, .material-symbols-outlined{
+    color: var(--color-primary);
+}
+
+#descripcionYcard{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--color-quintenary);
+    font-size: 1.2em;
+}
+
+.divCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-secondary);
+    border-radius: 2.188em;
+    border: 1px solid var(--color-quintenary);
+    padding: 0.313vh 1.875vw;
+}
+
+.divHorarios{
+    background-color: var(--color-terceray);
+    border-radius: 0.813em;
+    border: 1px solid var(--color-quaternary);
+    padding: 0.313vw;
+}
+
+.imgProd{
+    width: 30vw;
+    height: auto;
+    align-self: center;
+    margin-bottom: 52px;
+}
+
+
+
+

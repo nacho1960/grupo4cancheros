@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancheros</title>
+    <link rel="icon" href="img/i-cancha.png">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/adm.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/e50f04e157.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+    </header>
+
+    <main>
+        <h2>Iniciar Sesión</h2>
+
+        <form id="loginForm" action="/login" method="POST">
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div>
+                <button type="button" id="loginButton">Login</button>
+            </div>
+            <div id="error" style="color: red;">
+                <!-- El mensaje de error se mostrará aquí -->
+            </div>
+        </form>
+    </main>
+    <footer>
+        <img src="img/logo.png" alt="logo">
+        <i class="fa-regular fa-copyright"></i>
+        <p>2024</p>
+    </footer>
+</body>
+<script>
+    document.getElementById("loginButton").addEventListener("click", function() {
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
+
+                if (email.trim() === "" || password.trim() === "") {
+                    alert("Por favor, ingresa un correo y contraseña.");
+                } else {
+                    document.getElementById("loginForm").submit();
+                }
+            });
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('error')) {
+        document.getElementById('error').innerText = 'Correo o constraseña inválido. Intenta nuevamente. ';
+    }
+</script>
+</html>
+
+

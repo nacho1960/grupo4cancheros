@@ -1,6 +1,7 @@
 package com.example.cancheros.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,8 @@ public class CaracteristicaServiceImpl implements ICaracteristicaService {
 
     @Override
     // devuelve una característica específica basada en su ID
-    public Caracteristica findById(Long id) {
-        return caracteristicaRepository.findById(id).orElse(null);
+    public Optional<Caracteristica> findById(Long id) {
+        return caracteristicaRepository.findById(id);
     }
 
     @Override
@@ -48,9 +49,19 @@ public class CaracteristicaServiceImpl implements ICaracteristicaService {
 
     @Override
     // actualiza una característica específica basada en su ID
-    public Caracteristica update(Caracteristica caracteristica) {
-        return caracteristicaRepository.save(caracteristica);
-    }
+    public void update(Caracteristica caracteristica) throws RuntimeException {
+        try {
+            if (findById(caracteristica.getIdCaracteristica()).isPresent()) {
+                caracteristicaRepository.save(caracteristica);
+            }
+        }
+        catch (Exception e) {
+            logger.error("Error al actualizar la caracteristica: " + e.getMessage());
+            throw new RuntimeException("Caracteristica not found");
+        }
 }
+
+}
+
 
 

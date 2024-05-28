@@ -21,7 +21,7 @@ public class Caracteristica {
     @Column(name = "Nombre", nullable = false)
     private String nombre;
 
-    //@Column(name = "Descripcion", nullable = false)
-    //private  String descripcion;
+    @Column(name = "Imagen", nullable = false, columnDefinition = "LONGTEXT")
+    private String imagen;
 
 }

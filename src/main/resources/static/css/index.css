@@ -141,6 +141,37 @@ select:hover {
     background-color: var(--color-primary);
 }
 
+a.button {
+    color: #F6BF0F; 
+    text-decoration: none; 
+}
+
+a.button:visited {
+    color: white;
+}
+
+a.button:hover {
+    color: white;
+}
+
+a.button:active {
+    color: white;
+}
+
+a {
+    color: #F6BF0F; 
+    text-decoration: none; 
+}
+
+
+a:hover {
+    color: white;
+}
+
+a:active {
+    color: white;
+}
+
 /*Categorias*/
 #viewCategorias{
     display: flex;
@@ -270,8 +301,6 @@ select:hover {
     #buscadorInput input, #buscadorInput select, #buscadorInput #buscar{
         margin-bottom: 0.25rem;
     }
-
-    /*DetailProduct*/
     
 }
 

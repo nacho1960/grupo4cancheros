@@ -52,6 +52,19 @@ h1, .material-symbols-outlined{
     margin-bottom: 52px;
 }
 
+.divCaracteristicas{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+    gap: 1rem; /* Espacio entre los elementos */
+    margin-bottom: 3rem;
+    justify-items: center;
+    align-items: center;
+}
+
+.divTitulo{
+    align-self: center;
+}
+
 
 
 

@@ -53,6 +53,7 @@ window.addEventListener('load', function () {
                     let imgCelda = caracteristicaRow.insertCell();
                     let img = document.createElement("img");
                     img.src = caracteristica.imagen;
+                    img.style.maxWidth = '40%';
                     imgCelda.appendChild(img);
                 });
 

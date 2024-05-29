@@ -7,6 +7,7 @@
     <link rel="icon" href="img/i-cancha.png">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/adm.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/e50f04e157.js" crossorigin="anonymous"></script>
@@ -16,28 +17,31 @@
 
 <body>
     <header>
-        <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+        <div><a href="index.html"><img src="img/logo.png" alt="logo"></a></div>
+        <div><a href="login.html" class="button"><button>Iniciar Sesión</button></a>
+        <a href="register.html" class="button"><button>Registrarse</button></a></div>
     </header>
 
     <main>
-        <h2>Iniciar Sesión</h2>
-
-        <form id="loginForm" action="/login" method="POST">
-            <div>
-                <label for="email">Email:</label>
+        <div class="container">
+            <form id="loginForm" action="/login" method="POST">
+                <h2>Iniciar Sesión</h2>
+                <div>
+                    <label for="email"><h4>Correo electrónico:</h4></label>
+                </div>
                 <input type="email" id="email" name="email">
-            </div>
-            <div>
-                <label for="password">Password:</label>
+                <div>
+                    <label for="password"><h4>Contraseña:</h4></label>
+                </div>
                 <input type="password" id="password" name="password">
-            </div>
-            <div>
-                <button type="button" id="loginButton">Login</button>
-            </div>
-            <div id="error" style="color: red;">
-                <!-- El mensaje de error se mostrará aquí -->
-            </div>
-        </form>
+                <div>
+                    <button type="button" id="loginButton">Ingresar</button>
+                </div>
+                <div id="error" style="color: red;">
+                    <!-- El mensaje de error se mostrará aquí -->
+                </div>
+            </form>
+        </div>
     </main>
     <footer>
         <img src="img/logo.png" alt="logo">

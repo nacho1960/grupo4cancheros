@@ -59,7 +59,8 @@ h4 {
 
 #formProd button,
 #formCat button,
-#formEditProd button{
+#formEditProd,
+#formCaract button{
     margin-top: 30px;
     background-color: #235C9F;
     border-radius: 38px;
@@ -113,7 +114,6 @@ h4 {
     grid-column: 2;
     margin: 0;
 }
-
 
 /*No responsive*/
 @media (max-width: 780px) {

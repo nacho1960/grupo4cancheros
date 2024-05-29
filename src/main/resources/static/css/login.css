@@ -1,0 +1,67 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60vw;
+    height: 50vh;
+}
+#loginButton{
+    margin-top: 30px;
+    background-color: #235C9F;
+    border-radius: 38px;
+    padding: 10px;
+    border: none;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+#loginButton:hover {
+    background-color: #F6BF0F; 
+    color: #1e4a84;
+}
+a.button {
+    color: #F6BF0F; 
+    text-decoration: none; 
+}
+
+a.button:visited {
+    color: white;
+}
+
+a.button:hover {
+    color: white;
+}
+
+a.button:active {
+    color: white;
+}
+
+button[type="submit"] {
+    margin-top: 30px;
+    background-color: #235C9F;
+    border-radius: 38px;
+    padding: 10px;
+    border: none;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+button[type="submit"]:hover {
+    background-color: #F6BF0F; 
+    color: #1e4a84;
+}
+
+@media (max-width: 800px) {
+
+    .container {
+        padding: 20px; 
+    }
+
+    #loginForm {
+        width: 100%; 
+        padding: 20px; 
+        box-sizing: border-box; 
+        flex-direction: column;
+    }
+
+}
+

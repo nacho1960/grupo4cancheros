@@ -29,7 +29,17 @@ window.addEventListener('load', function (){
             }
             descripcionDiv.innerHTML = descripcionTexto;
             descripcionDiv.style.fontWeight = 600;
+            descripcionDiv.style.display = 'flex';
+            descripcionDiv.style.justifyContent = 'center';
+            descripcionDiv.style.alignItems = 'center';
             divDescripcionYCard.appendChild(descripcionDiv);
+
+            let img = document.createElement('img')
+            img.classList.add('imgProd')
+            img.src = producto.imagen;
+            img.style.height = '100%'; 
+            divDescripcionYCard.appendChild(img)
+
 
             let divCard = document.createElement("div");
             divCard.classList.add('divCard');
@@ -61,24 +71,33 @@ window.addEventListener('load', function (){
 
             divDescripcionYCard.appendChild(divCard);
 
+
             producto.caracteristicas.forEach(caracteristica => {
+                const caracteristicaUnicaDiv = document.createElement('div');
+                caracteristicaUnicaDiv.classList.add('caracteristica');
+
                 let imagenCaracteristica = document.createElement("img");
                 imagenCaracteristica.src = caracteristica.imagen;
+                imagenCaracteristica.style.maxWidth = '50%';
                 imagenCaracteristica.alt = caracteristica.nombre;
                 imagenCaracteristica.classList.add('imgProd')
 
-                let nombreCaracteristica = document.createElement("p");
+                let nombreCaracteristica = document.createElement("h4");
                 nombreCaracteristica.classList.add('nombreCaracteristica');
                 nombreCaracteristica.textContent = caracteristica.nombre;
 
-                divCaracteristicas.appendChild(imagenCaracteristica);
-                divCaracteristicas.appendChild(nombreCaracteristica);
+                caracteristicaUnicaDiv.appendChild(nombreCaracteristica);
+                caracteristicaUnicaDiv.appendChild(imagenCaracteristica);
+
+                divCaracteristicas.appendChild(caracteristicaUnicaDiv);
+
+                divCaracteristicas.style.display = 'flex';
+                divCaracteristicas.style.justifyContent = 'center';
+                divCaracteristicas.style.alignItems = 'center';
+                
             });
 
-            let img = document.createElement('img')
-            img.classList.add('imgProd')
-            img.src = producto.imagen;
-            divDetail.appendChild(img)
+            
 
         });
 });

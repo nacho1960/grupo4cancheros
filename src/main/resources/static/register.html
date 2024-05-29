@@ -6,6 +6,7 @@
     <title>Cancheros</title>
     <link rel="icon" href="img/i-cancha.png">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/adm.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +16,9 @@
 
 <body>
     <header>
-        <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+       <div><a href="index.html"><img src="img/logo.png" alt="logo"></a></div>
+        <div><a href="login.html" class="button"><button>Iniciar Sesión</button></a>
+            <a href="register.html" class="button"><button>Registrarse</button></a></div>
     </header>
     <main>
         <!---Panel de agregar usuario--->
@@ -26,22 +29,22 @@
 
         <form id="registerForm" action="/register" method="post">
             <div>
-                <label>Nombre *</label>
+                <label><h4>Nombre *</h4></label>
                 <input type="text" name="nombre" required minlength="2"/>
             </div>
             <div>
-                <label>Apellido *</label>
+                <label><h4>Apellido *</h4></label>
                 <input type="text" name="apellido" required minlength="2"/>
             </div>
             <div>
-                <label>Email *</label>
+                <label><h4>Email *</h4></label>
                 <input type="email" name="email" required/>
             </div>
             <div>
-                <label>Password *</label>
+                <label><h4>Contraseña *</h4></label>
                 <input type="password" name="password" required minlength="4" maxlength="8"/>
             </div>
-            <p>* son campos obligatorios.</p>
+            <p>* Son campos obligatorios.</p>
             <div>
                 <button type="submit">Registrarse</button>
             </div>

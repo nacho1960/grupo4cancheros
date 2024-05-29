@@ -7,7 +7,8 @@ window.addEventListener('load', function () {
     const tableDivCat = document.getElementById('divCatTabla');
     const response = document.getElementById('response');
     const formEditProd = document.getElementById('formEditProd');
-    const tableDivUser = document.getElementById("divUser");
+    const formCaract = document.getElementById('formCaract');
+    const tableDivCaract = document.getElementById("divCaractTabla");
 
     formProd.style.display = 'none';
     formCat.style.display = 'none';
@@ -15,7 +16,8 @@ window.addEventListener('load', function () {
     tableDivCat.style.display = 'none';
     response.style.display = 'none';
     formEditProd.style.display = 'none';
-    tableDivUser.style.display = 'none';
+    formCaract.style.display = "none";
+    tableDivCaract.style.display = 'none';
 
     botonListar.addEventListener('click', function () {
         tableDivProd.style.display = 'block';
@@ -24,7 +26,8 @@ window.addEventListener('load', function () {
         tableDivCat.style.display = 'none';
         response.style.display = 'none';
         formEditProd.style.display = "none";
-        tableDivUser.style.display = 'none';
+        formCaract.style.display = "none";
+        tableDivCaract.style.display = 'none';
 
         const url = 'http://localhost:8080/productos/listarTodos';
         const settings = {
@@ -47,8 +50,18 @@ window.addEventListener('load', function () {
                     const nombreCelda = productoRow.insertCell();
                     nombreCelda.textContent = producto.nombreProducto;
 
+                    const descripcionCelda = productoRow.insertCell();
+                    if (producto.categoria){
+                    descripcionCelda.textContent = producto.descripcion + " " + producto.categoria.descripcion;
+                    } else {
+                    descripcionCelda.textContent = producto.descripcion
+                    }
+
                     const categoriaCelda = productoRow.insertCell();
                     categoriaCelda.textContent = producto.categoria ? producto.categoria.nombre : 'Sin categoría';
+
+                    const caracteristicaCelda = productoRow.insertCell();
+                    caracteristicaCelda.textContent = producto.caracteristicas.map(caracteristica => caracteristica.nombre).join(', ');
 
                     // Crear botones de edición y eliminar
                     const editButton = document.createElement('button');
@@ -108,9 +121,14 @@ function editProduct(id) {
             // Rellenar los campos del formulario con los datos del producto
             console.log('Nombre del producto:', data.nombreProducto);
             document.getElementById('nombreProdEdit').value = data.nombreProducto;
+            document.getElementById('descripcionProdEdit').value = data.descripcion;
+
 
             let radioCatEdit = document.getElementById('radioCatEdit');
             radioCatEdit.innerHTML = '<h4>Categoría</h4>';
+
+            let checkboxCaractEdit = document.getElementById("checkboxCaractEdit");
+            checkboxCaractEdit.innerHTML = '<h4>Características</h4>';
 
             // Obtener las categorias desde la API
             const urlCategorias = 'http://localhost:8080/categorias/listarTodos';
@@ -152,6 +170,40 @@ function editProduct(id) {
                 .catch(error => {
                     console.error('Error al obtener las categorías:', error);
                 });
+
+            //Obtener todas las caracteristicas del producto
+            const url = 'http://localhost:8080/caracteristicas/all';
+            const settings = {
+                method: 'GET'
+            }
+
+            fetch(url, settings)
+                .then(response => response.json())
+                .then(caracteriticas => {
+                    const table = document.getElementById("caractTablaBody");
+                    table.innerHTML = '';
+
+                    caracteriticas.forEach(caracteristica => {
+                        //Por cada caracteristica crea un radio
+                        let checkLabelCaract = document.createElement("label");
+                        let checkInputCaract = document.createElement("input");
+                        checkInputCaract.type = "checkbox";
+                        checkInputCaract.value = caracteristica.idCaracteristica;
+                        checkInputCaract.name = "caract";
+
+                        // Si la característica está asignada al producto, marcar la casilla de verificación
+                        if (data.caracteristicas && data.caracteristicas.some(caracteristica => caracteristica.idCaracteristica === caracteristica.idCaracteristica)) {
+                            checkInputCaract.checked = true;
+                        }
+
+                        checkLabelCaract.appendChild(checkInputCaract);
+                        checkLabelCaract.style.marginRight = "10px";
+                        checkLabelCaract.appendChild(document.createTextNode(caracteristica.nombre));
+                        checkboxCaractEdit.appendChild(checkLabelCaract);
+                    });
+
+                });
+
 
             if (data.imagen) {
                 // Mostrar la imagen que ya tiene el producto
@@ -206,9 +258,9 @@ function editProduct(id) {
 
             })
         })
-    .catch (error => {
-        console.error('Error al obtener los datos del producto:', error);
-    });
+        .catch(error => {
+            console.error('Error al obtener los datos del producto:', error);
+        });
 
 }
 
@@ -218,6 +270,10 @@ function updateProduct(id) {
     const nombreProducto = document.querySelector('#nombreProdEdit').value;
 
     const imagenInput = document.querySelector('#imagenEdit');
+
+    const descripcion = document.querySelector('#descripcionProdEdit').value;
+
+
     let base64Image = null;
     if (imagenInput.files.length > 0) {
         const reader = new FileReader();
@@ -238,11 +294,19 @@ function updateProduct(id) {
         const categoriaSeleccionada = document.querySelector('input[name="tipo"]:checked');
         const idCategoria = categoriaSeleccionada ? parseInt(categoriaSeleccionada.value) : null;
 
+        const checkboxesSeleccionados = document.querySelectorAll('input[name="caract"]:checked');
+        // Crear una lista de características seleccionadas
+        const caracteristicasSeleccionadas = Array.from(checkboxesSeleccionados).map(checkbox => ({
+            idCaracteristica: parseInt(checkbox.value)
+        }));
+
         const data = {
             idProducto: id,
             nombreProducto: nombreProducto,
             imagen: base64Image,
-            categoria: { idCategoria }
+            categoria: { idCategoria },
+            caracteristicas: caracteristicasSeleccionadas,
+            descripcion: descripcion
         };
 
         fetch(url, {

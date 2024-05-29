@@ -11,17 +11,17 @@ window.addEventListener('load', function () {
             const categoriaNombre = event.target.textContent;
             console.log(categoriaNombre);
             obtenerProductosPorCategoria(categoriaNombre);
-            
+
         }
     });
-    
+
 });
 
 // Función para mostrar productos aleatorios
 function mostrarProductosAleatorios() {
     const showProductos = document.getElementById('showProductos');
     const url = 'http://localhost:8080/productos/listarTodos';
-    
+
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -80,23 +80,27 @@ function mostrarProductosEnDiv(productos) {
         const nombre = document.createElement('h2');
         nombre.textContent = producto.nombreProducto;
 
-        const descripcion = document.createElement('p');
-        descripcion.textContent = producto.categoria ? producto.categoria.descripcion : 'Sin categoría';
+        const descripcionCategoria = document.createElement('p');
+        descripcionCategoria.textContent = producto.categoria ? producto.categoria.descripcion : 'Sin categoría';
+
+        const descripcionProducto = document.createElement('p');
+        descripcionProducto.textContent = producto.descripcion
 
         const preciotitulo = document.createElement('h2');
         preciotitulo.textContent = 'Precio por Hora (U$$) ';
 
         const precio = document.createElement('p');
-        precio.textContent = producto.categoria ? producto.categoria.precioHora : 30;
+        precio.textContent = producto.categoria ? producto.categoria.precioHora : "Precio sin definir";
 
         const verMasLink = document.createElement('a');
         verMasLink.textContent = 'Ver más';
         verMasLink.classList.add('ver-mas-link');
-        verMasLink.href = '../detailProd.html?id=' + producto.idProducto;
+        verMasLink.href = './detailProd.html?id=' + producto.idProducto;
 
         productoDiv.appendChild(imagen);
         productoDiv.appendChild(nombre);
-        productoDiv.appendChild(descripcion);
+        productoDiv.appendChild(descripcionCategoria);
+        productoDiv.appendChild(descripcionProducto);
         productoDiv.appendChild(preciotitulo);
         productoDiv.appendChild(precio);
         productoDiv.appendChild(verMasLink);
@@ -120,7 +124,7 @@ function obtenerProductosPorCategoria(categoriaNombre) {
         .then(categorias => {
             // Buscar la categoría por su nombre
             const categoriaEncontrada = categorias.find(categoria => categoria.nombre === categoriaNombre);
-            
+
             // Si se encontró la categoría, obtener su ID y hacer la solicitud a la API de productos
             if (categoriaEncontrada) {
                 const idCategoriaEncontrada = categoriaEncontrada.idCategoria;
@@ -131,7 +135,7 @@ function obtenerProductosPorCategoria(categoriaNombre) {
                 const settingsProductos = {
                     method: 'GET'
                 };
-                
+
                 // Realizar la solicitud a la API para obtener productos por la categoría
                 fetch(urlProductos, settingsProductos)
                     .then(response => response.json())
@@ -143,7 +147,7 @@ function obtenerProductosPorCategoria(categoriaNombre) {
                             if (producto.categoria && categoriaEncontrada.idCategoria === producto.categoria.idCategoria) {
                                 //console.log(producto.categoria.idCategoria);
                                 productosCategoria.push(producto);
-                            } 
+                            }
                         });
 
                         // Mostrar los productos en el div correspondiente

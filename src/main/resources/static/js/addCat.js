@@ -7,6 +7,9 @@ window.addEventListener('load', function () {
     const response = document.getElementById("response");
     const formEditProd = document.getElementById('formEditProd');
     const tableDivUser = document.getElementById("divUser");
+    const formCaract = document.getElementById('formCaract');
+    const tableDivCaract = document.getElementById("divCaractTabla");
+
     
     buttonAddCat.addEventListener('click', function () {
         formProd.style.display = 'none';
@@ -16,6 +19,8 @@ window.addEventListener('load', function () {
         response.style.display = 'none';
         formEditProd.style.display = 'none';
         tableDivUser.style.display = 'none';
+        formCaract.style.display = "none";
+        tableDivCaract.style.display = 'none';
     });
 
     //Ante un submit del formulario se ejecutará la siguiente funcion

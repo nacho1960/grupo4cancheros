@@ -2,14 +2,16 @@ window.addEventListener('load', function () {
     const buttonAddProduct = document.getElementById('addProd');
     const formProd = document.getElementById('formProd');
     const formCat = document.getElementById('formCat');
-    var radioCat = document.getElementById('radioCat');
+    let radioCat = document.getElementById('radioCat');
+    let checkCaracteristica = document.getElementById("checkboxCaract");
     const tableDivProd = document.getElementById("divProdTabla");
     const tableDivCat = document.getElementById("divCatTabla");
     const response = document.getElementById("response");
     const formEditProd = document.getElementById('formEditProd');
     const imagenInput = document.getElementById('imagen');
     const imagenPreview = document.getElementById('imagenPreview');
-    const tableDivUser = document.getElementById("divUser");
+    const formCaract = document.getElementById('formCaract');
+    const tableDivCaract = document.getElementById("divCaractTabla");
 
     formProd.style.display = 'none';
     formCat.style.display = 'none';
@@ -17,7 +19,8 @@ window.addEventListener('load', function () {
     tableDivCat.style.display = 'none';
     response.style.display = 'none';
     formEditProd.style.display = 'none';
-    tableDivUser.style.display = 'none';
+    formCaract.style.display = "none";
+    tableDivCaract.style.display = 'none';
 
     buttonAddProduct.addEventListener('click', function () {
         formProd.style.display = 'block';
@@ -26,17 +29,12 @@ window.addEventListener('load', function () {
         tableDivCat.style.display = 'none';
         response.style.display = 'none';
         formEditProd.style.display = 'none';
-        tableDivUser.style.display = 'none';
+        formCaract.style.display = "none";
+        tableDivCaract.style.display = 'none';
 
         radioCat.innerHTML = '<h4>Categoría</h4>'
+        checkCaracteristica.innerHTML = '<h4>Características</h4>'
 
-        const titulo = document.getElementById('Titulo');
-        titulo.textContent = 'Agregar producto';
-
-        //const btnActualizar = document.getElementById("btnActualizar");
-        //const btnCancelar = document.getElementById("btnCancelar");
-        //btnActualizar.style.display = 'none';
-        //btnCancelar.style.display = 'none';
 
         const botonesSubmit = document.querySelectorAll('form button[type="submit"]');
         botonesSubmit.forEach(boton => {
@@ -55,8 +53,8 @@ window.addEventListener('load', function () {
                 //Recorremos la colección de categorias del JSON:
                 data.forEach(categoria => {
                     //Por cada categoría crea un radio
-                    var radioLabel = document.createElement("label");
-                    var radioInput = document.createElement("input");
+                    let radioLabel = document.createElement("label");
+                    let radioInput = document.createElement("input");
                     radioInput.type = "radio";
                     radioInput.value = categoria.idCategoria;
                     radioInput.name = "tipo";
@@ -68,6 +66,31 @@ window.addEventListener('load', function () {
 
                 console.log(data);
             });
+
+
+        //Obtener las caracteristicas desde la API
+        const urlCaract = 'http://localhost:8080/caracteristicas/all';
+        const settingsCaract = {
+            method: 'GET'
+        }
+        fetch(urlCaract, settingsCaract)
+            .then(response => response.json())
+            .then(data => {
+                //Recorremos la colección de caracteristicas del JSON:
+                data.forEach(caracteristica => {
+                    //Por cada caracteristica crea un radio
+                    let checkLabelCaract = document.createElement("label");
+                    let checkInputCaract = document.createElement("input");
+                    checkInputCaract.type = "checkbox";
+                    checkInputCaract.value = caracteristica.idCaracteristica;
+                    checkInputCaract.name = "caract";
+                    checkLabelCaract.appendChild(checkInputCaract);
+                    checkLabelCaract.style.marginRight = "10px";
+                    checkLabelCaract.appendChild(document.createTextNode(caracteristica.nombre));
+                    checkCaracteristica.appendChild(checkLabelCaract);
+                });
+            });
+
     });
 
 
@@ -84,13 +107,15 @@ window.addEventListener('load', function () {
             reader.readAsDataURL(file);
         }
     });
+
     //Ante un submit del formulario se ejecutará la siguiente función
     formProd.addEventListener('submit', function (event) {
         event.preventDefault();
         //Creamos un JSON que tendrá los datos del nuevo producto
         const formData = {
             nombreProducto: document.querySelector('#nombreProd').value,
-            imagen: document.querySelector('#imagen').files[0]
+            imagen: document.querySelector('#imagen').files[0],
+            descripcion: document.querySelector("#descripcionProd").value
         }
 
         //Obtener la categoria seleccionada (en el caso de que exista)
@@ -100,6 +125,14 @@ window.addEventListener('load', function () {
                 idCategoria: parseInt(categoriaSeleccionada.value)
             };
         }
+
+        //Obtener la categoria seleccionada (en el caso de que exista)
+        const checkboxesSeleccionados = document.querySelectorAll('input[name="caract"]:checked');
+        // Crear una lista de características seleccionadas
+        const caracteristicasSeleccionadas = Array.from(checkboxesSeleccionados).map(checkbox => ({
+            idCaracteristica: parseInt(checkbox.value)
+        }));
+        formData.caracteristicas = caracteristicasSeleccionadas;
 
         // Convertir imagen a base64
         if (formData.imagen) {

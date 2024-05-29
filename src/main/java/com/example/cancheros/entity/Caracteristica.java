@@ -1,11 +1,6 @@
 package com.example.cancheros.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 
@@ -21,11 +16,7 @@ public class Caracteristica {
     @Column(name = "Nombre", nullable = false)
     private String nombre;
 
+    @Lob //Anotacion para campos grandes (hasta 4GB)
     @Column(name = "Imagen", nullable = false, columnDefinition = "LONGTEXT")
     private String imagen;
-
-    public Long getId() {
-        return idCaracteristica;
-    }
-
 }

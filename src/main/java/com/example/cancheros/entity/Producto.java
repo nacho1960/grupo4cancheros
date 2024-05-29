@@ -28,6 +28,9 @@ public class Producto {
     @Column(name = "Nombre", nullable = false)
     private String nombreProducto;
 
+    @Column(name = "Descripcíon", nullable = false)
+    private String descripcion;
+
     @Lob //Anotacion para campos grandes (hasta 4GB)
     @Column(name = "Imagen", nullable = false, columnDefinition = "LONGTEXT")
     private String imagen;

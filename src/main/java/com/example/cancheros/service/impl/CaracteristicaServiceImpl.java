@@ -56,6 +56,7 @@ public class CaracteristicaServiceImpl implements ICaracteristicaService {
     private static final Logger LOGGER = Logger.getLogger(CaracteristicaServiceImpl.class);
 
     @Override
+    // actualiza una característica específica basada en su ID
     public void actualizar(Caracteristica caracteristica) {
         LOGGER.info("La caracteristica fue actualizada con exito");
         caracteristicaRepository.save(caracteristica);

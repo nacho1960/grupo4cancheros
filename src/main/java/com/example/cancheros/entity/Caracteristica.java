@@ -24,8 +24,4 @@ public class Caracteristica {
     @Column(name = "Imagen", nullable = false, columnDefinition = "LONGTEXT")
     private String imagen;
 
-    public Long getId() {
-        return idCaracteristica;
-    }
-
 }

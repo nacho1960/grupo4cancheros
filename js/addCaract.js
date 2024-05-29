@@ -1,5 +1,5 @@
 window.addEventListener('load', function () {
-    const buttonAddCaract = document.getElementById('addCararact');
+    const buttonAddCaract = document.getElementById('addCaract');
     const formProd = document.getElementById('formProd');
      const formCat = document.getElementById('formCat');
     const formCaract = document.getElementById('formCaract');
@@ -28,8 +28,11 @@ window.addEventListener('load', function () {
 //Creamos un JSON que tendrá los datos de la nueva categoría
  const formData = {
  nombre: document.querySelector('#nombreCaract').value,
+ imagen: document.querySelector('#imagenCaract').value,
   
 }
+  
+
 
 const url = "http://localhost:8080/caracteristica/new";
 const settings = {
@@ -60,6 +63,6 @@ fetch(url, settings)
     console.log(error);
 })
 
-        formCat.reset()
+        formCaract.reset()
     })
 });

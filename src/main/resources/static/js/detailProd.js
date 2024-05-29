@@ -4,6 +4,7 @@ window.addEventListener('load', function (){
     const divDetail = document.getElementById("detail");
     const divDescripcionYCard = document.getElementById("descripcionYcard");
     const divTitulo = document.getElementById("titulo");
+    const divCaracteristicas = document.getElementById("caracteristicas");
 
 
     const url = 'http://localhost:8080/productos/' + idProducto;
@@ -22,12 +23,10 @@ window.addEventListener('load', function (){
             let descripcionDiv = document.createElement("div");
             let descripcionTexto;
             if (producto.categoria){
-                descripcionTexto = producto.categoria.descripcion;
+                descripcionTexto = producto.categoria.descripcion + " - " + producto.descripcion;
             } else {
-                descripcionTexto = "Descripción del producto"
+                descripcionTexto = producto.descripcion
             }
-
-            descripcionTexto = descripcionTexto.split('\n').join('<br>');
             descripcionDiv.innerHTML = descripcionTexto;
             descripcionDiv.style.fontWeight = 600;
             divDescripcionYCard.appendChild(descripcionDiv);
@@ -36,10 +35,10 @@ window.addEventListener('load', function (){
             divCard.classList.add('divCard');
             let precio = document.createElement("p");
             if (producto.categoria){
-                 precio.textContent = '$ ' + producto.categoria.precioHora + ' USD Por Hora';
-            } else {
-                 precio.textContent = 'Precio sin definir';
-            }
+                             precio.textContent = '$ ' + producto.categoria.precioHora + ' USD Por Hora';
+                        } else {
+                             precio.textContent = 'Precio sin definir';
+                        }
             precio.style.fontWeight = 600;
 
             let divHorarios = document.createElement("div");
@@ -55,12 +54,26 @@ window.addEventListener('load', function (){
             divHorarios.appendChild(horarios);
 
             buttonReserva.textContent = 'Reserva';
-        
+
             divCard.appendChild(precio);
             divCard.appendChild(divHorarios);
             divCard.appendChild(buttonReserva);
 
             divDescripcionYCard.appendChild(divCard);
+
+            producto.caracteristicas.forEach(caracteristica => {
+                let imagenCaracteristica = document.createElement("img");
+                imagenCaracteristica.src = caracteristica.imagen;
+                imagenCaracteristica.alt = caracteristica.nombre;
+                imagenCaracteristica.classList.add('imgProd')
+
+                let nombreCaracteristica = document.createElement("p");
+                nombreCaracteristica.classList.add('nombreCaracteristica');
+                nombreCaracteristica.textContent = caracteristica.nombre;
+
+                divCaracteristicas.appendChild(imagenCaracteristica);
+                divCaracteristicas.appendChild(nombreCaracteristica);
+            });
 
             let img = document.createElement('img')
             img.classList.add('imgProd')

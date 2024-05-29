@@ -7,6 +7,8 @@ window.addEventListener('load', function () {
     const tableDivCat = document.getElementById("divCatTabla");
     const response = document.getElementById("response");
     const formEditProd = document.getElementById('formEditProd');
+    const tableDivCaract = document.getElementById("divCaractTabla");
+    const formCaract = document.getElementById('formCaract');
 
     formProd.style.display = 'none';
     formCat.style.display = 'none';
@@ -15,6 +17,9 @@ window.addEventListener('load', function () {
     response.style.display = 'none';
     formEditProd.style.display = 'none';
     tableDivUser.style.display = 'none';
+    tableDivCaract.style.display = 'none';
+    formCaract.style.display = 'none';
+
 
     botonListarUser.addEventListener("click", function () {
         tableDivProd.style.display = 'none';
@@ -24,6 +29,8 @@ window.addEventListener('load', function () {
         response.style.display = 'none';
         formEditProd.style.display = "none";
         tableDivUser.style.display = 'none';
+        tableDivCaract.style.display = 'none';
+        formCaract.style.display = 'none';
 
         const url = 'http://localhost:8080/user/listarTodos';
         const settings = {

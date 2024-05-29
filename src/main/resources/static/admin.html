@@ -13,9 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script type="text/javascript" src="js/addProd.js"></script>
     <script type="text/javascript" src="js/addCat.js"></script>
+    <script type="text/javascript" src="js/addCaract.js"></script>
     <script type="text/javascript" src="js/listProd.js"></script>
     <script type="text/javascript" src="js/listCat.js"></script>
     <script type="text/javascript" src="js/listUser.js"></script>
+    <script type="text/javascript" src="js/listCaract.js"></script>
     <script type="text/javascript" src="js/navbar.js"></script>
 </head>
 <body>
@@ -42,17 +44,24 @@
         <div id="panelAdm">
             <h2>Bienvenido Administrador</h2>
             <button id="addProd">Agregar producto</button>
-            <button id="addCat">Agregar categoría</button>
             <button id="listProd">Lista de productos</button>
+            <button id="addCat">Agregar categoría</button>
             <button id="listCat">Lista de categorias</button>
+            <button id="addCaract">Agregar características</button>
+            <button id="listCaract">Lista de características</button>
             <button id="listUser">Lista de usuarios</button>
         </div>
 
         <form id="formProd">
-            <h2 id ="Titulo">Agregar producto</h2>
-            <label><h4>Nombre</h4></label>
+            <h2 id="Titulo">Agregar producto</h2>
+            <label>
+                <h4>Nombre</h4>
+            </label>
             <input type="text" id="nombreProd" required />
+            <label><h4>Descripción</h4></label>
+            <input type="text" id="descripcionProd" required />
             <div id="radioCat"></div>
+            <div id="checkboxCaract"></div>
             <div id="image">
                 <h4>Imagen</h4>
                 <input type="file" name="imagen" id="imagen" accept="image/*" />
@@ -60,10 +69,12 @@
             </div>
             <button type='submit'>Agregar producto</button>
         </form>
-        
+
         <form id="formCat">
             <h2>Agregar categoría</h2>
-            <label for=""><h4>Nombre</h4></label>
+            <label for="">
+                <h4>Nombre</h4>
+            </label>
             <input type="text" id="nombreCat" required>
             <div id="desCat">
                 <h4>Descripción</h4>
@@ -78,7 +89,10 @@
             <h2>Editar Producto</h2>
             <label><h4>Nombre</h4></label>
             <input type="text" id="nombreProdEdit" required />
+            <label><h4>Descripción</h4></label>
+            <input type="text" id="descripcionProdEdit" required />
             <div id="radioCatEdit"></div>
+            <div id="checkboxCaractEdit"></div>
             <div id="imageEdit">
                 <h4>Imagen</h4>
                 <input type="file" name="imagen" id="imagenEdit" accept="image/*" />
@@ -94,13 +108,15 @@
             <div id="tabla">
                 <table id="prodTabla">
                     <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Categoria</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
-                        </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Categoria</th>
+                        <th>Cacterísticas</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
                     </thead>
                     <tbody id="prodTablaBody"></tbody>
                 </table>
@@ -111,14 +127,45 @@
             <div id="tabla">
                 <table id="catTabla">
                     <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Precio</th>
-                        </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                    </tr>
                     </thead>
                     <tbody id="catTablaBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <form id="formCaract">
+            <h2>Agregar caracteristica </h2>
+            <label>
+                <h4>Nombre</h4>
+            </label>
+            <input type="text" id="nombreCaract" required>
+            <div id="imagen">
+                <h4>Imagen</h4>
+                <input type="file" name="imagen" id="imagenCaract" accept="image/*" required />
+                <img src="" alt="" id="imagenPreviewCaract">
+            </div>
+
+            <button type='submit'>Agregar caracteristica</button>
+        </form>
+
+        <div id="divCaractTabla">
+            <h2>Lista de caracteristica</h2>
+            <div id="tabla">
+                <table id="caractTabla">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                    </tr>
+                    </thead>
+                    <tbody id="caractTablaBody"></tbody>
                 </table>
             </div>
         </div>
@@ -128,12 +175,12 @@
             <div id="tabla">
                 <table id="catTabla">
                     <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                        </tr>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
                     </thead>
                     <tbody id="userTablaBody"></tbody>
                 </table>

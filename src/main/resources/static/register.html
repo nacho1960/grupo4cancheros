@@ -27,28 +27,30 @@
             <p>Crea tu cuenta. Es gratis y solo te tomará un minuto.</p>
         </div>
 
-        <form id="registerForm" action="/register" method="post">
-            <div>
-                <label><h4>Nombre *</h4></label>
-                <input type="text" name="nombre" required minlength="2"/>
-            </div>
-            <div>
-                <label><h4>Apellido *</h4></label>
-                <input type="text" name="apellido" required minlength="2"/>
-            </div>
-            <div>
-                <label><h4>Email *</h4></label>
-                <input type="email" name="email" required/>
-            </div>
-            <div>
-                <label><h4>Contraseña *</h4></label>
-                <input type="password" name="password" required minlength="4" maxlength="8"/>
-            </div>
-            <p>* Son campos obligatorios.</p>
-            <div>
-                <button type="submit">Registrarse</button>
-            </div>
-        </form>
+        <div class="container">
+            <form id="registerForm" action="/register" method="post">
+                <div>
+                    <label><h4>Nombre *</h4></label>
+                    <input type="text" name="nombre" required minlength="2"/>
+                </div>
+                <div>
+                    <label><h4>Apellido *</h4></label>
+                    <input type="text" name="apellido" required minlength="2"/>
+                </div>
+                <div>
+                    <label><h4>Email *</h4></label>
+                    <input type="email" name="email" required/>
+                </div>
+                <div>
+                    <label><h4>Contraseña *</h4></label>
+                    <input type="password" name="password" required minlength="4" maxlength="8"/>
+                </div>
+                <p>* Son campos obligatorios.</p>
+                <div>
+                    <button type="submit">Registrarse</button>
+                </div>
+            </form>
+        </div>
 
     </main>
 

@@ -52,14 +52,7 @@ button[type="submit"]:hover {
 
 @media (max-width: 800px) {
 
-    .container {
-        padding: 20px; 
-    }
-
-    #loginForm {
-        width: 100%; 
-        padding: 20px; 
-        box-sizing: border-box; 
+    #container{
         flex-direction: column;
     }
 

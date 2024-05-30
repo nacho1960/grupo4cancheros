@@ -20,15 +20,14 @@
         <div><a href="login.html" class="button"><button>Iniciar Sesión</button></a>
             <a href="register.html" class="button"><button>Registrarse</button></a></div>
     </header>
-    <main>
-        <!---Panel de agregar usuario--->
-        <div id="panelAgregarUsuario">
-            <h2>Regístrate</h2>
-            <p>Crea tu cuenta. Es gratis y solo te tomará un minuto.</p>
-        </div>
-
-        <div class="container">
+    <main id= "container">
+   
             <form id="registerForm" action="/register" method="post">
+                <!---Panel de agregar usuario--->
+                <div id="panelAgregarUsuario">
+                    <h2>Regístrate</h2>
+                    <p>Crea tu cuenta. Es gratis y solo te tomará un minuto.</p>
+                </div>
                 <div>
                     <label><h4>Nombre *</h4></label>
                     <input type="text" name="nombre" required minlength="2"/>
@@ -50,7 +49,7 @@
                     <button type="submit">Registrarse</button>
                 </div>
             </form>
-        </div>
+        
 
     </main>
 

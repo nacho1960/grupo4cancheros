@@ -65,6 +65,33 @@ h1, .material-symbols-outlined{
     align-self: center;
 }
 
+@media (max-width: 800px) {
+    header,
+    footer, 
+    #detail, 
+    #caracteristicas,
+    #descripcionYcard {
+        flex-direction: column;
+    }
+
+    /*Ocultamos los botones de "Iniciar Sesión" y "Registrarse".*/
+    header button{
+        display:none;  
+    }
+    
+    /*Mostrar el icono del menú hamburguesa.*/
+    .menu-icon {
+        display:block;  
+    }
+
+    .menu-icon .fa-bars {
+        visibility: visible;
+        display: block;
+        font-size: 1rem;
+    } 
+    
+}
+
 
 
 

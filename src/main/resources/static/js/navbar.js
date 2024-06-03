@@ -7,9 +7,9 @@ window.addEventListener('load', function () {
     avatar.addEventListener('click', function () {
         if (navbarUser.style.display === "none") {
             navbarUser.style.display = "block";
-          } else {
+        } else {
             navbarUser.style.display = "none";
-          }
+        }
     })
 
     const url = 'http://localhost:8080/user/authenticated';

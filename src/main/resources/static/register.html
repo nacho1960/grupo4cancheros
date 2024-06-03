@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,45 +12,56 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/e50f04e157.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">>
 </head>
 
 <body>
     <header>
-       <div><a href="index.html"><img src="img/logo.png" alt="logo"></a></div>
+        <div><a href="index.html"><img src="img/logo.png" alt="logo"></a></div>
         <div><a href="login.html" class="button"><button>Iniciar Sesión</button></a>
-            <a href="register.html" class="button"><button>Registrarse</button></a></div>
+            <a href="register.html" class="button"><button>Registrarse</button></a>
+        </div>
     </header>
-    <main id= "container">
-   
-            <form id="registerForm" action="/register" method="post">
-                <!---Panel de agregar usuario--->
-                <div id="panelAgregarUsuario">
-                    <h2>Regístrate</h2>
-                    <p>Crea tu cuenta. Es gratis y solo te tomará un minuto.</p>
-                </div>
-                <div>
-                    <label><h4>Nombre *</h4></label>
-                    <input type="text" name="nombre" required minlength="2"/>
-                </div>
-                <div>
-                    <label><h4>Apellido *</h4></label>
-                    <input type="text" name="apellido" required minlength="2"/>
-                </div>
-                <div>
-                    <label><h4>Email *</h4></label>
-                    <input type="email" name="email" required/>
-                </div>
-                <div>
-                    <label><h4>Contraseña *</h4></label>
-                    <input type="password" name="password" required minlength="4" maxlength="8"/>
-                </div>
-                <p>* Son campos obligatorios.</p>
-                <div>
-                    <button type="submit">Registrarse</button>
-                </div>
-            </form>
-        
+    <main id="container">
+
+        <form id="registerForm" action="/register" method="post">
+            <!---Panel de agregar usuario--->
+            <div id="panelAgregarUsuario">
+                <h2>Regístrate</h2>
+                <p>Crea tu cuenta. Es gratis y solo te tomará un minuto.</p>
+            </div>
+            <div>
+                <label>
+                    <h4>Nombre *</h4>
+                </label>
+                <input type="text" name="nombre" required minlength="2" />
+            </div>
+            <div>
+                <label>
+                    <h4>Apellido *</h4>
+                </label>
+                <input type="text" name="apellido" required minlength="2" />
+            </div>
+            <div>
+                <label>
+                    <h4>Email *</h4>
+                </label>
+                <input type="email" name="email" required />
+            </div>
+            <div>
+                <label>
+                    <h4>Contraseña *</h4>
+                </label>
+                <input type="password" name="password" required minlength="4" maxlength="8" />
+            </div>
+            <p>* Son campos obligatorios.</p>
+            <div>
+                <button type="submit">Registrarse</button>
+            </div>
+        </form>
+
 
     </main>
 
@@ -59,4 +71,5 @@
         <p>2024</p>
     </footer>
 </body>
+
 </html>

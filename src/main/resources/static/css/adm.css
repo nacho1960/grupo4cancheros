@@ -87,8 +87,8 @@ h4 {
 
 /*Tablas Listar*/
 #prodTabla, #catTabla {
-   width: 80%;
-   border-collapse: collapse;
+    width: 80%;
+    border-collapse: collapse;
 }
 
 #prodTabla th, #catTabla th, #prodTabla tr, #catTabla tr {

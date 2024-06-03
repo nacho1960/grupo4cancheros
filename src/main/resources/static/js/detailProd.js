@@ -1,4 +1,4 @@
-window.addEventListener('load', function (){
+window.addEventListener('load', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const idProducto = urlParams.get('id');
     const divDetail = document.getElementById("detail");
@@ -22,7 +22,7 @@ window.addEventListener('load', function (){
 
             let descripcionDiv = document.createElement("div");
             let descripcionTexto;
-            if (producto.categoria){
+            if (producto.categoria) {
                 descripcionTexto = producto.categoria.descripcion + " - " + producto.descripcion;
             } else {
                 descripcionTexto = producto.descripcion
@@ -37,18 +37,18 @@ window.addEventListener('load', function (){
             let img = document.createElement('img')
             img.classList.add('imgProd')
             img.src = producto.imagen;
-            img.style.height = '100%'; 
+            img.style.height = '100%';
             divDescripcionYCard.appendChild(img)
 
 
             let divCard = document.createElement("div");
             divCard.classList.add('divCard');
             let precio = document.createElement("p");
-            if (producto.categoria){
-                             precio.textContent = '$ ' + producto.categoria.precioHora + ' USD Por Hora';
-                        } else {
-                             precio.textContent = 'Precio sin definir';
-                        }
+            if (producto.categoria) {
+                precio.textContent = '$ ' + producto.categoria.precioHora + ' USD Por Hora';
+            } else {
+                precio.textContent = 'Precio sin definir';
+            }
             precio.style.fontWeight = 600;
 
             let divHorarios = document.createElement("div");
@@ -94,10 +94,10 @@ window.addEventListener('load', function (){
                 divCaracteristicas.style.display = 'flex';
                 divCaracteristicas.style.justifyContent = 'center';
                 divCaracteristicas.style.alignItems = 'center';
-                
+
             });
 
-            
+
 
         });
 });

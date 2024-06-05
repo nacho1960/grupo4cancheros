@@ -1,11 +1,11 @@
-#detail{
+#detail {
     color: var(--color-quintenary);
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-#titulo{
+#titulo {
     display: flex;
     align-items: center;
     gap: 1.250rem;
@@ -15,7 +15,8 @@
     margin-bottom: 10px;
 }
 
-h1, .material-symbols-outlined{
+h1,
+.material-symbols-outlined {
     color: var(--color-primary);
 }
 
@@ -29,7 +30,7 @@ h1, .material-symbols-outlined{
     margin-right: 3rem;
 }
 
-.divCard{
+.divCard {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -40,14 +41,14 @@ h1, .material-symbols-outlined{
     padding: 0.313vh 1.875vw;
 }
 
-.divHorarios{
+.divHorarios {
     background-color: var(--color-terceray);
     border-radius: 0.813em;
     border: 1px solid var(--color-quaternary);
     padding: 0.313vw;
 }
 
-.imgProd{
+.imgProd {
     width: 30vw;
     height: auto;
     align-self: center;
@@ -82,7 +83,7 @@ h1, .material-symbols-outlined{
     margin: 0;
 }
 
-.divTitulo{
+.divTitulo {
     align-self: center;
 }
 
@@ -92,6 +93,7 @@ h1, .material-symbols-outlined{
 }
 
 @media (max-width: 800px) {
+
     header,
     footer, 
     #detail, 
@@ -105,23 +107,19 @@ h1, .material-symbols-outlined{
     }
 
     /*Ocultamos los botones de "Iniciar Sesión" y "Registrarse".*/
-    header button{
-        display:none;  
+    header button {
+        display: none;
     }
-    
+
     /*Mostrar el icono del menú hamburguesa.*/
     .menu-icon {
-        display:block;  
+        display: block;
     }
 
     .menu-icon .fa-bars {
         visibility: visible;
         display: block;
         font-size: 1rem;
-    } 
-    
+    }
+
 }
-
-
-
-

@@ -5,7 +5,8 @@
     --color-secondary: #FFE07E;
     --color-terceray: #FFF6D9;
     --color-quaternary: #235C9F;
-    --color-quintenary: #0F2948;;
+    --color-quintenary: #0F2948;
+    ;
     box-sizing: border-box;
     color: var(--color-terceray);
     background-color: var(--color-terceray);
@@ -30,7 +31,7 @@ footer {
 }
 
 header {
-    position: sticky;
+    position: fixed;
     z-index: 1000;
     width: 100%;
     top: 0;
@@ -62,7 +63,8 @@ footer {
     width: 100%;
     bottom: 0;
     box-sizing: border-box;
-    box-shadow: 5px 0px 5px var(--color-quintenary);;
+    box-shadow: 5px 0px 5px var(--color-quintenary);
+    ;
 }
 
 
@@ -81,7 +83,7 @@ select:hover {
 
 /*Detalle*/
 #detailUserMain {
-    color:black;
+    color: black;
 }
 
 /*Usuario logueado*/
@@ -175,7 +177,8 @@ select:hover {
 
 #buscadorInput input,
 #buscadorInput #categoria,
-#buscadorInput #categoria option, .buttonReserva {
+#buscadorInput #categoria option,
+.buttonReserva {
     padding: 0.938em;
     background-color: var(--color-quaternary);
     border: none;
@@ -185,18 +188,18 @@ select:hover {
     color: var(--color-terceray);
 }
 
-#buscadorInput #buscar:hover{
+#buscadorInput #buscar:hover {
     color: var(--color-quaternary);
     background-color: var(--color-terceray);
 }
 
-#buscadorInput #buscar{
+#buscadorInput #buscar {
     background-color: var(--color-primary);
 }
 
 a.button {
-    color: #F6BF0F; 
-    text-decoration: none; 
+    color: #F6BF0F;
+    text-decoration: none;
 }
 
 a.button:visited {
@@ -212,8 +215,8 @@ a.button:active {
 }
 
 a {
-    color: #F6BF0F; 
-    text-decoration: none; 
+    color: #F6BF0F;
+    text-decoration: none;
 }
 
 
@@ -226,7 +229,7 @@ a:active {
 }
 
 /*Categorias*/
-#viewCategorias{
+#viewCategorias {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -245,7 +248,7 @@ a:active {
     margin-left: 10px;
 }
 
-#viewCategorias button:hover{
+#viewCategorias button:hover {
     background-color: var(--color-primary);
 }
 
@@ -253,8 +256,9 @@ a:active {
 /*Estilos para los productos dentro del div showProductos */
 #showProductos {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* La cuadrícula se ajustará automáticamente */
-    gap: 1em; 
+    grid-template-columns: 1fr 1fr;
+    /* La cuadrícula se ajustará automáticamente */
+    gap: 1em;
     margin-bottom: 3rem;
     justify-items: center;
     align-items: center;
@@ -271,55 +275,57 @@ a:active {
 .producto h2 {
     font-size: 1.2rem;
     margin-bottom: 0.625em;
-    color: var(--color-primary); 
+    color: var(--color-primary);
 }
 
 .producto p {
     font-size: 1rem;
-    color: rgb(255, 255, 255); 
+    color: rgb(255, 255, 255);
 }
 
 .producto p.descripcion {
-    color: rgb(12, 12, 12); 
+    color: rgb(12, 12, 12);
 }
 
 .producto p.precio {
-    color: rgb(8, 8, 8); 
-    font-weight: bold; 
+    color: rgb(8, 8, 8);
+    font-weight: bold;
 }
 
-#recomendaciones{
+#recomendaciones {
     text-align: center;
 }
 
-#tituloRecomendaciones{
+#tituloRecomendaciones {
     color: var(--color-primary);
 }
 
 /* Estilos solo para el botón "Ver más" */
 .ver-mas-link {
     border: none;
-    border-radius: 20px; 
-    background-color:var(--color-secondary); 
-    color: #00008b; 
-    padding: 0.313em 0.625em; 
-    font-size: 0.688em; 
+    border-radius: 20px;
+    background-color: var(--color-secondary);
+    color: #00008b;
+    padding: 0.313em 0.625em;
+    font-size: 0.688em;
     cursor: pointer;
-    transition: background-color 0.3s ease; 
-    float: right; 
-    margin-top: 0.625em; 
+    transition: background-color 0.3s ease;
+    float: right;
+    margin-top: 0.625em;
     font-weight: bold;
-    text-decoration: none;    
+    text-decoration: none;
 }
 
 .ver-mas-link:hover {
-    background-color: var(--color-primary); /* Amarillo más claro al pasar el mouse */
+    background-color: var(--color-primary);
+    /* Amarillo más claro al pasar el mouse */
 }
 
 @media (max-width: 800px) {
+
     header,
-    footer, 
-    #buscador, 
+    footer,
+    #buscador,
     #buscadorInput,
     #viewCategorias,
     #descripcionYcard {
@@ -330,7 +336,7 @@ a:active {
     header button, #userLogin{
         display:none;  
     }
-    
+
     /*Mostrar el icono del menú hamburguesa.*/
     .menu-icon {
         display: block;  
@@ -341,17 +347,15 @@ a:active {
         text-align: center;
     }
 
-    #buscadorInput{
+    #buscadorInput {
         display: flex;
-        justify-content: space-between; 
+        justify-content: space-between;
     }
 
-    #buscadorInput input, #buscadorInput select, #buscadorInput #buscar{
+    #buscadorInput input,
+    #buscadorInput select,
+    #buscadorInput #buscar {
         margin-bottom: 0.25rem;
     }
-    
+
 }
-
-
-    
-    

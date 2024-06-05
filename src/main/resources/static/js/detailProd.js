@@ -1,4 +1,4 @@
-window.addEventListener('load', function (){
+window.addEventListener('load', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const idProducto = urlParams.get('id');
     const divDetail = document.getElementById("detail");
@@ -21,34 +21,34 @@ window.addEventListener('load', function (){
             divTitulo.appendChild(nombreProducto);
 
             let descripcionDiv = document.createElement("div");
-            let descripcionTexto;
-            if (producto.categoria){
-                descripcionTexto = producto.categoria.descripcion + " - " + producto.descripcion;
+
+            let productoDiv = document.createElement("div");
+            productoDiv.classList.add('seccionProducto');
+            let descripcionProducto = document.createElement('p');
+            
+            let descripcionCategoria = document.createElement('p');
+            
+            if (producto.categoria) {
+                descripcionProducto.textContent = producto.descripcion;
+                descripcionCategoria.textContent = producto.categoria.descripcion;
             } else {
-                descripcionTexto = producto.descripcion
+                descripcionProducto.textContent = producto.descripcion;
+                categoria.style.display = 'none';
             }
-            descripcionDiv.innerHTML = descripcionTexto;
+            
+            productoDiv.appendChild(descripcionProducto);
+
+            descripcionDiv.appendChild(productoDiv);
+            descripcionDiv.appendChild(descripcionCategoria);
+            descripcionDiv.classList.add('descripciones')
             descripcionDiv.style.fontWeight = 600;
             descripcionDiv.style.display = 'flex';
-            descripcionDiv.style.justifyContent = 'center';
-            descripcionDiv.style.alignItems = 'center';
             divDescripcionYCard.appendChild(descripcionDiv);
-
-            let img = document.createElement('img')
-            img.classList.add('imgProd')
-            img.src = producto.imagen;
-            img.style.height = '100%'; 
-            divDescripcionYCard.appendChild(img)
-
 
             let divCard = document.createElement("div");
             divCard.classList.add('divCard');
             let precio = document.createElement("p");
-            if (producto.categoria){
-                             precio.textContent = '$ ' + producto.categoria.precioHora + ' USD Por Hora';
-                        } else {
-                             precio.textContent = 'Precio sin definir';
-                        }
+            precio.textContent = '$ ' + producto.precioHora + ' USD Por Hora';
             precio.style.fontWeight = 600;
 
             let divHorarios = document.createElement("div");
@@ -78,9 +78,7 @@ window.addEventListener('load', function (){
 
                 let imagenCaracteristica = document.createElement("img");
                 imagenCaracteristica.src = caracteristica.imagen;
-                imagenCaracteristica.style.maxWidth = '50%';
                 imagenCaracteristica.alt = caracteristica.nombre;
-                imagenCaracteristica.classList.add('imgProd')
 
                 let nombreCaracteristica = document.createElement("h4");
                 nombreCaracteristica.classList.add('nombreCaracteristica');
@@ -91,13 +89,13 @@ window.addEventListener('load', function (){
 
                 divCaracteristicas.appendChild(caracteristicaUnicaDiv);
 
-                divCaracteristicas.style.display = 'flex';
-                divCaracteristicas.style.justifyContent = 'center';
-                divCaracteristicas.style.alignItems = 'center';
-                
             });
 
-            
+            let img = document.createElement('img')
+            img.classList.add('imgProd')
+            img.src = producto.imagen;
+            img.style.height = '100%';
+            divDetail.appendChild(img)
 
         });
 });

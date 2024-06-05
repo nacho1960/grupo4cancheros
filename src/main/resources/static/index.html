@@ -14,6 +14,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <script src="https://kit.fontawesome.com/e50f04e157.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/aleatoriosProd.js"></script>
@@ -23,22 +25,42 @@
 <body>
     <header>
         <a href="index.html"><img src="img/logo.png" alt="logo"></a>
-        <button id="user-avatar"></button>
-        <ul class="navbar-user" id="navbarUser">
-            <li><a href="datosUser.html">Mis datos</a></li>
-            <li><a href="#">Mis reservas</a></li>
-            <li id="adminPanel" style="display: none;"><a href="admin.html">Panel administrador</a></li>
-            <li><a href="/logout" class="button">Cerrar sesión</a></li>
-        </ul>
+        <div id="userLogin">
+            <button id="user-avatar"></button>
+            <div id="nombreYCierreDeSesion">
+                <p id="nombreCompletoUser"></p>
+                <a href="/logout" class="button">Cerrar sesión</a>
+            </div>
+            <select class="navbar-user" id="navbarUser" onchange="navigateToURL()">
+                <option value="" disabled selected hidden></option>
+                <option value="datosUser.html">Información personal</option>
+                <option value="#">Favoritos</option>
+                <option value="#">Reservas</option>
+                <option value="admin.html" id="adminPanel" style="display: none;">Panel administrador</option>
+            </select>
+        </div>
 
         <div id="contentLoginAndRegister">
             <a href="login.html" class="button"><button>Iniciar Sesión</button></a>
             <a href="register.html" class="button"><button>Registrarse</button></a>
         </div>
 
-         <!--ICONO MENU HAMBURGUESA-->
-        <div class="menu-icon" >
-            <i class="fas fa-bars"></i>		
+        <!-- ICONO MENU HAMBURGUESA -->
+        <div class="menu-icon" id="menuIcon">
+            <select class="navbar-user-response" id="navbarUserResponsive" onchange="navigateToURL()">
+                <option value="" disabled selected hidden>&#x2630;</option>
+                <option value="datosUser.html">Información personal</option>
+                <option value="#">Favoritos</option>
+                <option value="#">Reservas</option>
+                <option value="admin.html" id="adminPanelResponsive" style="display: none;">Panel administrador</option>
+                <option value="/logout">Cerrar Sesión</option>
+            </select>
+
+            <select id="navbarUserResponsiveNoLogged" class="navbar-user-response-no-logged" onchange="navigateToURL()">
+                <option value="" disabled selected hidden>&#x2630;</option>
+                <option value="login.html">Iniciar Sesión</option>
+                <option value="register.html">Registrarse</option>
+            </select>
         </div>
     </header>
     <main>
@@ -62,16 +84,18 @@
         </div>
 
         <div id="viewCategorias">
-            <button id = "BotonTodasCategorias">Todas las categorias</button>
+            <button id="BotonTodasCategorias">Todas las categorias</button>
         </div>
-        <div id="recomendaciones"><h1 id="tituloRecomendaciones">Recomendaciones</h1></div>
+        <div id="recomendaciones">
+            <h1 id="tituloRecomendaciones">Recomendaciones</h1>
+        </div>
         <div id="showProductos"></div>
-    
+
     </main>
-   <footer>
-            <img src="img/logo.png" alt="logo">
-            <i class="fa-regular fa-copyright"></i>
-            <p>2024</p>
+    <footer>
+        <img src="img/logo.png" alt="logo">
+        <i class="fa-regular fa-copyright"></i>
+        <p>2024</p>
     </footer>
 </body>
 

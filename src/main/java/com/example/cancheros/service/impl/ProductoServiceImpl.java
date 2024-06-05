@@ -87,4 +87,16 @@ public class ProductoServiceImpl implements IProductoService {
         LOGGER.info("El producto fue actualizado con exito");
     }
 
+    @Override
+    public List<Producto> listarPorCategoria(Long idCategoria){
+        LOGGER.info("Buscando productos por la categoría con ID: " + idCategoria);
+        List<Producto> productos = repository.findByCategoria_IdCategoria(idCategoria);
+        if (productos.isEmpty()) {
+            LOGGER.warn("No se encontraron productos para la categoría con ID: " + idCategoria);
+        } else {
+            LOGGER.info("Productos encontrados para la categoría con ID: " + idCategoria);
+        }
+        return productos;
+    }
+
 }

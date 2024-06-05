@@ -58,4 +58,9 @@ public class ProductoController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
+    @GetMapping("/listarPorCategoria/{idCategoria}")
+    public List<Producto> listarPorCategoria( @PathVariable Long idCategoria){
+        return productoService.listarPorCategoria(idCategoria);
+    }
+
 }

@@ -23,18 +23,44 @@
 <body>
     <header>
         <a href="index.html"><img src="img/logo.png" alt="logo"></a>
-        <button id="user-avatar"></button>
-        <ul class="navbar-user" id="navbarUser">
-            <li><a href="datosUser.html">Mis datos</a></li>
-            <li><a href="#">Mis reservas</a></li>
-            <li id="adminPanel" style="display: none;"><a href="admin.html">Panel administrador</a></li>
-            <li><a href="/logout" class="button">Cerrar sesión</a></li>
-        </ul>
-    
+        <div id="userLogin">
+            <button id="user-avatar"></button>
+            <div id="nombreYCierreDeSesion">
+                <p id="nombreCompletoUser"></p>
+                <a href="/logout" class="button">Cerrar sesión</a>
+            </div>
+            <select class="navbar-user" id="navbarUser" onchange="navigateToURL()">
+                <option value="" disabled selected hidden></option>
+                <option value="datosUser.html">Información personal</option>
+                <option value="#">Favoritos</option>
+                <option value="#">Reservas</option>
+                <option value="admin.html" id="adminPanel" style="display: none;">Panel administrador</option>
+            </select>
+        </div>
+
         <div id="contentLoginAndRegister">
             <a href="login.html" class="button"><button>Iniciar Sesión</button></a>
             <a href="register.html" class="button"><button>Registrarse</button></a>
         </div>
+
+        <!-- ICONO MENU HAMBURGUESA -->
+        <div class="menu-icon" id="menuIcon">
+            <select class="navbar-user-response" id="navbarUserResponsive" onchange="navigateToURL()">
+                <option value="" disabled selected hidden>&#x2630;</option>
+                <option value="datosUser.html">Información personal</option>
+                <option value="#">Favoritos</option>
+                <option value="#">Reservas</option>
+                <option value="admin.html" id="adminPanelResponsive" style="display: none;">Panel administrador</option>
+                <option value="/logout">Cerrar Sesión</option>
+            </select>
+
+            <select id="navbarUserResponsiveNoLogged" class="navbar-user-response-no-logged" onchange="navigateToURL()">
+                <option value="" disabled selected hidden>&#x2630;</option>
+                <option value="login.html">Iniciar Sesión</option>
+                <option value="register.html">Registrarse</option>
+            </select>
+        </div>
+
     </header>
     <div id="noResponsive">
         <h3>Lo sentimos, esta página no está optimizada para dispositivos móviles.</h3>
@@ -60,6 +86,8 @@
             <input type="text" id="nombreProd" required />
             <label><h4>Descripción</h4></label>
             <input type="text" id="descripcionProd" required />
+            <h4>Precio U$$</h4>
+            <input type="text" name="precio" id="precio" required>
             <div id="radioCat"></div>
             <div id="checkboxCaract"></div>
             <div id="image">
@@ -79,8 +107,11 @@
             <div id="desCat">
                 <h4>Descripción</h4>
                 <textarea name="" id="descripcion" required></textarea>
-                <h4>Precio U$$</h4>
-                <input type="text" name="precio" id="precio" required>
+            </div>
+            <div id="imagenCategoria">
+                <h4>Imagen</h4>
+                <input type="file" name="imagen" id="imagenCate" accept="image/*" required />
+                <img src="" alt="" id="imagenPreviewCategoria">
             </div>
             <button type="submit">Agregar categoría</button>
         </form>
@@ -91,6 +122,8 @@
             <input type="text" id="nombreProdEdit" required />
             <label><h4>Descripción</h4></label>
             <input type="text" id="descripcionProdEdit" required />
+            <h4>Precio U$$</h4>
+            <input type="text" name="precio" id="precioProdEdit" required>
             <div id="radioCatEdit"></div>
             <div id="checkboxCaractEdit"></div>
             <div id="imageEdit">
@@ -102,7 +135,22 @@
             <button type="button" id="btnCancelar">Cancelar</button>
         </form>
 
-        <div id="response"></div>
+        <form id="formEditCategoría">
+            <h2>Editar Categoría</h2>
+            <label><h4>Nombre</h4></label>
+            <input type="text" id="nombreCategoriaEdit" required />
+            <label><h4>Descripción</h4></label>
+            <input type="text" id="descripcionCategoriaEdit" required />
+            <div id="imageCategoriaEdit">
+                <h4>Imagen</h4>
+                <input type="file" name="imagen" id="imagenCategoriaEdit" accept="image/*" />
+                <img src="" alt="" id="imagenPreviewCategoriaEdit">
+            </div>
+            <button type="button" id="btnActualizarCategoría">Actualizar</button>
+            <button type="button" id="btnCancelarCategoría">Cancelar</button>
+        </form>
+
+        
         <div id="divProdTabla">
             <h2>Lista de productos</h2>
             <div id="tabla">
@@ -112,6 +160,7 @@
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
+                        <th>Precio</th>
                         <th>Categoria</th>
                         <th>Cacterísticas</th>
                         <th>Editar</th>
@@ -122,6 +171,7 @@
                 </table>
             </div>
         </div>
+        
         <div id="divCatTabla">
             <h2>Lista de categorías</h2>
             <div id="tabla">
@@ -131,14 +181,15 @@
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
-                        <th>Precio</th>
+                        <th>Imagen</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
                     </tr>
                     </thead>
                     <tbody id="catTablaBody"></tbody>
                 </table>
             </div>
         </div>
-
 
         <form id="formCaract">
             <h2>Agregar caracteristica </h2>
@@ -186,6 +237,7 @@
                 </table>
             </div>
         </div>
+        <div id="response"></div>
     </main>
     <footer>
         <img src="img/logo.png" alt="logo">

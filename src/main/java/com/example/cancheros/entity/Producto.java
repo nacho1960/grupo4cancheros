@@ -46,5 +46,8 @@ public class Producto {
         inverseJoinColumns = @JoinColumn(name = "id_caracteristica"))
     private List<Caracteristica> caracteristicas;
 
+    @Column(name = "Precio", nullable = false)
+    private Double precioHora;
+
    }
 

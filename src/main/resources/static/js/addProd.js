@@ -12,6 +12,8 @@ window.addEventListener('load', function () {
     const imagenPreview = document.getElementById('imagenPreview');
     const formCaract = document.getElementById('formCaract');
     const tableDivCaract = document.getElementById("divCaractTabla");
+    const formEditCategoría = document.getElementById("formEditCategoría");
+    
 
     formProd.style.display = 'none';
     formCat.style.display = 'none';
@@ -21,6 +23,7 @@ window.addEventListener('load', function () {
     formEditProd.style.display = 'none';
     formCaract.style.display = "none";
     tableDivCaract.style.display = 'none';
+    formEditCategoría.style.display = "none";
 
     buttonAddProduct.addEventListener('click', function () {
         formProd.style.display = 'block';
@@ -31,6 +34,7 @@ window.addEventListener('load', function () {
         formEditProd.style.display = 'none';
         formCaract.style.display = "none";
         tableDivCaract.style.display = 'none';
+        formEditCategoría.style.display = "none";
 
         radioCat.innerHTML = '<h4>Categoría</h4>'
         checkCaracteristica.innerHTML = '<h4>Características</h4>'
@@ -115,7 +119,8 @@ window.addEventListener('load', function () {
         const formData = {
             nombreProducto: document.querySelector('#nombreProd').value,
             imagen: document.querySelector('#imagen').files[0],
-            descripcion: document.querySelector("#descripcionProd").value
+            descripcion: document.querySelector("#descripcionProd").value,
+            precioHora: parseFloat(document.querySelector('#precio').value)
         }
 
         //Obtener la categoria seleccionada (en el caso de que exista)

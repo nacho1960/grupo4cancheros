@@ -22,24 +22,44 @@
 <body>
     <header>
         <a href="index.html"><img src="img/logo.png" alt="logo"></a>
-        <button id="user-avatar"></button>
-        <ul class="navbar-user" id="navbarUser">
-            <li><a href="datosUser.html">Mis datos</a></li>
-            <li><a href="#">Mis reservas</a></li>
-            <li id="adminPanel" style="display: none;"><a href="admin.html">Panel administrador</a></li>
-            <li><a href="/logout" class="button">Cerrar sesión</a></li>
-        </ul>
-
+        <div id="userLogin">
+            <button id="user-avatar"></button>
+            <div id="nombreYCierreDeSesion">
+                <p id="nombreCompletoUser"></p>
+                <a href="/logout" class="button">Cerrar sesión</a>
+            </div>
+            <select class="navbar-user" id="navbarUser" onchange="navigateToURL()">
+                <option value="" disabled selected hidden></option>
+                <option value="datosUser.html">Información personal</option>
+                <option value="#">Favoritos</option>
+                <option value="#">Reservas</option>
+                <option value="admin.html" id="adminPanel" style="display: none;">Panel administrador</option>
+            </select>
+        </div>
 
         <div id="contentLoginAndRegister">
             <a href="login.html" class="button"><button>Iniciar Sesión</button></a>
             <a href="register.html" class="button"><button>Registrarse</button></a>
         </div>
 
-        <!--ICONO MENU HAMBURGUESA-->
-        <div class="menu-icon">
-            <i class="fas fa-bars"></i>
+        <!-- ICONO MENU HAMBURGUESA -->
+        <div class="menu-icon" id="menuIcon">
+            <select class="navbar-user-response" id="navbarUserResponsive" onchange="navigateToURL()">
+                <option value="" disabled selected hidden>&#x2630;</option>
+                <option value="datosUser.html">Información personal</option>
+                <option value="#">Favoritos</option>
+                <option value="#">Reservas</option>
+                <option value="admin.html" id="adminPanelResponsive" style="display: none;">Panel administrador</option>
+                <option value="/logout">Cerrar Sesión</option>
+            </select>
+
+            <select id="navbarUserResponsiveNoLogged" class="navbar-user-response-no-logged" onchange="navigateToURL()">
+                <option value="" disabled selected hidden>&#x2630;</option>
+                <option value="login.html">Iniciar Sesión</option>
+                <option value="register.html">Registrarse</option>
+            </select>
         </div>
+
     </header>
     <main id="detailUserMain">
         <p>Nombre: <span id="nombreUser"></span></p>

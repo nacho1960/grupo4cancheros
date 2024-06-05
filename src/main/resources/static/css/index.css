@@ -65,9 +65,13 @@ footer {
     box-shadow: 5px 0px 5px var(--color-quintenary);;
 }
 
+
+/*Menú hamburguesa*/
 .menu-icon {
     display: none;
 }
+
+
 
 button:hover,
 input:hover,
@@ -78,6 +82,55 @@ select:hover {
 /*Detalle*/
 #detailUserMain {
     color:black;
+}
+
+/*Usuario logueado*/
+#userLogin{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+    flex-direction: row;
+}
+
+#user-avatar{
+   color: var(--color-quaternary); 
+   border-radius: 50%;
+   background-color: var(--color-terceray);
+   font-size: 30px;
+   font-weight: 600;
+   padding: 15px 20px;
+}
+
+#nombreYCierreDeSesion{
+    text-align: center;
+}
+
+#nombreCompletoUser{
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--color-terceray);
+    margin-bottom: 0;
+}
+
+#navbarUser, #navbarUserResponsive, #navbarUserResponsiveNoLogged{
+    color: var(--color-primary);
+    background-color: transparent;
+    border: none;
+    width: 16px;
+    height: 16px;
+}
+
+#navbarUser option, #navbarUserResponsive option, #navbarUserResponsiveNoLogged option {
+    background-color: var(--color-terceray);
+    font-weight: 600;
+    font-size: 16px;
+    color: black;
+    text-align: center;
+}
+
+#navbarUserResponsive, #navbarUserResponsiveNoLogged{
+    appearance: none;
 }
 
 /*Buscador*/
@@ -274,21 +327,16 @@ a:active {
     }
 
     /*Ocultamos los botones de "Iniciar Sesión" y "Registrarse".*/
-    header button{
+    header button, #userLogin{
         display:none;  
     }
     
     /*Mostrar el icono del menú hamburguesa.*/
     .menu-icon {
-        display:block;  
+        display: block;  
     }
 
-    .menu-icon .fa-bars {
-        visibility: visible;
-        display: block;
-        font-size: 1rem;
-    } 
-
+    /*Buscador*/
     #buscador{
         text-align: center;
     }

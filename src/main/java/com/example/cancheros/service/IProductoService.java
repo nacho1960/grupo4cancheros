@@ -11,4 +11,5 @@ public interface IProductoService {
     Producto buscar(Long id) throws ResourceNotFoundException ;
     void eliminar (Long id);
     void actualizar (Producto producto) throws ResourceNotFoundException;
+    List<Producto> listarPorCategoria(Long idCategoria);
 }

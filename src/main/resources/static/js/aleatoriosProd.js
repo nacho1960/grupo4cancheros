@@ -80,17 +80,17 @@ function mostrarProductosEnDiv(productos) {
         const nombre = document.createElement('h2');
         nombre.textContent = producto.nombreProducto;
 
+        const descripcionProducto = document.createElement('p');
+        descripcionProducto.textContent = producto.descripcion;
+
         const descripcionCategoria = document.createElement('p');
         descripcionCategoria.textContent = producto.categoria ? producto.categoria.descripcion : 'Sin categoría';
-
-        const descripcionProducto = document.createElement('p');
-        descripcionProducto.textContent = producto.descripcion
 
         const preciotitulo = document.createElement('h2');
         preciotitulo.textContent = 'Precio por Hora (USD $$) ';
 
         const precio = document.createElement('p');
-        precio.textContent = producto.categoria ? producto.categoria.precioHora : "Precio sin definir";
+        precio.textContent = producto.categoria ? producto.precioHora : "Precio sin definir";
 
         const verMasLink = document.createElement('a');
         verMasLink.textContent = 'Ver más';
@@ -99,8 +99,8 @@ function mostrarProductosEnDiv(productos) {
 
         productoDiv.appendChild(imagen);
         productoDiv.appendChild(nombre);
-        productoDiv.appendChild(descripcionCategoria);
         productoDiv.appendChild(descripcionProducto);
+        productoDiv.appendChild(descripcionCategoria);
         productoDiv.appendChild(preciotitulo);
         productoDiv.appendChild(precio);
         productoDiv.appendChild(verMasLink);

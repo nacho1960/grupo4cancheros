@@ -27,14 +27,14 @@ h4 {
     gap: 5px;
 }
 
-#panelAdm button, #prodTabla th, #catTabla th, #prodTabla tr, #catTabla tr{
+#panelAdm button, #prodTabla th, #catTabla th, #prodTabla tr, #catTabla tr, #caractTabla tr{
     border: none;
     padding: 10px;
     background-color: var(--color-quaternary);
     color: var(--color-terceray);
 }
 
-#panelAdm button:hover, #prodTabla tr:hover, #catTabla tr:hover {
+#panelAdm button:hover, #prodTabla tr:hover, #catTabla tr:hover, #caractTabla tr:hover {
     background-color: var(--color-primary);
     color: var(--color-quaternary);
 }
@@ -86,28 +86,32 @@ h4 {
 }
 
 /*Tablas Listar*/
-#prodTabla, #catTabla {
+#prodTabla, #catTabla , #caractTabla{
    width: 80%;
    border-collapse: collapse;
 }
 
-#prodTabla th, #catTabla th, #prodTabla tr, #catTabla tr {
+#prodTabla th, #catTabla th, #prodTabla tr, #catTabla tr, #caractTabla tr {
     padding: 12px;
     text-align: center;
 }
 
-#prodTabla th, #catTabla th {
+#prodTabla th, #catTabla th, #caractTabla th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#prodTabla tr:hover, #catTabla tr:hover {
+#prodTabla tr:hover, #catTabla tr:hover, #caractTabla tr:hover {
     background-color: var(--color-primary);
 }
 
-#prodTabla th, #catTabla th, #prodTabla tr, #catTabla tr {
+#prodTabla th, #catTabla th, #prodTabla tr, #catTabla tr, #caractTabla tr{
     padding: 12px;
     text-align: center;
+}
+
+#caractTabla tr img{
+    width: 3rem;
 }
 
 #response{

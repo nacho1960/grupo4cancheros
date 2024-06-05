@@ -8,6 +8,8 @@ window.addEventListener('load', function () {
     const tableDivCaract = document.getElementById("divCaractTabla");
     const formEditProd = document.getElementById('formEditProd');
     const tableDivUser = document.getElementById("divUser");
+    const formEditCategoría = document.getElementById("formEditCategoría");
+    
 
     const response = document.getElementById("response");
 
@@ -20,6 +22,7 @@ window.addEventListener('load', function () {
     response.style.display = 'none';
     formEditProd.style.display = 'none';
     tableDivUser.style.display = 'none';
+    formEditCategoría.style.display = "none";
 
     botonListar.addEventListener('click', function () {
         tableDivCat.style.display = 'none';
@@ -31,6 +34,7 @@ window.addEventListener('load', function () {
         response.style.display = 'none';
         formEditProd.style.display = 'none';
         tableDivUser.style.display = 'none';
+        formEditCategoría.style.display = "none";
 
         //Invocamos a la API de Canhceros con el método GET nos devolverá un JSON con una colección de cate
         const url = 'http://localhost:8080/caracteristicas/all';

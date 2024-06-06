@@ -321,7 +321,6 @@ a:active {
 }
 
 /*Corazon*/
-/* Estilos para el botón de favorito */
 .favorite-btn {
     background: none;
     border: none;
@@ -329,14 +328,12 @@ a:active {
     margin-left: auto;
 }
 
-/* Estilos para el ícono de corazón */
 .heart-icon {
-    font-size: 24px; /* Tamaño del ícono */
+    font-size: 24px; 
     color: #ccc; /* Color del corazón vacío */
     transition: color 0.3s ease;
 }
 
-/* Estilos para el ícono de corazón cuando está marcado como favorito */
 .favorite-btn.favorited .heart-icon {
     color: red; /* Color del corazón lleno */
 }

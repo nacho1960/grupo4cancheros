@@ -39,6 +39,7 @@ header {
     box-shadow: 0px 5px 5px var(--color-quintenary);
     box-sizing: border-box;
     padding: 7px 10px 0px 10px;
+    
 }
 
 header a img,
@@ -64,7 +65,11 @@ footer {
     bottom: 0;
     box-sizing: border-box;
     box-shadow: 5px 0px 5px var(--color-quintenary);
-    ;
+    
+}
+
+main{
+    margin-top: 6%;
 }
 
 
@@ -72,8 +77,6 @@ footer {
 .menu-icon {
     display: none;
 }
-
-
 
 button:hover,
 input:hover,
@@ -175,7 +178,26 @@ select:hover {
     text-align: center;
 }
 
+.search-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.date-picker, .time-picker{
+    display: flex;
+    gap: 10px;
+}
+
+.feedback {
+    color: green;
+}
+
 #buscadorInput input,
+#buscadorInput #caracteristica,
+#buscadorInput #caracteristica option,
 #buscadorInput #categoria,
 #buscadorInput #categoria option,
 .buttonReserva {

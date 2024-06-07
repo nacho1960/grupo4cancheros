@@ -11,15 +11,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    <link 
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" 
         rel="stylesheet">
-    <link rel="stylesheet"
+    <link rel="stylesheet" 
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css">
     <script src="https://kit.fontawesome.com/e50f04e157.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/aleatoriosProd.js"></script>
-    <script type="text/javascript" src="js/navbar.js"></script>
 </head>
 
 <body>
@@ -67,16 +68,29 @@
         <div id="buscador">
             <div id="text">
                 <p id="text1">La cancha que te falta a nosotros nos sobra</p>
-                <p id="text2">¡Reservá ahora y vení a vivir la pasión por el deporte con cancheros! </p>
+                <p id="text2">¡Reservá ahora y vení a vivir la pasión por el deporte con Cancheros! </p>
             </div>
 
-            <div id="buscadorInput">
-                <input type="date" name="fecha" id="fecha">
+            <div class="search-block" id="buscadorInput">
+                <div class="date-picker">
+                    <input type="text" id="start-date" placeholder="Fecha de inicio">
+                    <input type="text" id="end-date" placeholder="Fecha de fin">
+                </div>
 
-                <input type="time" id="hora" name="hora">
+                <!--<div class="time-picker">
+                    <input type="text" id="start-time" placeholder="Hora de inicio">
+                    <input type="text" id="end-time" placeholder="Hora de fin">
+                </div>-->
+
+                <input type="text" id="keyword" placeholder="Buscar por palabra clave">
+                <div id="feedback" class="feedback"></div>
 
                 <select id="categoria">
                     <option value="" disabled selected hidden>Categoría</option>
+                </select>
+
+                <select id="caracteristica">
+                    <option value="" disabled selected hidden>Características</option>
                 </select>
 
                 <input type="submit" id="buscar" value="Buscar">
@@ -97,6 +111,15 @@
         <i class="fa-regular fa-copyright"></i>
         <p>2024</p>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/buscador.js"></script>
+    <script src="js/aleatoriosProd.js"></script>
+    <script src="js/navbar.js"></script>
+    
 </body>
 
 </html>

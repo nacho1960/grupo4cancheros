@@ -97,7 +97,6 @@ function mostrarProductosEnDiv(productos) {
         verMasLink.classList.add('ver-mas-link');
         verMasLink.href = './detailProd.html?id=' + producto.idProducto;
 
-
         if (window.isUserLoggedIn) {
 
             const likeFavorito = document.createElement('button');

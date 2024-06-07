@@ -97,19 +97,48 @@ function mostrarProductosEnDiv(productos) {
         verMasLink.classList.add('ver-mas-link');
         verMasLink.href = './detailProd.html?id=' + producto.idProducto;
 
-        productoDiv.appendChild(imagen);
-        productoDiv.appendChild(nombre);
-        productoDiv.appendChild(descripcionProducto);
-        productoDiv.appendChild(descripcionCategoria);
-        productoDiv.appendChild(preciotitulo);
-        productoDiv.appendChild(precio);
-        productoDiv.appendChild(verMasLink);
 
-        showProductos.appendChild(productoDiv);
+        if (window.isUserLoggedIn) {
+
+            const likeFavorito = document.createElement('button');
+            likeFavorito.classList.add('favorite-btn');
+            const heartIcon = document.createElement('i');
+            heartIcon.classList.add('heart-icon', 'fas', 'fa-heart');
+            likeFavorito.appendChild(heartIcon);
+
+            productoDiv.appendChild(imagen);
+            productoDiv.appendChild(nombre);
+            productoDiv.appendChild(descripcionProducto);
+            productoDiv.appendChild(descripcionCategoria);
+            productoDiv.appendChild(preciotitulo);
+            productoDiv.appendChild(precio);
+            productoDiv.appendChild(likeFavorito);
+            productoDiv.appendChild(verMasLink);
+
+            showProductos.appendChild(productoDiv);
+
+            likeFavorito.addEventListener('click', () => {
+                likeFavorito.classList.toggle('favorited');
+                const productId = productDiv.dataset.id;
+
+                if (likeFavorito.classList.contains('favorited')) {
+                    addToFavorites(productId);
+                } else {
+                    removeFromFavorites(productId);
+                }
+            });
+        }else{
+            productoDiv.appendChild(imagen);
+            productoDiv.appendChild(nombre);
+            productoDiv.appendChild(descripcionProducto);
+            productoDiv.appendChild(descripcionCategoria);
+            productoDiv.appendChild(preciotitulo);
+            productoDiv.appendChild(precio);
+            productoDiv.appendChild(verMasLink);
+            showProductos.appendChild(productoDiv);
+        }
     });
 }
-
-
 
 
 // Función para obtener productos por categoría
@@ -163,4 +192,18 @@ function obtenerProductosPorCategoria(categoriaNombre) {
         .catch(error => {
             console.error('Error al obtener las categorías:', error);
         });
+}
+
+function addToFavorites(productId) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (!favorites.includes(productId)) {
+        favorites.push(productId);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+}
+
+function removeFromFavorites(productId) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    favorites = favorites.filter(id => id !== productId);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
 }

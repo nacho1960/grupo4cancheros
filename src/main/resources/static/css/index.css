@@ -340,8 +340,27 @@ a:active {
 
 .ver-mas-link:hover {
     background-color: var(--color-primary);
-    /* Amarillo más claro al pasar el mouse */
 }
+
+/*Corazon*/
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.heart-icon {
+    font-size: 24px; 
+    color: #ccc; /* Color del corazón vacío */
+    transition: color 0.3s ease;
+}
+
+.favorite-btn.favorited .heart-icon {
+    color: red; /* Color del corazón lleno */
+}
+
+
 
 @media (max-width: 800px) {
 

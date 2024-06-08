@@ -67,7 +67,6 @@ footer {
     ;
 }
 
-
 /*Menú hamburguesa*/
 .menu-icon {
     display: none;
@@ -254,7 +253,7 @@ a:active {
 
 /*Productos body*/
 /*Estilos para los productos dentro del div showProductos */
-#showProductos {
+#showProductos{
     display: grid;
     grid-template-columns: 1fr 1fr;
     /* La cuadrícula se ajustará automáticamente */
@@ -263,6 +262,8 @@ a:active {
     justify-items: center;
     align-items: center;
 }
+
+
 
 .producto {
     border: 1px solid #ccc;
@@ -347,7 +348,7 @@ a:active {
     #buscador,
     #buscadorInput,
     #viewCategorias,
-    #descripcionYcard {
+    #descripcionYcard{
         flex-direction: column;
     }
 

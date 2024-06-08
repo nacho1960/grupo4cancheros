@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const verMasLink = document.createElement('a');
         verMasLink.textContent = 'Ver más';
         verMasLink.classList.add('ver-mas-link');
-        verMasLink.href = producto.verMasLink;
+        verMasLink.href = './detailProd.html?id=' + producto.idProducto;
 
         // Crear botón de eliminar favorito
         const eliminarBtn = document.createElement('button');

@@ -143,7 +143,7 @@ function mostrarProductosEnDiv(productos) {
                 if (likeFavorito.classList.contains('favorited')) {
                     addToFavorites(product);
                 } else {
-                    removeFromFavorites(product);
+                    removeFromFavorites(product.idProducto);
                 }
             });
         }else{
@@ -222,6 +222,7 @@ function addToFavorites(product) {
         localStorage.setItem('favorites', JSON.stringify(favorites));
     }
 }
+
 
 
 function removeFromFavorites(productId) {

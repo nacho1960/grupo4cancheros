@@ -1,16 +1,17 @@
 package com.example.cancheros.service.impl;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.cancheros.entity.Categoria;
-import com.example.cancheros.entity.Producto;
 import com.example.cancheros.exceptions.ResourceNotFoundException;
 import com.example.cancheros.repository.ICategoriaRepository;
 import com.example.cancheros.service.ICategoriaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.apache.log4j.Logger;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoriaServiceImpl implements ICategoriaService {
@@ -38,7 +39,7 @@ public class CategoriaServiceImpl implements ICategoriaService {
         }
     }
 
-   @Override
+    @Override
     public List<Categoria> listarTodos() {
         LOGGER.info("Listando todas las categorías.");
         List<Categoria> categorias = repository.findAll();

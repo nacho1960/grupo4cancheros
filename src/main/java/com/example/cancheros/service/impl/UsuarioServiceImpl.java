@@ -1,12 +1,11 @@
 package com.example.cancheros.service.impl;
 
-import com.example.cancheros.entity.MyUser;
-import com.example.cancheros.entity.UsuarioRole;
-import com.example.cancheros.exceptions.ResourceNotFoundException;
-import com.example.cancheros.repository.IMyUserRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.persistence.EntityExistsException;
-import lombok.Getter;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -16,13 +15,28 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.sql.DataSource;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import com.example.cancheros.entity.MyUser;
+import com.example.cancheros.entity.UsuarioRole;
+import com.example.cancheros.exceptions.EmailSendingException;
+import com.example.cancheros.exceptions.ResourceNotFoundException;
+import com.example.cancheros.repository.IMyUserRepository;
+import com.example.cancheros.service.IEmailService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.persistence.EntityExistsException;
+import lombok.Getter;
+import lombok.extern.log4j.Log4j;
+
 
 @Service
+@Log4j
 public class UsuarioServiceImpl implements UserDetailsService {
+
+    @Autowired
+    public UsuarioServiceImpl(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     @Autowired
     IMyUserRepository userRepository;
 
@@ -31,8 +45,8 @@ public class UsuarioServiceImpl implements UserDetailsService {
 
     @Getter
     @Autowired
-    //Fuente de datos para las conexiones a la base de datos.
-    private DataSource dataSource;
+    //DataSource para la conexión a la base de datos.
+    private final DataSource dataSource;
 
     @Autowired
     //Codificador de contraseñas.
@@ -41,6 +55,14 @@ public class UsuarioServiceImpl implements UserDetailsService {
     public MyUser obtenerUsuarioPorEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+    @Autowired
+    //Servicio de envío de correos electrónicos.
+    private IEmailService emailService;
+
+    // @Autowired
+    // //Repositorio de tokens de confirmación.
+    // private IConfirmationTokenRepository confirmationTokenRepository;
 
     @Override
     //Método que carga los detalles del usuario (por email) y lanza una excepcion si no se encuentra el usuario.
@@ -60,7 +82,7 @@ public class UsuarioServiceImpl implements UserDetailsService {
     }
 
     //Método para guardar un nuevo usuario en la base de datos.
-    public MyUser saveUsuario(MyUser usuario) {
+    public MyUser saveUsuario(MyUser usuario) throws EmailSendingException {
         // Verificamos si el correo electrónico ya está registrado
         if (userRepository.findByEmail(usuario.getEmail()) != null) {
             throw new EntityExistsException("Email already registered");
@@ -73,7 +95,30 @@ public class UsuarioServiceImpl implements UserDetailsService {
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 
         //Guardamos el usuario.
-        return userRepository.save(usuario);
+        MyUser savedUser = userRepository.save(usuario);
+
+        // Generamos un token de confirmación
+        // String token = UUID.randomUUID().toString();
+
+        // // Guardamos el token en la base de datos
+        // ConfirmationToken confirmationToken = new ConfirmationToken(token, savedUser);
+        // confirmationTokenRepository.save(confirmationToken);
+
+        try {
+            // Enviamos el correo electrónico de confirmación
+            emailService.sendConfirmationEmail(savedUser);
+        } catch (Exception ex) {
+        // Aquí puedes manejar la excepción, por ejemplo, puedes registrar el error y lanzar una excepción personalizada
+        log.error("Error al enviar el correo electrónico de confirmación", ex);
+
+        // Eliminamos el usuario y el token de confirmación
+        // (para que no queden datos inconsistentes en la base de datos si no se pudo enviar el correo electrónico)
+        // confirmationTokenRepository.delete(confirmationToken);
+        // userRepository.delete(savedUser);
+
+        throw new EmailSendingException("Error al enviar el correo electrónico de confirmación", ex);}
+
+        return savedUser;
     }
 
     //Método para buscar un usuario.

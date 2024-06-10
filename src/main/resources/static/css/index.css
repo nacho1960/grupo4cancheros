@@ -64,7 +64,7 @@ footer {
     bottom: 0;
     box-sizing: border-box;
     box-shadow: 5px 0px 5px var(--color-quintenary);
-    ;
+    text-decoration: underline; /* Esta línea asegura que el enlace esté subrayado */
 }
 
 
@@ -314,6 +314,7 @@ a:active {
     margin-top: 0.625em;
     font-weight: bold;
     text-decoration: none;
+    
 }
 
 .ver-mas-link:hover {

@@ -67,7 +67,6 @@ footer {
     text-decoration: underline; /* Esta línea asegura que el enlace esté subrayado */
 }
 
-
 /*Menú hamburguesa*/
 .menu-icon {
     display: none;
@@ -254,7 +253,7 @@ a:active {
 
 /*Productos body*/
 /*Estilos para los productos dentro del div showProductos */
-#showProductos {
+#showProductos{
     display: grid;
     grid-template-columns: 1fr 1fr;
     /* La cuadrícula se ajustará automáticamente */
@@ -263,6 +262,8 @@ a:active {
     justify-items: center;
     align-items: center;
 }
+
+
 
 .producto {
     border: 1px solid #ccc;
@@ -319,8 +320,27 @@ a:active {
 
 .ver-mas-link:hover {
     background-color: var(--color-primary);
-    /* Amarillo más claro al pasar el mouse */
 }
+
+/*Corazon*/
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.heart-icon {
+    font-size: 24px; 
+    color: #ccc; /* Color del corazón vacío */
+    transition: color 0.3s ease;
+}
+
+.favorite-btn.favorited .heart-icon {
+    color: red; /* Color del corazón lleno */
+}
+
+
 
 @media (max-width: 800px) {
 
@@ -329,7 +349,7 @@ a:active {
     #buscador,
     #buscadorInput,
     #viewCategorias,
-    #descripcionYcard {
+    #descripcionYcard{
         flex-direction: column;
     }
 

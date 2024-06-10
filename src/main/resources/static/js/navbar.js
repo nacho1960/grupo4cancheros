@@ -22,11 +22,15 @@ window.addEventListener('load', function () {
         method: 'GET'
     };
 
+    // Variable global para indicar si el usuario está autenticado
+    window.isUserLoggedIn = false;
+
     fetch(url, settings)
         .then(response => response.text())
         .then(data => {
             // Manejar diferentes roles
             if (data === 'ROLE_ADMIN') {
+                window.isUserLoggedIn = true;
                 avatar.style.display = "block";
                 nombreYCierreDeSesion.style.display = "block";
                 navbarUser.style.display = "block";
@@ -36,6 +40,7 @@ window.addEventListener('load', function () {
                 navbarUserResponsive.style.display = "block";
                 navbarUserResponsiveNoLogged.style.display = "none";
             } else if (data === 'ROLE_USER') {
+                window.isUserLoggedIn = true;
                 avatar.style.display = "block";
                 nombreYCierreDeSesion.style.display = "block";
                 navbarUser.style.display = "block";
@@ -45,6 +50,7 @@ window.addEventListener('load', function () {
                 navbarUserResponsive.style.display = "block";
                 navbarUserResponsiveNoLogged.style.display = "none";
             } else {
+                window.isUserLoggedIn = false;
                 userLogin.style.display = "none";
                 navbarUserResponsive.style.display = "none";
                 adminPanel.style.display = "none";

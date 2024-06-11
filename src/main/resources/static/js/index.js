@@ -32,7 +32,11 @@ window.addEventListener('load', function () {
                 buttonCat.classList.add('categoria-button');
                 divCategoria.appendChild(buttonCat);
 
-                
+                const optionCat = document.createElement("option");
+                optionCat.value = categoria.nombre;
+                optionCat.textContent = categoria.nombre;
+                selectCat.appendChild(optionCat);
+
             });
             console.log(data);
         });

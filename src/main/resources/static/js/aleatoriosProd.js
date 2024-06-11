@@ -90,7 +90,7 @@ function mostrarProductosEnDiv(productos) {
         preciotitulo.textContent = 'Precio por Hora (USD $$) ';
 
         const precio = document.createElement('p');
-        precio.textContent = producto.categoria ? producto.precioHora : "Precio sin definir";
+        precio.textContent = producto.precioHora;
 
         const verMasLink = document.createElement('a');
         verMasLink.textContent = 'Ver más';

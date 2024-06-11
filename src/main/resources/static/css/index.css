@@ -276,7 +276,7 @@ a:active {
 
 /*Productos body*/
 /*Estilos para los productos dentro del div showProductos */
-#showProductos {
+#showProductos, .listaResultados {
     display: grid;
     grid-template-columns: 1fr 1fr;
     /* La cuadrícula se ajustará automáticamente */
@@ -286,7 +286,7 @@ a:active {
     align-items: center;
 }
 
-.producto {
+.producto, .cardResultados {
     border: 1px solid #ccc;
     background-color: var(--color-quaternary);
     border-radius: 10px;
@@ -294,31 +294,31 @@ a:active {
     width: 20vw;
 }
 
-.producto h2 {
+.producto h2, .cardResultados h2{
     font-size: 1.2rem;
     margin-bottom: 0.625em;
     color: var(--color-primary);
 }
 
-.producto p {
+.producto p, .cardResultados p {
     font-size: 1rem;
     color: rgb(255, 255, 255);
 }
 
-.producto p.descripcion {
+.producto p.descripcion, .cardResultados p.descripcion{
     color: rgb(12, 12, 12);
 }
 
-.producto p.precio {
+.producto p.precio, .cardResultados p.precio {
     color: rgb(8, 8, 8);
     font-weight: bold;
 }
 
-#recomendaciones {
+#recomendaciones, .contenedorTituloResultados {
     text-align: center;
 }
 
-#tituloRecomendaciones {
+#tituloRecomendaciones, .tituloResultados{
     color: var(--color-primary);
 }
 

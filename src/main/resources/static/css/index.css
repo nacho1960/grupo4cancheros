@@ -6,7 +6,6 @@
     --color-terceray: #FFF6D9;
     --color-quaternary: #235C9F;
     --color-quintenary: #0F2948;
-    ;
     box-sizing: border-box;
     color: var(--color-terceray);
     background-color: var(--color-terceray);
@@ -173,26 +172,52 @@ select:hover {
     margin-top: 0%;
 }
 
+#buscadorInput p, #resultados .mensajeErrorResultados{
+    font-size: 1.5rem;
+    margin-top: 0%;
+} 
+
+#resultados .mensajeErrorResultados{
+    color: #00008b;
+    text-align: center;
+    margin-bottom: 15%;
+}
+
 #buscador #text #text1 {
     font-size: 4em;
     text-align: center;
+}
+
+#buscadorInput h1{
+    color: #F6BF0F;
+    align-self: center;
+    margin-bottom: 0%;
 }
 
 .search-block {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 400px;
-    margin: auto;
+}
+
+#contenedorFechaYHora, #contenedorPalabraClaveCategoriaYCaracteristica{
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
 }
 
 .date-picker, .time-picker{
     display: flex;
     gap: 10px;
+    
 }
 
-.feedback {
-    color: green;
+.daterangepicker td.available, .daterangepicker th, .daterangepicker .drp-selected{
+    color: var(--color-quaternary); 
+}
+
+.feedback{
+    color: white;
 }
 
 #buscadorInput input,
@@ -201,13 +226,14 @@ select:hover {
 #buscadorInput #categoria,
 #buscadorInput #categoria option,
 .buttonReserva {
-    padding: 0.938em;
+    padding: 0.7em;
     background-color: var(--color-quaternary);
     border: none;
     border-radius: 2.25em;
     font-family: "Barlow Condensed", sans-serif;
     font-size: 1.125em;
     color: var(--color-terceray);
+    width: 10rem;
 }
 
 #buscadorInput #buscar:hover {
@@ -217,6 +243,8 @@ select:hover {
 
 #buscadorInput #buscar {
     background-color: var(--color-primary);
+    align-self: center;
+    color: #00008b;
 }
 
 a.button {
@@ -369,7 +397,10 @@ a:active {
     #buscador,
     #buscadorInput,
     #viewCategorias,
-    #descripcionYcard {
+    #descripcionYcard,
+    #contenedorFechaYHora, 
+    #contenedorPalabraClaveCategoriaYCaracteristica,
+    .time-picker {
         flex-direction: column;
     }
 

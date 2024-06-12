@@ -15,14 +15,12 @@ $(function () {
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'], // Nombres completos de los meses del año.
             firstDay: 1 // Define el primer día de la semana. 1 indica que la semana comienza el lunes.
         }
-    }).on('apply.daterangepicker', function(ev, picker) {
+    }).on('apply.daterangepicker', function (ev, picker) {
         // Al seleccionar el rango, actualizamos el valor del input manualmente con las fechas seleccionadas
         $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
     });
 
-    
-
-    // Inicialización del timepicker
+    // Timepicker
     $("#start-time").timepicker({
         timeFormat: "HH:mm", // Formato de la hora
         interval: 60, // Intervalo de minutos
@@ -81,30 +79,40 @@ $(function () {
     obtenerProductos().then(productos => {
         $("#keyword").autocomplete({
             source: availableTags, //Especifica que las opciones de autocompletado provienen del array availableTags.
-            select: function (event, ui) { //Define una función que se ejecuta cuando el usuario selecciona una opción del menú de autocompletado.
-                $("#feedback").text("Seleccionaste: " + ui.item.value); // Actualiza el contenido del elemento con el ID feedback para mostrar el valor seleccionado por el usuario.
-            }
-        });
-
-        // Feedback interactivo
-        $("#keyword").on("input", function () { //Selecciona el elemento con el ID keyword y añade un controlador de eventos que se ejecuta cada vez que el valor del campo de texto cambia.
-            var query = $(this).val(); //Obtiene el valor actual del campo de texto y lo almacena en la variable query
-            if (query.length > 0) {
-                $("#feedback").text("Buscando: " + query); // Si el campo de texto tiene algún valor, actualiza el contenido del elemento con el ID feedback para mostrar "Buscando: " seguido del valor actual del campo de texto.
-            } else {
-                $("#feedback").text(""); //Si el campo de texto está vacío, borra el contenido del elemento feedback.
-            }
         });
 
         //FUNCIONALIDAD: BUSCAR
         document.getElementById("buscar").addEventListener("click", function () {
             // Obtener valores de los campos de entrada
             let keyword = document.getElementById("keyword").value;
-            console.log("Esta es mi palabra:" + keyword);
+            console.log("Esta es mi palabra: " + keyword);
+
             let categoria = document.getElementById("categoria").value;
-            console.log("Esta es mi categoria:" + categoria);
+            console.log("Esta es mi categoria: " + categoria);
+
             let caracteristica = document.getElementById("caracteristica").value;
-            console.log("Esta es mi caracteristica:" + caracteristica);
+            console.log("Esta es mi caracteristica: " + caracteristica);
+
+            let rangoFechas = document.getElementById("date-range").value;
+            console.log("Este es mi rango de fechas: " + rangoFechas);
+
+            let startTime = document.getElementById("start-time").value;
+            console.log("Esta es mi hora de inicio: " + startTime);
+
+            let endTime = document.getElementById("end-time").value;
+            console.log("Esta es mi hora de fin: " + endTime);
+
+            // Parsear rango de fechas
+            let fechaInicioFiltro = null, fechaFinFiltro = null;
+            if (rangoFechas) {
+                const [start, end] = rangoFechas.split(" - ");
+                fechaInicioFiltro = start ? start : null;
+                fechaFinFiltro = end ? end : null;
+            }
+
+            // Parsear horas
+            let horaInicioFiltro = startTime ? startTime : null;
+            let horaFinFiltro = endTime ? endTime : null;
 
             // Realizar el filtrado de productos utilizando los valores obtenidos
             let resultadosFiltrados = productos.filter(producto => {
@@ -121,6 +129,40 @@ $(function () {
                 if (caracteristica && !producto.caracteristicas.some(c => c.nombre.includes(caracteristica))) {
                     return false;
                 }
+
+                //Filtrado por fecha
+                if (producto.fechaInicio && producto.fechaFin) {
+                    const productoFechaInicio = parseDate(producto.fechaInicio);
+                    const productoFechaFin = parseDate(producto.fechaFin);
+                    const fechaInicioFiltroDate = fechaInicioFiltro ? parseDate(fechaInicioFiltro) : null;
+                    const fechaFinFiltroDate = fechaFinFiltro ? parseDate(fechaFinFiltro) : null;
+
+                    // Comparar solo año, mes y día de las fechas
+                    if (fechaInicioFiltroDate &&
+                        (productoFechaInicio < fechaInicioFiltroDate)) {
+                        return false;
+                    }
+
+                    if (fechaFinFiltroDate &&
+                        (productoFechaFin > fechaFinFiltroDate)) {
+                        return false;
+                    }
+                } else if(fechaFinFiltro && fechaInicioFiltro){
+                    return false;
+                }
+
+                //Filtrado por hora
+                if (producto.horaInicio && producto.horaFin) {
+                    if (horaInicioFiltro && producto.horaInicio && producto.horaInicio < horaInicioFiltro) {
+                        return false;
+                    }
+                    if (horaFinFiltro && producto.horaFin && producto.horaFin > horaFinFiltro) {
+                        return false;
+                    }
+                } else if (horaFinFiltro && horaInicioFiltro) {
+                    return false;
+                }
+
                 return true;
             });
 
@@ -157,17 +199,13 @@ $(function () {
 
     function mostrarResultados(resultados) {
         //Desaparecer la sección de recomendaciones
-        document.getElementById("recomendaciones").style.display = "none";
-        document.getElementById("showProductos").style.display = "none";
+        const recomendaciones = document.getElementById("recomendaciones")
+        recomendaciones.style.display = "none";
+        const productosRecomendados = document.getElementById("showProductos")
+        productosRecomendados.style.display = "none";
 
         // Limpiar resultados anteriores
         document.getElementById("resultados").innerHTML = "";
-
-        // Verificar si hay resultados
-        if (resultados.length === 0) {
-            document.getElementById("resultados").textContent = "No se encontraron resultados.";
-            return;
-        }
 
         let contenedorTitulo = document.createElement("div");
         contenedorTitulo.className = "contenedorTituloResultados";
@@ -175,6 +213,20 @@ $(function () {
         titulo.textContent = "Resultados de la búsqueda";
         titulo.className = "tituloResultados";
         contenedorTitulo.appendChild(titulo);
+
+        // Verificar si hay resultados
+        if (resultados.length === 0) {
+            let mensajeError = document.createElement("p");
+            mensajeError.textContent = "No se encontraron resultados.";
+            mensajeError.className = "mensajeErrorResultados"
+
+            document.getElementById("resultados").appendChild(contenedorTitulo);
+            document.getElementById("resultados").appendChild(mensajeError);
+
+            recomendaciones.style.display = "block";
+            productosRecomendados.style.display = "grid";
+            return;
+        }
 
         // Mostrar los resultados (cards de los productos encontrados)
         let listaResultados = document.createElement("div");
@@ -225,7 +277,6 @@ $(function () {
                 card.appendChild(likeFavorito);
                 card.appendChild(verMasLink);
 
-                listaResultados.appendChild(titulo);
                 listaResultados.appendChild(card);
 
                 likeFavorito.addEventListener('click', () => {
@@ -253,5 +304,11 @@ $(function () {
         let contenedorResultados = document.getElementById("resultados")
         contenedorResultados.appendChild(contenedorTitulo);
         contenedorResultados.appendChild(listaResultados);
+        
     }
 });
+
+const parseDate = dateString => {
+    const [day, month, year] = dateString.split('/');
+    return new Date(year, month - 1, day); // Mes se resta 1 porque en JavaScript los meses van de 0 a 11
+};

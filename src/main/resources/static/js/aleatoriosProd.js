@@ -105,6 +105,16 @@ function mostrarProductosEnDiv(productos) {
             heartIcon.classList.add('heart-icon', 'fas', 'fa-heart');
             likeFavorito.appendChild(heartIcon);
 
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+            // Verificar si el producto está en la lista de favoritos
+            const esFavorito = favorites.some(fav => fav.idProducto === producto.idProducto);
+
+            // Marcar visualmente el botón de favoritos si el producto está en la lista de favoritos
+            if (esFavorito) {
+                likeFavorito.classList.add('favorited');
+            }
+
             productoDiv.appendChild(imagen);
             productoDiv.appendChild(nombre);
             productoDiv.appendChild(descripcionProducto);
@@ -118,12 +128,21 @@ function mostrarProductosEnDiv(productos) {
 
             likeFavorito.addEventListener('click', () => {
                 likeFavorito.classList.toggle('favorited');
-                const productId = productDiv.dataset.id;
 
+                const product = {
+                    idProducto: producto.idProducto,
+                    imagen: producto.imagen,
+                    nombre: producto.nombreProducto,
+                    descripcionProducto: producto.descripcion,
+                    descripcionCategoria: producto.categoria ? producto.categoria.descripcion : 'Sin categoría',
+                    preciotitulo: 'Precio por Hora (USD $$)',
+                    precio: producto.categoria ? producto.precioHora : "Precio sin definir",
+                };
+                
                 if (likeFavorito.classList.contains('favorited')) {
-                    addToFavorites(productId);
+                    addToFavorites(product);
                 } else {
-                    removeFromFavorites(productId);
+                    removeFromFavorites(product.idProducto);
                 }
             });
         }else{
@@ -193,16 +212,20 @@ function obtenerProductosPorCategoria(categoriaNombre) {
         });
 }
 
-function addToFavorites(productId) {
+
+function addToFavorites(product) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    if (!favorites.includes(productId)) {
-        favorites.push(productId);
+    const exists = favorites.some(fav => fav.idProducto === product.idProducto);
+    if (!exists) {
+        favorites.push(product);
         localStorage.setItem('favorites', JSON.stringify(favorites));
     }
 }
 
+
+
 function removeFromFavorites(productId) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    favorites = favorites.filter(id => id !== productId);
+    favorites = favorites.filter(fav => fav.idProducto !== productId);
     localStorage.setItem('favorites', JSON.stringify(favorites));
 }

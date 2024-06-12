@@ -80,36 +80,83 @@ function mostrarProductosEnDiv(productos) {
         const nombre = document.createElement('h2');
         nombre.textContent = producto.nombreProducto;
 
+        const descripcionProducto = document.createElement('p');
+        descripcionProducto.textContent = producto.descripcion;
+
         const descripcionCategoria = document.createElement('p');
         descripcionCategoria.textContent = producto.categoria ? producto.categoria.descripcion : 'Sin categoría';
-
-        const descripcionProducto = document.createElement('p');
-        descripcionProducto.textContent = producto.descripcion
 
         const preciotitulo = document.createElement('h2');
         preciotitulo.textContent = 'Precio por Hora (USD $$) ';
 
         const precio = document.createElement('p');
-        precio.textContent = producto.categoria ? producto.categoria.precioHora : "Precio sin definir";
+        precio.textContent = producto.precioHora;
 
         const verMasLink = document.createElement('a');
         verMasLink.textContent = 'Ver más';
         verMasLink.classList.add('ver-mas-link');
         verMasLink.href = './detailProd.html?id=' + producto.idProducto;
 
-        productoDiv.appendChild(imagen);
-        productoDiv.appendChild(nombre);
-        productoDiv.appendChild(descripcionCategoria);
-        productoDiv.appendChild(descripcionProducto);
-        productoDiv.appendChild(preciotitulo);
-        productoDiv.appendChild(precio);
-        productoDiv.appendChild(verMasLink);
+        if (window.isUserLoggedIn) {
 
-        showProductos.appendChild(productoDiv);
+            const likeFavorito = document.createElement('button');
+            likeFavorito.classList.add('favorite-btn');
+            const heartIcon = document.createElement('i');
+            heartIcon.classList.add('heart-icon', 'fas', 'fa-heart');
+            likeFavorito.appendChild(heartIcon);
+
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+            // Verificar si el producto está en la lista de favoritos
+            const esFavorito = favorites.some(fav => fav.idProducto === producto.idProducto);
+
+            // Marcar visualmente el botón de favoritos si el producto está en la lista de favoritos
+            if (esFavorito) {
+                likeFavorito.classList.add('favorited');
+            }
+
+            productoDiv.appendChild(imagen);
+            productoDiv.appendChild(nombre);
+            productoDiv.appendChild(descripcionProducto);
+            productoDiv.appendChild(descripcionCategoria);
+            productoDiv.appendChild(preciotitulo);
+            productoDiv.appendChild(precio);
+            productoDiv.appendChild(likeFavorito);
+            productoDiv.appendChild(verMasLink);
+
+            showProductos.appendChild(productoDiv);
+
+            likeFavorito.addEventListener('click', () => {
+                likeFavorito.classList.toggle('favorited');
+
+                const product = {
+                    idProducto: producto.idProducto,
+                    imagen: producto.imagen,
+                    nombre: producto.nombreProducto,
+                    descripcionProducto: producto.descripcion,
+                    descripcionCategoria: producto.categoria ? producto.categoria.descripcion : 'Sin categoría',
+                    preciotitulo: 'Precio por Hora (USD $$)',
+                    precio: producto.categoria ? producto.precioHora : "Precio sin definir",
+                };
+                
+                if (likeFavorito.classList.contains('favorited')) {
+                    addToFavorites(product);
+                } else {
+                    removeFromFavorites(product.idProducto);
+                }
+            });
+        }else{
+            productoDiv.appendChild(imagen);
+            productoDiv.appendChild(nombre);
+            productoDiv.appendChild(descripcionProducto);
+            productoDiv.appendChild(descripcionCategoria);
+            productoDiv.appendChild(preciotitulo);
+            productoDiv.appendChild(precio);
+            productoDiv.appendChild(verMasLink);
+            showProductos.appendChild(productoDiv);
+        }
     });
 }
-
-
 
 
 // Función para obtener productos por categoría
@@ -163,4 +210,22 @@ function obtenerProductosPorCategoria(categoriaNombre) {
         .catch(error => {
             console.error('Error al obtener las categorías:', error);
         });
+}
+
+
+function addToFavorites(product) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const exists = favorites.some(fav => fav.idProducto === product.idProducto);
+    if (!exists) {
+        favorites.push(product);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+}
+
+
+
+function removeFromFavorites(productId) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    favorites = favorites.filter(fav => fav.idProducto !== productId);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
 }

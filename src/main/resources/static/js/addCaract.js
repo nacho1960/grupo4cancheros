@@ -8,17 +8,19 @@ window.addEventListener('load', function () {
     const tableDivCaract = document.getElementById("divCaractTabla");
     const formEditProd = document.getElementById('formEditProd');
     const tableDivUser = document.getElementById("divUser");
+    const formEditCategoría = document.getElementById("formEditCategoría");
 
     const response = document.getElementById("response");
 
-            formProd.style.display = 'none';
-            formCat.style.display = 'none';
-            tableDivProd.style.display = 'none';
-            tableDivCat.style.display = 'none';
-            response.style.display = 'none';
-            formEditProd.style.display = 'none';
-            tableDivUser.style.display = 'none';
-            formCaract.style.display = 'none';
+    formProd.style.display = 'none';
+    formCat.style.display = 'none';
+    tableDivProd.style.display = 'none';
+    tableDivCat.style.display = 'none';
+    response.style.display = 'none';
+    formEditProd.style.display = 'none';
+    tableDivUser.style.display = 'none';
+    formCaract.style.display = 'none';
+    formEditCategoría.style.display = "none";
 
 
     buttonAddCaract.addEventListener('click', function () {
@@ -31,6 +33,7 @@ window.addEventListener('load', function () {
         response.style.display = 'none';
         formEditProd.style.display = 'none';
         tableDivCaract.style.display = 'none';
+        formEditCategoría.style.display = "none";
     });
 
     //Ante un submit del formulario se ejecutará la siguiente funcion

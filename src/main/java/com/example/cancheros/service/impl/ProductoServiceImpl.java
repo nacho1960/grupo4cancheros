@@ -80,11 +80,38 @@ public class ProductoServiceImpl implements IProductoService {
     @Override
     public void actualizar(Producto producto) throws ResourceNotFoundException {
         LOGGER.info("Actualizando el producto con id: " + producto.getIdProducto());
-        if (buscar(producto.getIdProducto()) == null){
+        Producto productoExistente = buscar(producto.getIdProducto());
+
+        if (productoExistente == null) {
             throw new ResourceNotFoundException("No existe el producto que intenta actualizar: " + producto.getIdProducto());
+        }
+
+        if (producto.getFechaInicio() == null) {
+            producto.setFechaInicio(productoExistente.getFechaInicio());
+        }
+        if (producto.getFechaFin() == null) {
+            producto.setFechaFin(productoExistente.getFechaFin());
+        }
+        if (producto.getHoraInicio() == null) {
+            producto.setHoraInicio(productoExistente.getHoraInicio());
+        }
+        if (producto.getHoraFin() == null) {
+            producto.setHoraFin(productoExistente.getHoraFin());
         }
         repository.save(producto);
         LOGGER.info("El producto fue actualizado con exito");
+    }
+
+    @Override
+    public List<Producto> listarPorCategoria(Long idCategoria){
+        LOGGER.info("Buscando productos por la categoría con ID: " + idCategoria);
+        List<Producto> productos = repository.findByCategoria_IdCategoria(idCategoria);
+        if (productos.isEmpty()) {
+            LOGGER.warn("No se encontraron productos para la categoría con ID: " + idCategoria);
+        } else {
+            LOGGER.info("Productos encontrados para la categoría con ID: " + idCategoria);
+        }
+        return productos;
     }
 
 }

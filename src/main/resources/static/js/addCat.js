@@ -9,8 +9,9 @@ window.addEventListener('load', function () {
     const tableDivUser = document.getElementById("divUser");
     const formCaract = document.getElementById('formCaract');
     const tableDivCaract = document.getElementById("divCaractTabla");
-
+    const formEditCategoría = document.getElementById("formEditCategoría");
     
+
     buttonAddCat.addEventListener('click', function () {
         formProd.style.display = 'none';
         formCat.style.display = 'block';
@@ -21,6 +22,7 @@ window.addEventListener('load', function () {
         tableDivUser.style.display = 'none';
         formCaract.style.display = "none";
         tableDivCaract.style.display = 'none';
+        formEditCategoría.style.display = "none";
     });
 
     //Ante un submit del formulario se ejecutará la siguiente funcion
@@ -31,42 +33,60 @@ window.addEventListener('load', function () {
         const formData = {
             nombre: document.querySelector('#nombreCat').value,
             descripcion: document.querySelector('#descripcion').value,
-            precioHora: parseFloat(document.querySelector('#precio').value)
+            imagen: document.querySelector('#imagenCate').files[0],
         }
 
         console.log(formData);
 
-        //Invocamos utilizando la función fetch la API Cancheros con el método POST que guardará a la nueva categoría que enviaremos en formato JSON
-        const url = "http://localhost:8080/categorias/new";
-        const settings = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
+        // Convertir imagen a base64
+        if (formData.imagen) {
+            const reader = new FileReader();
+            reader.readAsDataURL(formData.imagen);
+            reader.onload = function () {
+                const base64Image = reader.result;
+                formData.imagen = base64Image;
+                console.log(formData);
+                //Invocación a la API
+                enviarDatosCategoria(formData);
+            };
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+            };
         }
-
-        fetch(url, settings)
-            .then(response => {
-                if (response.status == 200) {
-                    return response.json()
-                } else {
-                    throw new Error('Error al agregar la categoría.');
-                }
-            })
-            .then(data => {
-                    let successAlert = '<p>Categoría agregada correctamente</p>'
-                    document.querySelector('#response').innerHTML = successAlert;
-                    document.querySelector('#response').style.display = 'block';
-                    console.log(data);
-            })
-            .catch(error => {
-                let errorAlert = '<p> Error al agregar la categoría.</p>'
-                document.querySelector('#response').innerHTML = errorAlert;
-                document.querySelector('#response').style.display = "block";
-                console.log(error);
-            })
-            formCat.reset()
-    })
-
+    });
 });
+
+function enviarDatosCategoria(formData) {
+    //Invocamos utilizando la función fetch la API Cancheros con el método POST que guardará a la nueva categoría que enviaremos en formato JSON
+    const url = "http://localhost:8080/categorias/new";
+    const settings = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    }
+
+    fetch(url, settings)
+        .then(response => {
+            if (response.status == 200) {
+                return response.json()
+            } else {
+                throw new Error('Error al agregar la categoría.');
+            }
+        })
+        .then(data => {
+            let successAlert = '<p>Categoría agregada correctamente</p>'
+            document.querySelector('#response').innerHTML = successAlert;
+            document.querySelector('#response').style.display = 'block';
+            console.log(data);
+        })
+        .catch(error => {
+            let errorAlert = '<p> Error al agregar la categoría.</p>'
+            document.querySelector('#response').innerHTML = errorAlert;
+            document.querySelector('#response').style.display = "block";
+            console.log(error);
+        })
+    formCat.reset()
+};
+

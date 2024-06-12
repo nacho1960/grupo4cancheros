@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cancheros" />
+        <module name="grupo4cancheros" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

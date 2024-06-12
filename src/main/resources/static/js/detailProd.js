@@ -1,11 +1,10 @@
-window.addEventListener('load', function (){
+window.addEventListener('load', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const idProducto = urlParams.get('id');
     const divDetail = document.getElementById("detail");
     const divDescripcionYCard = document.getElementById("descripcionYcard");
     const divTitulo = document.getElementById("titulo");
     const divCaracteristicas = document.getElementById("caracteristicas");
-
 
     const url = 'http://localhost:8080/productos/' + idProducto;
     const settings = {
@@ -21,34 +20,39 @@ window.addEventListener('load', function (){
             divTitulo.appendChild(nombreProducto);
 
             let descripcionDiv = document.createElement("div");
-            let descripcionTexto;
-            if (producto.categoria){
-                descripcionTexto = producto.categoria.descripcion + " - " + producto.descripcion;
+
+            let productoDiv = document.createElement("div");
+            productoDiv.classList.add('seccionProducto');
+            let descripcionProducto = document.createElement('p');
+
+            let descripcionCategoria = document.createElement('p');
+
+            if (producto.categoria) {
+                descripcionProducto.textContent = producto.descripcion;
+                descripcionCategoria.textContent = producto.categoria.descripcion;
             } else {
-                descripcionTexto = producto.descripcion
+                descripcionProducto.textContent = producto.descripcion;
+                descripcionCategoria.style.display = 'none';
             }
-            descripcionDiv.innerHTML = descripcionTexto;
+
+            productoDiv.appendChild(descripcionProducto);
+
+            descripcionDiv.appendChild(productoDiv);
+            descripcionDiv.appendChild(descripcionCategoria);
+            descripcionDiv.classList.add('descripciones')
             descripcionDiv.style.fontWeight = 600;
             descripcionDiv.style.display = 'flex';
-            descripcionDiv.style.justifyContent = 'center';
-            descripcionDiv.style.alignItems = 'center';
             divDescripcionYCard.appendChild(descripcionDiv);
-
-            let img = document.createElement('img')
-            img.classList.add('imgProd')
-            img.src = producto.imagen;
-            img.style.height = '100%'; 
-            divDescripcionYCard.appendChild(img)
-
 
             let divCard = document.createElement("div");
             divCard.classList.add('divCard');
+
+            let verificaHorario = document.createElement("p");
+            verificaHorario.textContent = 'Verifica el horario disponible en el día que deseas realizar la reserva';
+            verificaHorario.style.fontWeight = 600;
+
             let precio = document.createElement("p");
-            if (producto.categoria){
-                             precio.textContent = '$ ' + producto.categoria.precioHora + ' USD Por Hora';
-                        } else {
-                             precio.textContent = 'Precio sin definir';
-                        }
+            precio.textContent = '$ ' + producto.precioHora + ' USD Por Hora';
             precio.style.fontWeight = 600;
 
             let divHorarios = document.createElement("div");
@@ -56,21 +60,121 @@ window.addEventListener('load', function (){
             let tituloHorarios = document.createElement("p");
             tituloHorarios.textContent = 'Horarios:';
             tituloHorarios.style.fontWeight = 600;
-            let horarios = document.createElement("p");
-            horarios.innerHTML = 'Lunes a Viernes: 13:00 - 02:00am<br>Sábados y Domingos: 10:00 - 02:00am';
+
+            // Crear y configurar el input de fecha
+            let inputFecha = document.createElement("input");
+            inputFecha.type = "date";
+            inputFecha.name = "fecha";
+            inputFecha.id = "fecha";
+
+            // Establecer la fecha mínima del input de fecha al día actual
+            let today = new Date().toISOString().split('T')[0];
+            inputFecha.value = today;
+            inputFecha.min = today;
+
+            // Crear y configurar el select de hora
+            let selectHora = document.createElement("select");
+            selectHora.name = "hora";
+            selectHora.id = "hora";
+
+            // DATOS EJEMPLO PARA LAS RESERVAS
+            const reservas = {
+                '2024-06-11': ['08:00', '10:00', '12:00'],
+                '2024-06-12': ['09:00', '11:00']
+            };
+
+            // Función para obtener horas ocupadas desde el servidor (aquí simulado con datos locales)
+            function fetchHorasOcupadas(fecha) {
+                return new Promise((resolve) => {
+                    const horarios = reservas[fecha] || [];
+                    resolve(horarios);
+                });
+            }
+            /* VERDADERA FUNCION fetchHorasOcupadas(fecha)
+              function fetchHorasOcupadas(fecha) {
+
+                const horarios = reservas[fecha] || [];
+
+                return horarios;
+                /*const url = http://localhost:8080/reservas/${fecha};
+                const settings = {
+                    method: 'GET'
+                };
+            
+                fetch(url, settings)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error: ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data);
+                        horasOcupadas = data[fecha] || [];
+                        
+                    })
+                    .catch(error => {
+                        console.error('Ha habido un problema al realizar la operacion:', error);
+                    });
+            
+            
+            */
+
+            // Función para actualizar las horas disponibles según la fecha seleccionada
+            function actualizarHorasDisponibles() {
+                let fechaSeleccionada = inputFecha.value;
+
+                fetchHorasOcupadas(fechaSeleccionada).then(horasOcupadas => {
+                    // Limpiar el select de hora
+                    selectHora.innerHTML = '';
+
+                    for (let hour = 8; hour <= 23; hour++) {
+                        let option = document.createElement("option");
+                        let hourString = hour.toString().padStart(2, '0') + ":00";
+                        option.value = hourString;
+                        option.textContent = hourString;
+
+                        if (horasOcupadas.includes(hourString)) {
+                            option.disabled = true;
+                            option.style.backgroundColor = '#FF6666'; // Rojo para ocupado
+                        } else {
+                            option.style.backgroundColor = '#CCFFCC'; // Verde claro para disponible
+                        }
+
+                        selectHora.appendChild(option);
+                    }
+                }).catch(error => {
+                    console.error('Error al obtener las horas ocupadas:', error);
+                });
+            }
+
+            // Llamar a la función para inicializar las horas disponibles
+            actualizarHorasDisponibles();
+
+            // Actualizar las horas disponibles cuando cambia la fecha
+            inputFecha.addEventListener('change', actualizarHorasDisponibles);
+
             let buttonReserva = document.createElement('button');
             buttonReserva.classList.add('buttonReserva');
+            buttonReserva.textContent = 'Reserva aquí';
+
+            buttonReserva.addEventListener('click', () => {
+                let fechaSeleccionada = inputFecha.value;
+                let horaSeleccionada = selectHora.value;
+                console.log(`Fecha seleccionada: ${fechaSeleccionada}`);
+                console.log(`Hora seleccionada: ${horaSeleccionada}`);
+                // Aquí puedes añadir el código para procesar la reserva
+            });
+
             divHorarios.appendChild(tituloHorarios);
-            divHorarios.appendChild(horarios);
-
-            buttonReserva.textContent = 'Reserva';
-
+            divHorarios.appendChild(inputFecha);
+            divHorarios.appendChild(selectHora);
+            divCard.appendChild(verificaHorario);
             divCard.appendChild(precio);
             divCard.appendChild(divHorarios);
             divCard.appendChild(buttonReserva);
 
             divDescripcionYCard.appendChild(divCard);
-
 
             producto.caracteristicas.forEach(caracteristica => {
                 const caracteristicaUnicaDiv = document.createElement('div');
@@ -78,9 +182,7 @@ window.addEventListener('load', function (){
 
                 let imagenCaracteristica = document.createElement("img");
                 imagenCaracteristica.src = caracteristica.imagen;
-                imagenCaracteristica.style.maxWidth = '50%';
                 imagenCaracteristica.alt = caracteristica.nombre;
-                imagenCaracteristica.classList.add('imgProd')
 
                 let nombreCaracteristica = document.createElement("h4");
                 nombreCaracteristica.classList.add('nombreCaracteristica');
@@ -90,14 +192,13 @@ window.addEventListener('load', function (){
                 caracteristicaUnicaDiv.appendChild(imagenCaracteristica);
 
                 divCaracteristicas.appendChild(caracteristicaUnicaDiv);
-
-                divCaracteristicas.style.display = 'flex';
-                divCaracteristicas.style.justifyContent = 'center';
-                divCaracteristicas.style.alignItems = 'center';
-                
             });
 
-            
-
+            let img = document.createElement('img');
+            img.classList.add('imgProd');
+            img.src = producto.imagen;
+            img.style.height = '100%';
+            divDetail.appendChild(img);
         });
 });
+

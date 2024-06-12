@@ -9,6 +9,8 @@ window.addEventListener('load', function () {
     const formEditProd = document.getElementById('formEditProd');
     const formCaract = document.getElementById('formCaract');
     const tableDivCaract = document.getElementById("divCaractTabla");
+    const formEditCategoría = document.getElementById("formEditCategoría");
+    
 
     formProd.style.display = 'none';
     formCat.style.display = 'none';
@@ -18,6 +20,7 @@ window.addEventListener('load', function () {
     formEditProd.style.display = 'none';
     formCaract.style.display = "none";
     tableDivCaract.style.display = 'none';
+    formEditCategoría.style.display = "none";
 
     botonListar.addEventListener('click', function () {
         tableDivProd.style.display = 'block';
@@ -28,6 +31,7 @@ window.addEventListener('load', function () {
         formEditProd.style.display = "none";
         formCaract.style.display = "none";
         tableDivCaract.style.display = 'none';
+        formEditCategoría.style.display = "none";
 
         const url = 'http://localhost:8080/productos/listarTodos';
         const settings = {
@@ -56,6 +60,9 @@ window.addEventListener('load', function () {
                     } else {
                     descripcionCelda.textContent = producto.descripcion
                     }
+
+                    const precioCelda = productoRow.insertCell();
+                    precioCelda.textContent = producto.precioHora;
 
                     const categoriaCelda = productoRow.insertCell();
                     categoriaCelda.textContent = producto.categoria ? producto.categoria.nombre : 'Sin categoría';
@@ -122,6 +129,7 @@ function editProduct(id) {
             console.log('Nombre del producto:', data.nombreProducto);
             document.getElementById('nombreProdEdit').value = data.nombreProducto;
             document.getElementById('descripcionProdEdit').value = data.descripcion;
+            document.getElementById('precioProdEdit').value = data.precioHora;
 
 
             let radioCatEdit = document.getElementById('radioCatEdit');
@@ -268,10 +276,10 @@ function updateProduct(id) {
     const url = 'http://localhost:8080/productos/update';
 
     const nombreProducto = document.querySelector('#nombreProdEdit').value;
-
     const imagenInput = document.querySelector('#imagenEdit');
-
     const descripcion = document.querySelector('#descripcionProdEdit').value;
+    const precioHora = document.getElementById('precioProdEdit').value
+    const tableDivProd = document.getElementById("divProdTabla");
 
 
     let base64Image = null;
@@ -300,14 +308,31 @@ function updateProduct(id) {
             idCaracteristica: parseInt(checkbox.value)
         }));
 
-        const data = {
+        let data = {
             idProducto: id,
             nombreProducto: nombreProducto,
             imagen: base64Image,
-            categoria: { idCategoria },
-            caracteristicas: caracteristicasSeleccionadas,
-            descripcion: descripcion
+            descripcion: descripcion,
+            precioHora: precioHora
         };
+
+        //Si el producto tiene una categoría
+        if (idCategoria) {
+            data = {
+                ...data,
+                categoria: { idCategoria }
+            };
+        } else {
+            data.categoria = null; // Si no hay categoría seleccionada, asignar null
+        }
+
+        //Si el producto tiene categorías seleccionadas
+        if (caracteristicasSeleccionadas){
+            data = {
+                ...data,
+                caracteristicas: caracteristicasSeleccionadas
+            }
+        }
 
         fetch(url, {
             method: 'PUT',

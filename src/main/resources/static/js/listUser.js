@@ -9,6 +9,8 @@ window.addEventListener('load', function () {
     const formEditProd = document.getElementById('formEditProd');
     const tableDivCaract = document.getElementById("divCaractTabla");
     const formCaract = document.getElementById('formCaract');
+    const formEditCategoría = document.getElementById("formEditCategoría");
+    
 
     formProd.style.display = 'none';
     formCat.style.display = 'none';
@@ -19,7 +21,7 @@ window.addEventListener('load', function () {
     tableDivUser.style.display = 'none';
     tableDivCaract.style.display = 'none';
     formCaract.style.display = 'none';
-
+    formEditCategoría.style.display = "none";
 
     botonListarUser.addEventListener("click", function () {
         tableDivProd.style.display = 'none';
@@ -31,6 +33,7 @@ window.addEventListener('load', function () {
         tableDivUser.style.display = 'none';
         tableDivCaract.style.display = 'none';
         formCaract.style.display = 'none';
+        formEditCategoría.style.display = "none";
 
         const url = 'http://localhost:8080/user/listarTodos';
         const settings = {

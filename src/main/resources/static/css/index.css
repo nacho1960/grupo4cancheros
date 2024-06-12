@@ -5,7 +5,7 @@
     --color-secondary: #FFE07E;
     --color-terceray: #FFF6D9;
     --color-quaternary: #235C9F;
-    --color-quintenary: #0F2948;;
+    --color-quintenary: #0F2948;
     box-sizing: border-box;
     color: var(--color-terceray);
     background-color: var(--color-terceray);
@@ -30,7 +30,7 @@ footer {
 }
 
 header {
-    position: sticky;
+    position: fixed;
     z-index: 1000;
     width: 100%;
     top: 0;
@@ -38,6 +38,7 @@ header {
     box-shadow: 0px 5px 5px var(--color-quintenary);
     box-sizing: border-box;
     padding: 7px 10px 0px 10px;
+    
 }
 
 header a img,
@@ -62,9 +63,16 @@ footer {
     width: 100%;
     bottom: 0;
     box-sizing: border-box;
-    box-shadow: 5px 0px 5px var(--color-quintenary);;
+    box-shadow: 5px 0px 5px var(--color-quintenary);
+    text-decoration: underline; /* Esta línea asegura que el enlace esté subrayado */
+    
 }
 
+main{
+    margin-top: 6%;
+}
+
+/*Menú hamburguesa*/
 .menu-icon {
     display: none;
 }
@@ -77,7 +85,56 @@ select:hover {
 
 /*Detalle*/
 #detailUserMain {
-    color:black;
+    color: black;
+}
+
+/*Usuario logueado*/
+#userLogin{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+    flex-direction: row;
+}
+
+#user-avatar{
+   color: var(--color-quaternary); 
+   border-radius: 50%;
+   background-color: var(--color-terceray);
+   font-size: 30px;
+   font-weight: 600;
+   padding: 15px 20px;
+}
+
+#nombreYCierreDeSesion{
+    text-align: center;
+}
+
+#nombreCompletoUser{
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--color-terceray);
+    margin-bottom: 0;
+}
+
+#navbarUser, #navbarUserResponsive, #navbarUserResponsiveNoLogged{
+    color: var(--color-primary);
+    background-color: transparent;
+    border: none;
+    width: 16px;
+    height: 16px;
+}
+
+#navbarUser option, #navbarUserResponsive option, #navbarUserResponsiveNoLogged option {
+    background-color: var(--color-terceray);
+    font-weight: 600;
+    font-size: 16px;
+    color: black;
+    text-align: center;
+}
+
+#navbarUserResponsive, #navbarUserResponsiveNoLogged{
+    appearance: none;
 }
 
 /*Buscador*/
@@ -115,35 +172,84 @@ select:hover {
     margin-top: 0%;
 }
 
+#buscadorInput p, #resultados .mensajeErrorResultados{
+    font-size: 1.5rem;
+    margin-top: 0%;
+} 
+
+#resultados .mensajeErrorResultados{
+    color: #00008b;
+    text-align: center;
+    margin-bottom: 15%;
+}
+
 #buscador #text #text1 {
     font-size: 4em;
     text-align: center;
 }
 
+#buscadorInput h1{
+    color: #F6BF0F;
+    align-self: center;
+    margin-bottom: 0%;
+}
+
+.search-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#contenedorFechaYHora, #contenedorPalabraClaveCategoriaYCaracteristica{
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+}
+
+.date-picker, .time-picker{
+    display: flex;
+    gap: 10px;
+    
+}
+
+.daterangepicker td.available, .daterangepicker th, .daterangepicker .drp-selected{
+    color: var(--color-quaternary); 
+}
+
+.feedback{
+    color: white;
+}
+
 #buscadorInput input,
+#buscadorInput #caracteristica,
+#buscadorInput #caracteristica option,
 #buscadorInput #categoria,
-#buscadorInput #categoria option, .buttonReserva {
-    padding: 0.938em;
+#buscadorInput #categoria option,
+.buttonReserva {
+    padding: 0.7em;
     background-color: var(--color-quaternary);
     border: none;
     border-radius: 2.25em;
     font-family: "Barlow Condensed", sans-serif;
     font-size: 1.125em;
     color: var(--color-terceray);
+    width: 10rem;
 }
 
-#buscadorInput #buscar:hover{
+#buscadorInput #buscar:hover {
     color: var(--color-quaternary);
     background-color: var(--color-terceray);
 }
 
-#buscadorInput #buscar{
+#buscadorInput #buscar {
     background-color: var(--color-primary);
+    align-self: center;
+    color: #00008b;
 }
 
 a.button {
-    color: #F6BF0F; 
-    text-decoration: none; 
+    color: #F6BF0F;
+    text-decoration: none;
 }
 
 a.button:visited {
@@ -159,8 +265,8 @@ a.button:active {
 }
 
 a {
-    color: #F6BF0F; 
-    text-decoration: none; 
+    color: #F6BF0F;
+    text-decoration: none;
 }
 
 
@@ -173,7 +279,7 @@ a:active {
 }
 
 /*Categorias*/
-#viewCategorias{
+#viewCategorias {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -192,22 +298,23 @@ a:active {
     margin-left: 10px;
 }
 
-#viewCategorias button:hover{
+#viewCategorias button:hover {
     background-color: var(--color-primary);
 }
 
 /*Productos body*/
 /*Estilos para los productos dentro del div showProductos */
-#showProductos {
+#showProductos, .listaResultados {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* La cuadrícula se ajustará automáticamente */
-    gap: 1em; 
+    grid-template-columns: 1fr 1fr;
+    /* La cuadrícula se ajustará automáticamente */
+    gap: 1em;
     margin-bottom: 3rem;
     justify-items: center;
     align-items: center;
 }
 
-.producto {
+.producto, .cardResultados {
     border: 1px solid #ccc;
     background-color: var(--color-quaternary);
     border-radius: 10px;
@@ -215,95 +322,113 @@ a:active {
     width: 20vw;
 }
 
-.producto h2 {
+.producto h2, .cardResultados h2{
     font-size: 1.2rem;
     margin-bottom: 0.625em;
-    color: var(--color-primary); 
+    color: var(--color-primary);
 }
 
-.producto p {
+.producto p, .cardResultados p {
     font-size: 1rem;
-    color: rgb(255, 255, 255); 
+    color: rgb(255, 255, 255);
 }
 
-.producto p.descripcion {
-    color: rgb(12, 12, 12); 
+.producto p.descripcion, .cardResultados p.descripcion{
+    color: rgb(12, 12, 12);
 }
 
-.producto p.precio {
-    color: rgb(8, 8, 8); 
-    font-weight: bold; 
+.producto p.precio, .cardResultados p.precio {
+    color: rgb(8, 8, 8);
+    font-weight: bold;
 }
 
-#recomendaciones{
+#recomendaciones, .contenedorTituloResultados {
     text-align: center;
 }
 
-#tituloRecomendaciones{
+#tituloRecomendaciones, .tituloResultados{
     color: var(--color-primary);
 }
 
 /* Estilos solo para el botón "Ver más" */
 .ver-mas-link {
     border: none;
-    border-radius: 20px; 
-    background-color:var(--color-secondary); 
-    color: #00008b; 
-    padding: 0.313em 0.625em; 
-    font-size: 0.688em; 
+    border-radius: 20px;
+    background-color: var(--color-secondary);
+    color: #00008b;
+    padding: 0.313em 0.625em;
+    font-size: 0.688em;
     cursor: pointer;
-    transition: background-color 0.3s ease; 
-    float: right; 
-    margin-top: 0.625em; 
+    transition: background-color 0.3s ease;
+    float: right;
+    margin-top: 0.625em;
     font-weight: bold;
-    text-decoration: none;    
+    text-decoration: none;
+    
 }
 
 .ver-mas-link:hover {
-    background-color: var(--color-primary); /* Amarillo más claro al pasar el mouse */
+    background-color: var(--color-primary);
 }
 
+/*Corazon*/
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.heart-icon {
+    font-size: 24px; 
+    color: #ccc; /* Color del corazón vacío */
+    transition: color 0.3s ease;
+}
+
+.favorite-btn.favorited .heart-icon {
+    color: red; /* Color del corazón lleno */
+}
+
+
+
 @media (max-width: 800px) {
+
     header,
-    footer, 
-    #buscador, 
+    footer,
+    #buscador,
     #buscadorInput,
     #viewCategorias,
-    #descripcionYcard {
+    #descripcionYcard,
+    #contenedorFechaYHora, 
+    #contenedorPalabraClaveCategoriaYCaracteristica,
+    .time-picker {
         flex-direction: column;
     }
 
     /*Ocultamos los botones de "Iniciar Sesión" y "Registrarse".*/
-    header button{
+    header button, #userLogin{
         display:none;  
     }
-    
+
     /*Mostrar el icono del menú hamburguesa.*/
     .menu-icon {
-        display:block;  
+        display: block;  
     }
 
-    .menu-icon .fa-bars {
-        visibility: visible;
-        display: block;
-        font-size: 1rem;
-    } 
-
+    /*Buscador*/
     #buscador{
         text-align: center;
     }
 
-    #buscadorInput{
+    #buscadorInput {
         display: flex;
-        justify-content: space-between; 
+        justify-content: space-between;
     }
 
-    #buscadorInput input, #buscadorInput select, #buscadorInput #buscar{
+    #buscadorInput input,
+    #buscadorInput select,
+    #buscadorInput #buscar {
         margin-bottom: 0.25rem;
     }
-    
+
 }
-
-
-    
-    

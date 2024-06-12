@@ -12,4 +12,5 @@ import java.util.List;
 public interface IProductoRepository extends JpaRepository<Producto,Long> {
     //@Query("SELECT p from Producto p order by p.id desc")//selecciona los productos y los ordena por id en forma descendente
    // List<Producto> findAllProductoOrdered();
+    List<Producto> findByCategoria_IdCategoria(Long idCategoria);
 }

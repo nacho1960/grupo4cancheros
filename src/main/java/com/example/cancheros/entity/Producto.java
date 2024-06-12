@@ -1,7 +1,10 @@
 package com.example.cancheros.entity;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,6 +48,27 @@ public class Producto {
         joinColumns = @JoinColumn(name = "id_producto"),
         inverseJoinColumns = @JoinColumn(name = "id_caracteristica"))
     private List<Caracteristica> caracteristicas;
+
+    @Column(name = "Precio", nullable = false)
+    private Double precioHora;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @Column(name = "FechaInicio")
+    private LocalDate fechaInicio;
+
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @Column(name = "FechaFin")
+    private LocalDate fechaFin;
+
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    @Column(name = "HoraInicio")
+    private LocalTime horaInicio;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    @Column(name = "HoraFin")
+    private LocalTime horaFin;
 
    }
 

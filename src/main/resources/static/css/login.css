@@ -18,29 +18,58 @@ header {
     padding: 7px 10px 0px 10px;
 }
 
-main#container {
+#container {
     display: flex;
     justify-content: center;
-    /* Centra horizontalmente el formulario */
     align-items: center;
-    /* Centra verticalmente el formulario */
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
     overflow: auto;
+    margin: 0;
+    padding: 0;
+    font-size: 1.563rem;
+    color: #0F2948;
+}
+
+h1{
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 2.5em;
 }
 
 /* Estilos para el formulario */
 form {
     display: flex;
-    position: flex-start;
     flex-direction: column;
-    /* Asegura que los hijos se apilen verticalmente */
-    align-items: flex-start;
-    /* Alinea el contenido del formulario a la izquierda */
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 400px;
     box-sizing: border-box;
+}
+
+form div{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+form div label{
+    padding-bottom: 2%;
+    font-weight: 500;
+}
+
+form div input::placeholder{
+    color: #0F2948;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1rem;
+}
+
+form div input{
+    width: 30rem;
+    padding: 0.5em;
+    border-radius: 5px;
+    border-color: #0F2948;
 }
 
 #loginButton {
@@ -49,7 +78,7 @@ form {
     border-radius: 38px;
     padding: 10px;
     border: none;
-    color: var(--color-primary);
+    color: white;
     font-weight: 600;
 }
 

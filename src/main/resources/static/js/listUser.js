@@ -46,6 +46,8 @@ window.addEventListener('load', function () {
                 const table = document.getElementById('userTablaBody');
                 table.innerHTML = '';
 
+                console.log(data);
+
                 data.forEach(user => {
                     const userRow = table.insertRow();
                     userRow.id = 'tr_' + user.id;
@@ -96,6 +98,7 @@ window.addEventListener('load', function () {
                 tableDivUser.style.display = 'block';
                 tableDivUser.style.width = '100%';
             });
+
     });
 
 

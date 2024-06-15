@@ -31,8 +31,9 @@ public class SecurityConfiguration {
                     //Acceso solo a los administradores
                     registry.requestMatchers("/admin.html").hasRole("ADMIN");
 
-                    //Acceso solo a los usuarios
+                    //Acceso solo a los usuarios y administradores
                     registry.requestMatchers("/datosUser.html").hasAnyRole("USER", "ADMIN");
+                    registry.requestMatchers("/reservas.html").hasAnyRole("USER", "ADMIN");
 
                     //Acceso sin autenticación
                     registry.requestMatchers("/**").permitAll();

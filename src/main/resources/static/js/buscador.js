@@ -106,8 +106,8 @@ $(function () {
             let fechaInicioFiltro = null, fechaFinFiltro = null;
             if (rangoFechas) {
                 const [start, end] = rangoFechas.split(" - ");
-                fechaInicioFiltro = start ? start : null;
-                fechaFinFiltro = end ? end : null;
+                fechaInicioFiltro = start ? parseDate(start) : null;
+                fechaFinFiltro = end ? parseDate(end) : null;
             }
 
             // Parsear horas
@@ -117,6 +117,7 @@ $(function () {
             // Realizar el filtrado de productos utilizando los valores obtenidos
             let resultadosFiltrados = productos.filter(producto => {
                 console.log("Producto:", producto); // Para depuración
+
                 // Filtrar por palabra clave
                 if (keyword && !producto.nombreProducto.includes(keyword)) {
                     return false;
@@ -130,40 +131,69 @@ $(function () {
                     return false;
                 }
 
-                //Filtrado por fecha
-                if (producto.fechaInicio && producto.fechaFin) {
-                    const productoFechaInicio = parseDate(producto.fechaInicio);
-                    const productoFechaFin = parseDate(producto.fechaFin);
-                    const fechaInicioFiltroDate = fechaInicioFiltro ? parseDate(fechaInicioFiltro) : null;
-                    const fechaFinFiltroDate = fechaFinFiltro ? parseDate(fechaFinFiltro) : null;
-
-                    // Comparar solo año, mes y día de las fechas
-                    if (fechaInicioFiltroDate &&
-                        (productoFechaInicio < fechaInicioFiltroDate)) {
-                        return false;
-                    }
-
-                    if (fechaFinFiltroDate &&
-                        (productoFechaFin > fechaFinFiltroDate)) {
-                        return false;
-                    }
-                } else if(fechaFinFiltro && fechaInicioFiltro){
-                    return false;
+                // Parsear rango de fechas
+                let fechaInicioFiltro = null, fechaFinFiltro = null;
+                if (rangoFechas) {
+                    const [start, end] = rangoFechas.split(" - ");
+                    fechaInicioFiltro = start ? start : null;
+                    fechaFinFiltro = end ? end : null;
                 }
 
-                //Filtrado por hora
-                if (producto.horaInicio && producto.horaFin) {
-                    if (horaInicioFiltro && producto.horaInicio && producto.horaInicio < horaInicioFiltro) {
-                        return false;
-                    }
-                    if (horaFinFiltro && producto.horaFin && producto.horaFin > horaFinFiltro) {
-                        return false;
-                    }
-                } else if (horaFinFiltro && horaInicioFiltro) {
-                    return false;
-                }
+                // Parsear horas
+                let horaInicioFiltro = startTime ? startTime : null;
+                let horaFinFiltro = endTime ? endTime : null;
 
-                return true;
+                // Realizar el filtrado de productos utilizando los valores obtenidos
+                let resultadosFiltrados = productos.filter(producto => {
+                    console.log("Producto:", producto); // Para depuración
+                    // Filtrar por palabra clave
+                    if (keyword && !producto.nombreProducto.includes(keyword)) {
+                        return false;
+                    }
+                    // Filtrar por categoría
+                    if (categoria && (!producto.categoria || producto.categoria.nombre !== categoria)) {
+                        return false;
+                    }
+                    // Filtrar por características
+                    if (caracteristica && !producto.caracteristicas.some(c => c.nombre.includes(caracteristica))) {
+                        return false;
+                    }
+
+                    //Filtrado por fecha
+                    if (producto.fechaInicio && producto.fechaFin) {
+                        const productoFechaInicio = parseDate(producto.fechaInicio);
+                        const productoFechaFin = parseDate(producto.fechaFin);
+                        const fechaInicioFiltroDate = fechaInicioFiltro ? parseDate(fechaInicioFiltro) : null;
+                        const fechaFinFiltroDate = fechaFinFiltro ? parseDate(fechaFinFiltro) : null;
+
+                        // Comparar solo año, mes y día de las fechas
+                        if (fechaInicioFiltroDate &&
+                            (productoFechaInicio < fechaInicioFiltroDate)) {
+                            return false;
+                        }
+
+                        if (fechaFinFiltroDate &&
+                            (productoFechaFin > fechaFinFiltroDate)) {
+                            return false;
+                        }
+                    } else if (fechaFinFiltro && fechaInicioFiltro) {
+                        return false;
+                    }
+
+                    //Filtrado por hora
+                    if (producto.horaInicio && producto.horaFin) {
+                        if (horaInicioFiltro && producto.horaInicio && producto.horaInicio < horaInicioFiltro) {
+                            return false;
+                        }
+                        if (horaFinFiltro && producto.horaFin && producto.horaFin > horaFinFiltro) {
+                            return false;
+                        }
+                    } else if (horaFinFiltro && horaInicioFiltro) {
+                        return false;
+                    }
+
+                    return true;
+                });
             });
 
             console.log("Resultados filtrados:", resultadosFiltrados); // Para depuración
@@ -304,7 +334,7 @@ $(function () {
         let contenedorResultados = document.getElementById("resultados")
         contenedorResultados.appendChild(contenedorTitulo);
         contenedorResultados.appendChild(listaResultados);
-        
+
     }
 });
 

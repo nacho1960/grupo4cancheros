@@ -159,6 +159,9 @@ window.addEventListener('load', function () {
             buttonReserva.textContent = 'Reserva aquí';
 
             buttonReserva.addEventListener('click', () => {
+                //Al hacer click en el botón dirige hacia la pagina de reservas relacionado al producto
+                window.location.href = 'reservas.html?id=' + idProducto;
+                
                 let fechaSeleccionada = inputFecha.value;
                 let horaSeleccionada = selectHora.value;
                 console.log(`Fecha seleccionada: ${fechaSeleccionada}`);

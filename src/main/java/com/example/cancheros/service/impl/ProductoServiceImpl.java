@@ -85,19 +85,6 @@ public class ProductoServiceImpl implements IProductoService {
         if (productoExistente == null) {
             throw new ResourceNotFoundException("No existe el producto que intenta actualizar: " + producto.getIdProducto());
         }
-
-        if (producto.getFechaInicio() == null) {
-            producto.setFechaInicio(productoExistente.getFechaInicio());
-        }
-        if (producto.getFechaFin() == null) {
-            producto.setFechaFin(productoExistente.getFechaFin());
-        }
-        if (producto.getHoraInicio() == null) {
-            producto.setHoraInicio(productoExistente.getHoraInicio());
-        }
-        if (producto.getHoraFin() == null) {
-            producto.setHoraFin(productoExistente.getHoraFin());
-        }
         repository.save(producto);
         LOGGER.info("El producto fue actualizado con exito");
     }

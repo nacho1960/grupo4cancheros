@@ -8,7 +8,7 @@ footer {
 }
 
 header {
-    position: sticky;
+    position: fixed;
     z-index: 1000;
     width: 100%;
     top: 0;
@@ -16,44 +16,94 @@ header {
     box-shadow: 0px 5px 5px var(--color-quintenary);
     box-sizing: border-box;
     padding: 7px 10px 0px 10px;
+    
 }
 
-main#container {
+#container {
     display: flex;
     justify-content: center;
-    /* Centra horizontalmente el formulario */
     align-items: center;
-    /* Centra verticalmente el formulario */
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
     overflow: auto;
+    margin: 0;
+    padding: 0;
+    font-size: 1.563rem;
+    color: #0F2948;
+}
+
+h1{
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 2.5em;
+    margin-bottom: 1rem;
 }
 
 /* Estilos para el formulario */
 form {
     display: flex;
-    position: flex-start;
     flex-direction: column;
-    /* Asegura que los hijos se apilen verticalmente */
-    align-items: flex-start;
-    /* Alinea el contenido del formulario a la izquierda */
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 400px;
     box-sizing: border-box;
 }
 
-#loginButton {
+#panelAgregarUsuario{
+    text-align: center;
+}
+
+#panelAgregarUsuario p, #camposObligatorios{
+    margin: 0;
+}
+
+#contenedorNombreYApellido{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-bottom: 0;
+}
+
+form div{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+form div label{
+    padding-bottom: 2%;
+    font-weight: 500;
+}
+
+form div input::placeholder{
+    color: #0F2948;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1rem;
+}
+
+form div input{
+    width: 30rem;
+    padding: 0.5em;
+    border-radius: 5px;
+    border-color: #0F2948;
+}
+
+#nombre, #apellido{
+    width: 14rem;
+}
+
+#loginButton , #buttonRegistrar{
     margin-top: 30px;
     background-color: #235C9F;
     border-radius: 38px;
     padding: 10px;
     border: none;
-    color: var(--color-primary);
+    color: white;
     font-weight: 600;
 }
 
-#loginButton:hover {
+#loginButton:hover, #buttonRegistrar:hover {
     background-color: #F6BF0F;
     color: #1e4a84;
 }

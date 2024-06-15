@@ -85,7 +85,53 @@ select:hover {
 
 /*Detalle*/
 #detailUserMain {
-    color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #0F2948;
+    height: 100vh;
+    width: 100%;
+    font-size: 1.563rem;
+    font-weight: 500;
+}
+
+#containerAvatar{
+    text-align: center;
+}
+
+#datosUser {
+    display: flex;
+    flex-direction: column;
+}
+
+#datosUser div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    padding-bottom: 2em;
+}
+
+#datosUser div p{
+    margin: 0;
+    align-content: center;
+}
+
+#datosUser div span{
+    border: 0.063em solid #235C9F;
+    padding: 0.938em;
+    border-radius: 0.313em; 
+}
+
+#avatar{
+    background-color: var(--color-primary);
+    color: var(--color-quaternary);
+    border-radius: 50%;
+    font-weight: 600;
+    border: none;
+    font-size: 6em;
+    width: 20rem;
+    height: 20rem;
+    text-align: center;
 }
 
 /*Usuario logueado*/
@@ -401,7 +447,24 @@ a:active {
     #descripcionYcard,
     #contenedorFechaYHora, 
     #contenedorPalabraClaveCategoriaYCaracteristica,
-    .time-picker {
+    .time-picker,
+    #detailUserMain {
+        flex-direction: column;
+    }
+
+    footer{
+        position: relative;
+        bottom: 0;
+    }
+
+    #detailUserMain{
+        min-height: max-content;
+        margin-top: 40%;
+        margin-bottom: 100%;
+    }
+
+    #datosUser div{
+        display: flex;
         flex-direction: column;
     }
 

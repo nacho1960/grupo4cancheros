@@ -164,6 +164,11 @@ window.addEventListener('load', function () {
                 
                 let fechaSeleccionada = inputFecha.value;
                 let horaSeleccionada = selectHora.value;
+
+                //Guardamos la fecha y hora seleccionada en el localStorage
+                localStorage.setItem("fechaSeleccionada", fechaSeleccionada)
+                localStorage.setItem("horaSeleccionada" , horaSeleccionada)
+                
                 console.log(`Fecha seleccionada: ${fechaSeleccionada}`);
                 console.log(`Hora seleccionada: ${horaSeleccionada}`);
                 // Aquí puedes añadir el código para procesar la reserva

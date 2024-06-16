@@ -21,8 +21,16 @@ public class Reserva {
     @Column(name="fecha_hora_fin")
     private LocalDateTime fechaYHoraFin;
 
+    //Muchas reservas tienen un producto.
     @ManyToOne
     @JoinColumn(name = "idProducto")
     private Producto producto;
+
+    //Muchas reservas tienen un usuario.
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private MyUser usuario;
+
+
 
 }

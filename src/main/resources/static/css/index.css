@@ -104,19 +104,19 @@ select:hover {
     flex-direction: column;
 }
 
-#datosUser div{
+#datosUser div, #precio, #nombreProd, #descripcion{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
     padding-bottom: 2em;
 }
 
-#datosUser div p{
+#datosUser div p, #datosUsuario div p, #detalleProducto div p, #detalleReserva div p{
     margin: 0;
     align-content: center;
 }
 
-#datosUser div span{
+#datosUser div span, #datosUsuario div span, #detalleProducto div span, #detalleReserva div span{
     border: 0.063em solid #235C9F;
     padding: 0.938em;
     border-radius: 0.313em; 

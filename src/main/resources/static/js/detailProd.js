@@ -5,11 +5,6 @@ window.addEventListener('load', function () {
     const divDescripcionYCard = document.getElementById("descripcionYcard");
     const divTitulo = document.getElementById("titulo");
     const divCaracteristicas = document.getElementById("caracteristicas");
-    const precioProducto = document.getElementById("precioProducto");
-    const buttonReserva = document.getElementById("buttonReserva");
-    let dateRangeInput = document.getElementById("date-range");
-    let startTimeInput = document.getElementById("start-time");
-    let endTimeInput = document.getElementById("end-time");
 
     const url = 'http://localhost:8080/productos/' + idProducto;
     const settings = {
@@ -49,66 +44,63 @@ window.addEventListener('load', function () {
             descripcionDiv.style.display = 'flex';
             divDescripcionYCard.appendChild(descripcionDiv);
 
-            precioProducto.textContent = '$ ' + producto.precioHora + ' USD Por Hora';
-            precioProducto.style.fontWeight = 600;
+            let divCard = document.createElement("div");
+            divCard.classList.add('divCard');
 
-            // Calendario doble
-            $("#date-range").daterangepicker({
-                minDate: moment(), // Fecha minima para seleccionar: hoy
-                maxDate: moment().add(2, 'year'), // Fecha maxima en la que puede seleccionar: un año.
-                autoUpdateInput: false,
-                showDropdowns: true, //Menú desplegable para cambiar de mes y año.
-                locale: {
-                    format: 'DD/MM/YYYY', // Especifica el formato de la fecha. 
-                    separator: ' - ', // Define el separador que se utiliza entre las fechas de inicio y fin en el input.
-                    applyLabel: 'Aplicar', // Texto del botón para aplicar la selección del rango de fechas.
-                    cancelLabel: 'Cancelar', // Texto del botón para cancelar la selección del rango de fechas.
-                    weekLabel: 'S', // Etiqueta de la columna de números de semana.
-                    daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
-                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'], // Nombres completos de los meses del año.
-                    firstDay: 1 // Define el primer día de la semana. 1 indica que la semana comienza el lunes.
-                }
-            }).on('apply.daterangepicker', function (ev, picker) {
-                // Al seleccionar el rango, actualizamos el valor del input manualmente con las fechas seleccionadas
-                $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-            });
+            let verificaHorario = document.createElement("p");
+            verificaHorario.textContent = 'Verifica el horario disponible en el día que deseas realizar la reserva';
+            verificaHorario.style.fontWeight = 600;
 
-            // Hora inicio
-            $("#start-time").timepicker({
-                timeFormat: "HH:mm", // Formato de la hora
-                interval: 60, // Intervalo de minutos
-                minTime: '09:00',
-                maxTime: '21:00',
-                startTime: "09:00", // Hora de inicio
-                dynamic: true, // Ajusta automáticamente las horas mínimas y máximas dependiendo de la hora actual
-                dropdown: true, // Usar menú desplegable
-                scrollbar: true, // Usar scrollbar
-            });
+            let precio = document.createElement("p");
+            precio.textContent = '$ ' + producto.precioHora + ' USD Por Hora';
+            precio.style.fontWeight = 600;
 
-            //Hora fin
-            $("#end-time").timepicker({
-                timeFormat: "HH:mm", // Formato de la hora
-                interval: 60, // Intervalo de minutos
-                minTime: '09:00',
-                maxTime: '21:00',
-                startTime: "09:00", // Hora de inicio
-                dynamic: true, // Ajusta automáticamente las horas mínimas y máximas dependiendo de la hora actual
-                dropdown: true, // Usar menú desplegable
-                scrollbar: true, // Usar scrollbar
-            });
+            let divHorarios = document.createElement("div");
+            divHorarios.classList.add('divHorarios');
+            let tituloHorarios = document.createElement("p");
+            tituloHorarios.textContent = 'Horarios:';
+            tituloHorarios.style.fontWeight = 600;
 
+            // Crear y configurar el input de fecha
+            let inputFecha = document.createElement("input");
+            inputFecha.type = "date";
+            inputFecha.name = "fecha";
+            inputFecha.id = "fecha";
 
-            // Función para actualizar las horas disponibles según la fecha seleccionada
-            function actualizarHorasDisponibles() {
-                let rangoFechas = dateRangeInput.value;
-                let startTime = startTimeInput.value;
-                let endTime = endTimeInput.value;
+            // Establecer la fecha mínima del input de fecha al día actual
+            let today = new Date().toISOString().split('T')[0];
+            inputFecha.value = today;
+            inputFecha.min = today;
 
-                const url = 'http://localhost:8080/productos/listarReservas/' + idProducto;
+            // Crear y configurar el select de hora
+            let selectHora = document.createElement("select");
+            selectHora.name = "hora";
+            selectHora.id = "hora";
+
+            // DATOS EJEMPLO PARA LAS RESERVAS
+            const reservas = {
+                '2024-06-11': ['08:00', '10:00', '12:00'],
+                '2024-06-12': ['09:00', '11:00']
+            };
+
+            // Función para obtener horas ocupadas desde el servidor (aquí simulado con datos locales)
+            function fetchHorasOcupadas(fecha) {
+                return new Promise((resolve) => {
+                    const horarios = reservas[fecha] || [];
+                    resolve(horarios);
+                });
+            }
+            /* VERDADERA FUNCION fetchHorasOcupadas(fecha)
+              function fetchHorasOcupadas(fecha) {
+
+                const horarios = reservas[fecha] || [];
+
+                return horarios;
+                /*const url = http://localhost:8080/reservas/${fecha};
                 const settings = {
                     method: 'GET'
                 };
-
+            
                 fetch(url, settings)
                     .then(response => {
                         if (!response.ok) {
@@ -118,58 +110,54 @@ window.addEventListener('load', function () {
                     })
                     .then(data => {
                         console.log(data);
-                        data.forEach(reserva => {
-                            let fechaInicioReserva = reserva.fechaInicio;
-                            let fechaFinReserva = reserva.fechaFin;
-                            console.log(reserva);
-
-                            // Agregar las fechas ocupadas al array
-                            let currentDate = fechaInicioReserva;
-                            while (currentDate.isSameOrBefore(fechaFinReserva)) {
-                                reservasFechasOcupadas.push(currentDate.format('DD/MM/YYYY'));
-                                currentDate = currentDate.add(1, 'day');
-                            }
-                        });
+                        horasOcupadas = data[fecha] || [];
+                        
                     })
                     .catch(error => {
-                        console.error('Error al listar las reservas asociadas al producto:', error);
+                        console.error('Ha habido un problema al realizar la operacion:', error);
                     });
+            
+            
+            */
 
-                // Función para deshabilitar las fechas ocupadas
-                let isFechaOcupada = function (date) {
-                    return reservasFechasOcupadas.includes(date);
-                };
+            // Función para actualizar las horas disponibles según la fecha seleccionada
+            function actualizarHorasDisponibles() {
+                let fechaSeleccionada = inputFecha.value;
 
-                dateRangeInput.data('daterangepicker').setOptions({
-                    isInvalidDate: isFechaOcupada
-                });
+                fetchHorasOcupadas(fechaSeleccionada).then(horasOcupadas => {
+                    // Limpiar el select de hora
+                    selectHora.innerHTML = '';
 
-                // Marcar las horas ocupadas en start-time y end-time
-                let horasOcupadas = [];
-                reservas.forEach(reserva => {
-                    if (reservasFechasOcupadas.includes(reserva.fechaInicio.format('DD/MM/YYYY'))) {
-                        horasOcupadas.push({
-                            start: reserva.horaInicio,
-                            end: reserva.horaFin
-                        });
+                    for (let hour = 8; hour <= 23; hour++) {
+                        let option = document.createElement("option");
+                        let hourString = hour.toString().padStart(2, '0') + ":00";
+                        option.value = hourString;
+                        option.textContent = hourString;
+
+                        if (horasOcupadas.includes(hourString)) {
+                            option.disabled = true;
+                            option.style.backgroundColor = '#FF6666'; // Rojo para ocupado
+                        } else {
+                            option.style.backgroundColor = '#CCFFCC'; // Verde claro para disponible
+                        }
+
+                        selectHora.appendChild(option);
                     }
+                }).catch(error => {
+                    console.error('Error al obtener las horas ocupadas:', error);
                 });
-
-                // Función para deshabilitar las horas ocupadas
-                let isHoraOcupada = function (dateTime) {
-                    let horaInicio = moment(dateTime).format('HH:mm');
-                    return horasOcupadas.some(rango => {
-                        return moment(horaInicio, 'HH:mm').isBetween(moment(rango.start, 'HH:mm'), moment(rango.end, 'HH:mm'), null, '[]');
-                    });
-                };
             }
-
 
             // Llamar a la función para inicializar las horas disponibles
             actualizarHorasDisponibles();
 
-            // Evento para actualizar las horas disponibles cuando cambia la fecha
-            dateRangeInput.addEventListener('change', actualizarHorasDisponibles);
+            // Actualizar las horas disponibles cuando cambia la fecha
+            inputFecha.addEventListener('change', actualizarHorasDisponibles);
+
+            let buttonReserva = document.createElement('button');
+            buttonReserva.classList.add('buttonReserva');
+            buttonReserva.textContent = 'Reserva aquí';
+
             //Evento al botón de reserva aqui y guardado del rango horario y fechas en el localStorage.
             buttonReserva.addEventListener('click', () => {
                 //Al hacer click en el botón dirige hacia la pagina de reservas relacionado al producto
@@ -186,10 +174,15 @@ window.addEventListener('load', function () {
                 console.log(`Hora seleccionada: ${horaSeleccionada}`);
             });
 
+            divHorarios.appendChild(tituloHorarios);
+            divHorarios.appendChild(inputFecha);
+            divHorarios.appendChild(selectHora);
+            divCard.appendChild(verificaHorario);
+            divCard.appendChild(precio);
+            divCard.appendChild(divHorarios);
+            divCard.appendChild(buttonReserva);
 
-
-
-
+            divDescripcionYCard.appendChild(divCard);
 
             producto.caracteristicas.forEach(caracteristica => {
                 const caracteristicaUnicaDiv = document.createElement('div');
@@ -217,6 +210,5 @@ window.addEventListener('load', function () {
         });
 });
 
-//Listamos todas las reservas que tiene el producto en cuestión
 
 

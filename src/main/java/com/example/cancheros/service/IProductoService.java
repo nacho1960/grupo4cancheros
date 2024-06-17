@@ -1,6 +1,7 @@
 package com.example.cancheros.service;
 
 import com.example.cancheros.entity.Producto;
+import com.example.cancheros.entity.Reserva;
 import com.example.cancheros.exceptions.ResourceNotFoundException;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface IProductoService {
     void eliminar (Long id);
     void actualizar (Producto producto) throws ResourceNotFoundException;
     List<Producto> listarPorCategoria(Long idCategoria);
+    List<Reserva> listarReservasPorIdProducto(Long idProducto);
 }

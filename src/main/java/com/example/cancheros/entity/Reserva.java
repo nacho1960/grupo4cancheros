@@ -1,8 +1,9 @@
 package com.example.cancheros.entity;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,11 +16,21 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idReserva;
 
-    @Column(name="fecha_hora_inicio")
-    private LocalDateTime fechaYHoraInicio;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @Column(name = "FechaInicio")
+    private LocalDate fechaInicio;
 
-    @Column(name="fecha_hora_fin")
-    private LocalDateTime fechaYHoraFin;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @Column(name = "FechaFin")
+    private LocalDate fechaFin;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    @Column(name = "HoraInicio")
+    private LocalTime horaInicio;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    @Column(name = "HoraFin")
+    private LocalTime horaFin;
 
     //Muchas reservas tienen un producto.
     @ManyToOne

@@ -1,6 +1,7 @@
 package com.example.cancheros.service.impl;
 
 import com.example.cancheros.entity.Producto;
+import com.example.cancheros.entity.Reserva;
 import com.example.cancheros.exceptions.ResourceNotFoundException;
 import com.example.cancheros.repository.IProductoRepository;
 import com.example.cancheros.service.IProductoService;
@@ -9,7 +10,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -99,6 +99,16 @@ public class ProductoServiceImpl implements IProductoService {
             LOGGER.info("Productos encontrados para la categoría con ID: " + idCategoria);
         }
         return productos;
+    }
+
+    @Override
+    public List<Reserva> listarReservasPorIdProducto(Long idProducto) {
+        //Obtenemos el producto por su id
+        Optional<Producto> producto = repository.findById(idProducto);
+
+        //Retornamos las reservas asociadas a ese producto
+        mapper.convertValue(producto, Producto.class);
+        return producto.get().getReservas();
     }
 
 }

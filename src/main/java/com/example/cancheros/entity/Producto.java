@@ -1,11 +1,8 @@
 package com.example.cancheros.entity;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import java.util.Set;
 import lombok.Data;
 
 
@@ -45,7 +42,7 @@ public class Producto {
     //Un producto puede tener muchas reservas
     @OneToMany(mappedBy = "producto")
     @JsonIgnore
-    private Set<Reserva> reservas;
+    private List<Reserva> reservas;
 
    }
 

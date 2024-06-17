@@ -15,6 +15,9 @@ window.addEventListener('load', function () {
     const fechaReserva = document.getElementById("fechaReserva");
     const horaReserva = document.getElementById("horaReserva");
 
+    //Botón confirmar reserva
+    const botonConfirmarReserva = document.getElementById("buttonConfirmarReserva")
+
 
     //Obtenemos los datos del producto en cuestión
     const url = 'http://localhost:8080/productos/' + idProducto;
@@ -76,4 +79,75 @@ window.addEventListener('load', function () {
     //LLenamos los campos fecha y hora seleccionada para que se muestren en los span de detalle de la reserva. 
     fechaReserva.textContent = formatDate(fechaGuardada);
     horaReserva.textContent = horaGuardada;
+
+
+    //Funcionalidad para realizar la reserva
+    botonConfirmarReserva.addEventListener('click', () => {
+        //Obtenemos el id del usuario y lo guardamos en la variable idUsuarioObtenido
+        const urlUser = 'http://localhost:8080/user/detail';
+        const settingsUser = {
+            method: 'GET'
+        };
+
+        let idUsuarioObtenido
+
+        fetch(urlUser, settingsUser)
+            .then(response => response.json())
+            .then(data => {
+                idUsuarioObtenido = data.id
+            })
+
+
+        //Armado del body para guardar una reserva
+        const formData = {
+            producto: {
+                idProducto: idProducto
+            },
+            usuario: {
+                idUsuario: idUsuarioObtenido
+            },
+            fechaYHoraInicio: fechaGuardada,
+            fechaYHoraFin: horaGuardada
+        }
+
+        const url = 'http://localhost:8080/reservas/new';
+        const settings = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        };
+
+        fetch(url, settings)
+            .then(response => {
+                if (response.status == 200) {
+                    return response.json();
+                } else {
+                    return response.json().then(data => {
+                        throw new Error(data.message);
+                    });
+                }
+            })
+            .then(data => {
+                botonConfirmarReserva.style.display = "none";
+                const containerReservaExistosa = createElement("div");
+                const spanIcon = document.createElement("span");
+                const reservaExitosa = document.createElement("p");
+
+                spanIcon.className = "material-symbols-outlined";
+                spanIcon.textContent = task_alt;
+
+                reservaExitosa.textContent = "¡Reserva realizada con éxito!"
+
+                containerReservaExistosa.appendChild(spanIcon);
+                containerReservaExistosa.appendChild(reservaExitosa)
+
+                console.log("Reserva realizada:" + data);
+            })
+            .catch(error => {
+
+                console.log(error);
+            });
+    })
 })

@@ -3,6 +3,7 @@ package com.example.cancheros.controller;
 import java.util.Collections;
 import java.util.List;
 
+import com.example.cancheros.entity.Reserva;
 import com.example.cancheros.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,8 +60,13 @@ public class ProductoController {
     }
 
     @GetMapping("/listarPorCategoria/{idCategoria}")
-    public List<Producto> listarPorCategoria( @PathVariable Long idCategoria){
+    public List<Producto> listarPorCategoria (@PathVariable Long idCategoria){
         return productoService.listarPorCategoria(idCategoria);
+    }
+
+    @GetMapping("/listarReservas/{idProducto}")
+    public List<Reserva> listarReservasPorIdProducto (@PathVariable Long idProducto){
+        return productoService.listarReservasPorIdProducto(idProducto);
     }
 
 }

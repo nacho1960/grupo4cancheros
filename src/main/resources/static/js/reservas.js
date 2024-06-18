@@ -51,6 +51,7 @@ window.addEventListener('load', function () {
             if (producto.caracteristicas.length > 0) {
                 producto.caracteristicas.forEach(caracteristica => {
                     const containerCaracteristica = document.createElement("div");
+                    containerCaracteristica.style.width = "100%"
                     const imgCaracteristica = document.createElement("img");
                     const nombreCaracteristica = document.createElement("p");
 
@@ -63,14 +64,14 @@ window.addEventListener('load', function () {
                     caracteristicasProducto.appendChild(containerCaracteristica)
                 });
             } else if (producto.caracteristicas.length <= 0) {
-                const sinCaracteristicas = document.createElement("p");
+                const sinCaracteristicas = document.createElement("span");
                 sinCaracteristicas.textContent = "Sin características"
                 caracteristicasProducto.appendChild(sinCaracteristicas)
             }
 
             imagenProducto.src = producto.imagen;
 
-            precioProducto.textContent = producto.precioHora;
+            precioProducto.textContent = "Precio por hora: U$S " + producto.precioHora;
         })
 
 
@@ -136,15 +137,16 @@ window.addEventListener('load', function () {
                 buttonEditarHora.style.display = "none";
                 buttonEditarFecha.style.display = "none";
                 const containerReservaExistosa = document.createElement("div");
-                const spanIcon = document.createElement("span");
-                const reservaExitosa = document.createElement("p");
+                const divIcon = document.createElement("div");
+                const reservaExitosa = document.createElement("h3");
+                reservaExitosa.className = "mensajeReservaExitosa"
 
-                spanIcon.className = "material-symbols-outlined";
-                spanIcon.textContent = "task_alt";
+                divIcon.className = "material-symbols-outlined";
+                divIcon.textContent = "task_alt";
 
                 reservaExitosa.textContent = "¡Reserva realizada con éxito!"
 
-                containerReservaExistosa.appendChild(spanIcon);
+                containerReservaExistosa.appendChild(divIcon);
                 containerReservaExistosa.appendChild(reservaExitosa);
 
                 respuestaReservas.appendChild(containerReservaExistosa);

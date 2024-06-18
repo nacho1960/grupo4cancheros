@@ -16,7 +16,7 @@
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script src="https://kit.fontawesome.com/e50f04e157.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/navbar.js"></script>
     <script type="text/javascript" src="js/datosUser.js"></script>
@@ -69,8 +69,8 @@
     <main>
         <h1>Reserva</h1>
         <div id="datosUsuario">
-            <h2>Datos del usuario</h2>
             <div id="containerAvatar">
+                <h2>Datos del usuario</h2>
                 <button id="avatar"></button>
             </div>
             <div id="datosUser">
@@ -91,9 +91,12 @@
             </div>
         </div>
 
+        </div>
+
         <div id="detalleProducto">
-            <h2>Detalle del producto</h2>
+
             <div id="datosProducto">
+                <h2>Detalle del producto</h2>
                 <div id="nombreProd">
                     <p>Nombre</p>
                     <span id="nombreProducto"></span>
@@ -104,7 +107,7 @@
                     <span id="descripcionProductoYCategoria"></span>
                 </div>
 
-                <div>
+                <div id="caracteristicasContainer" style="width: 150%;">
                     <p>Características</p>
                     <div id="caracteristicas"></div>
                 </div>
@@ -116,8 +119,7 @@
                     <p id="nombreCategoria"></p>
                 </div>
                 <div id="precio">
-                    <p>Precio</p>
-                    <span id="precioProducto"></span>
+                    <p id="precioProducto"> Precio U$S </p>
                 </div>
             </div>
         </div>
@@ -127,16 +129,17 @@
             <div id="fecha">
                 <p>Fecha seleccionada</p>
                 <span id="fechaReserva"></span>
-                <a id="buttonEditarFecha" ><button>Editar</button></a>
+                <a id="buttonEditarFecha"><button>Editar</button></a>
             </div>
             <div id="hora">
                 <p>Hora seleccionada</p>
                 <span id="horaReserva"></span>
-                <a id="buttonEditarHora" ><button>Editar</button></a>
+                <a id="buttonEditarHora"><button>Editar</button></a>
             </div>
         </div>
 
         <button type="submit" id="buttonConfirmarReserva">Confirmar reserva</button>
+
         <div id="respuestaReservas"></div>
     </main>
 

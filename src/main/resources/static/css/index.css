@@ -99,17 +99,14 @@ select:hover {
     text-align: center;
 }
 
-#datosUser {
-    display: flex;
-    flex-direction: column;
-}
-
-#datosUser div, #precio, #nombreProd, #descripcion{
+#nombreProd, #descripcion, #caracteristicasContainer{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.5fr 2.5fr;
     gap: 1em;
     padding-bottom: 2em;
+    align-items: center;
 }
+
 
 #datosUser div p, #datosUsuario div p, #detalleProducto div p, #detalleReserva div p{
     margin: 0;

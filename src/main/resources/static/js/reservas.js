@@ -22,6 +22,10 @@ window.addEventListener('load', function () {
     //Botón confirmar reserva
     const botonConfirmarReserva = document.getElementById("buttonConfirmarReserva")
 
+    //Le damos href a los botones de editar
+    buttonEditarFecha.href = "/detailProd.html?id=" + idProducto
+    buttonEditarHora.href = "/detailProd.html?id=" + idProducto
+
 
     //Obtenemos los datos del producto en cuestión
     const url = 'http://localhost:8080/productos/' + idProducto;

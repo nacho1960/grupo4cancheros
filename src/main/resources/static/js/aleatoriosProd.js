@@ -1,20 +1,5 @@
 window.addEventListener('load', function () {
     mostrarProductosAleatorios();
-
-    // Vincular el evento de clic para el botón "Todas las categorías"
-    document.getElementById('BotonTodasCategorias').addEventListener('click', function () {
-        mostrarProductosAleatorios();
-    });
-
-    document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('categoria-button')) {
-            const categoriaNombre = event.target.textContent;
-            console.log(categoriaNombre);
-            obtenerProductosPorCategoria(categoriaNombre);
-
-        }
-    });
-
 });
 
 // Función para mostrar productos aleatorios
@@ -158,61 +143,6 @@ function mostrarProductosEnDiv(productos) {
     });
 }
 
-
-// Función para obtener productos por categoría
-function obtenerProductosPorCategoria(categoriaNombre) {
-    // Realizar la solicitud a la API para obtener todas las categorías
-    const urlCategorias = 'http://localhost:8080/categorias/listarTodos';
-    const settings = {
-        method: 'GET'
-    };
-    fetch(urlCategorias, settings)
-        .then(response => response.json())
-        .then(categorias => {
-            // Buscar la categoría por su nombre
-            const categoriaEncontrada = categorias.find(categoria => categoria.nombre === categoriaNombre);
-
-            // Si se encontró la categoría, obtener su ID y hacer la solicitud a la API de productos
-            if (categoriaEncontrada) {
-                const idCategoriaEncontrada = categoriaEncontrada.idCategoria;
-                //console.log(categoriaEncontrada);
-                //console.log(categoriaEncontrada.idCategoria);
-
-                const urlProductos = `http://localhost:8080/productos/listarTodos?idCategoria=${idCategoriaEncontrada}`;
-                const settingsProductos = {
-                    method: 'GET'
-                };
-
-                // Realizar la solicitud a la API para obtener productos por la categoría
-                fetch(urlProductos, settingsProductos)
-                    .then(response => response.json())
-                    .then(productos => {
-                        let productosCategoria = [];
-
-                        // Iterar sobre los productos y acceder al idCategoria de cada uno
-                        productos.forEach(producto => {
-                            if (producto.categoria && categoriaEncontrada.idCategoria === producto.categoria.idCategoria) {
-                                //console.log(producto.categoria.idCategoria);
-                                productosCategoria.push(producto);
-                            }
-                        });
-
-                        // Mostrar los productos en el div correspondiente
-                        mostrarProductosEnDiv(productosCategoria);
-                    })
-                    .catch(error => {
-                        console.error('Error al obtener los productos por categoría:', error);
-                    });
-            } else {
-                console.error('No se encontró la categoría:', categoriaNombre);
-            }
-        })
-        .catch(error => {
-            console.error('Error al obtener las categorías:', error);
-        });
-}
-
-
 function addToFavorites(product) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const exists = favorites.some(fav => fav.idProducto === product.idProducto);
@@ -221,8 +151,6 @@ function addToFavorites(product) {
         localStorage.setItem('favorites', JSON.stringify(favorites));
     }
 }
-
-
 
 function removeFromFavorites(productId) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];

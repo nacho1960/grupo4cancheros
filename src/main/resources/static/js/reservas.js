@@ -14,6 +14,10 @@ window.addEventListener('load', function () {
     //Sección detalle de la reserva
     const fechaReserva = document.getElementById("fechaReserva");
     const horaReserva = document.getElementById("horaReserva");
+    const respuestaReserva = document.getElementById("respuestaReservas")
+    const buttonEditarFecha = document.getElementById("buttonEditarFecha");
+    const buttonEditarHora = document.getElementById("buttonEditarHora");
+
 
     //Botón confirmar reserva
     const botonConfirmarReserva = document.getElementById("buttonConfirmarReserva")
@@ -73,81 +77,81 @@ window.addEventListener('load', function () {
     //Le damos un formato a la fecha:
     function formatDate(dateString) {
         const [year, month, day] = dateString.split('-');
-        return `${day}-${month}-${year}`;
+        return `${day}/${month}/${year}`;
     }
 
     //LLenamos los campos fecha y hora seleccionada para que se muestren en los span de detalle de la reserva. 
     fechaReserva.textContent = formatDate(fechaGuardada);
+    console.log(formatDate(fechaGuardada));
+
     horaReserva.textContent = horaGuardada;
+    console.log(horaGuardada);
 
 
     //Funcionalidad para realizar la reserva
-    botonConfirmarReserva.addEventListener('click', () => {
-        //Obtenemos el id del usuario y lo guardamos en la variable idUsuarioObtenido
-        const urlUser = 'http://localhost:8080/user/detail';
-        const settingsUser = {
-            method: 'GET'
-        };
+    botonConfirmarReserva.addEventListener('click', async () => {
+        try {
+            // Obtenemos el id del usuario y lo guardamos en la variable idUsuarioObtenido
+            const urlUser = 'http://localhost:8080/user/detail';
+            const settingsUser = {
+                method: 'GET'
+            };
 
-        let idUsuarioObtenido
+            const responseUser = await fetch(urlUser, settingsUser);
+            const dataUser = await responseUser.json();
+            const idUsuarioObtenido = dataUser.id;
+            console.log(dataUser);
 
-        fetch(urlUser, settingsUser)
-            .then(response => response.json())
-            .then(data => {
-                idUsuarioObtenido = data.id
-            })
+            // Armado del body para guardar una reserva
+            const formData = {
+                producto: {
+                    idProducto: parseInt(idProducto)
+                },
+                usuario: {
+                    id: idUsuarioObtenido
+                },
+                fechaInicio: formatDate(fechaGuardada),
+                horaInicio: horaGuardada
+            }
 
+            console.log(formData);
 
-        //Armado del body para guardar una reserva
-        const formData = {
-            producto: {
-                idProducto: idProducto
-            },
-            usuario: {
-                idUsuario: idUsuarioObtenido
-            },
-            fechaYHoraInicio: fechaGuardada,
-            fechaYHoraFin: horaGuardada
-        }
+            const url = 'http://localhost:8080/reservas/new';
+            const settings = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            };
 
-        const url = 'http://localhost:8080/reservas/new';
-        const settings = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        };
-
-        fetch(url, settings)
-            .then(response => {
-                if (response.status == 200) {
-                    return response.json();
-                } else {
-                    return response.json().then(data => {
-                        throw new Error(data.message);
-                    });
-                }
-            })
-            .then(data => {
+            const responseReserva = await fetch(url, settings);
+            if (responseReserva.status == 200) {
+                const data = await responseReserva.json();
                 botonConfirmarReserva.style.display = "none";
-                const containerReservaExistosa = createElement("div");
+                buttonEditarHora.style.display = "none";
+                buttonEditarFecha.style.display = "none";
+                const containerReservaExistosa = document.createElement("div");
                 const spanIcon = document.createElement("span");
                 const reservaExitosa = document.createElement("p");
 
                 spanIcon.className = "material-symbols-outlined";
-                spanIcon.textContent = task_alt;
+                spanIcon.textContent = "task_alt";
 
                 reservaExitosa.textContent = "¡Reserva realizada con éxito!"
 
                 containerReservaExistosa.appendChild(spanIcon);
-                containerReservaExistosa.appendChild(reservaExitosa)
+                containerReservaExistosa.appendChild(reservaExitosa);
 
+                respuestaReservas.appendChild(containerReservaExistosa);
                 console.log("Reserva realizada:" + data);
-            })
-            .catch(error => {
+            } else {
+                const data = await responseReserva.json();
+                throw new Error(data.message);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    });
 
-                console.log(error);
-            });
-    })
 })

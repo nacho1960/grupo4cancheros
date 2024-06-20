@@ -1,80 +1,133 @@
-window.addEventListener('load', async function () {
+document.addEventListener('DOMContentLoaded', async function() {
     const listaReservas = document.getElementById('listaReservas');
 
-    if (!listaReservas) {
-        console.error("No se encontró el elemento con id 'listaReservas'. Asegúrate de que el elemento existe en el HTML.");
-        return;
+    // Obtener el id del usuario (debes ajustar esto según cómo obtienes el usuario autenticado)
+    const urlUser = 'http://localhost:8080/user/detail';
+    const responseUser = await fetch(urlUser, { method: 'GET' });
+
+    if (!responseUser.ok) {
+        throw new Error('Error al obtener el usuario');
     }
 
-    try {
-        // Obtener el id del usuario (debes ajustar esto según cómo obtienes el usuario autenticado)
-        const urlUser = 'http://localhost:8080/user/detail';
-        const responseUser = await fetch(urlUser, { method: 'GET' });
+    const dataUser = await responseUser.json();
+    const idUsuario = dataUser.id;
 
-        if (!responseUser.ok) {
-            throw new Error('Error al obtener el usuario');
+    // Obtener el historial de reservas del usuario
+    const urlReservas = `http://localhost:8080/reservas/listarReservas/${idUsuario}`;
+    const responseReservas = await fetch(urlReservas, { method: 'GET' });
+
+    if (!responseReservas.ok) {
+        throw new Error('Error al obtener el historial de reservas');
+    }
+
+    const reservas = await responseReservas.json();
+
+    if (reservas.length === 0) {
+        const sinReservas = document.createElement('p');
+        sinReservas.textContent = 'No hay reservas en el historial.';
+        listaReservas.appendChild(sinReservas);
+    } else {
+        // Función para convertir fecha y hora a objeto Date
+        function parseDateAndTime(fecha, hora) {
+            const [day, month, year] = fecha.split('/');
+            const [hours, minutes] = hora.split(':');
+            return new Date(year, month - 1, day, hours, minutes);
         }
 
-        const dataUser = await responseUser.json();
-        const idUsuario = dataUser.id;
+        // Ordenar las reservas por fecha, hora y luego por ID
+        reservas.sort((a, b) => {
+            const fechaHoraA = parseDateAndTime(a.fechaInicio, a.horaInicio);
+            const fechaHoraB = parseDateAndTime(b.fechaInicio, b.horaInicio);
+            if (fechaHoraA < fechaHoraB) return -1;
+            if (fechaHoraA > fechaHoraB) return 1;
+            return a.id - b.id;
+        });
 
-        // Obtener el historial de reservas del usuario
-        const urlReservas = `http://localhost:8080/reservas/listarReservas/${idUsuario}`;
-        const responseReservas = await fetch(urlReservas, { method: 'GET' });
+        // Crear y agregar las reservas ordenadas al DOM
+        for (const reserva of reservas) {
+            const reservaDiv = document.createElement('div');
+            reservaDiv.className = 'reserva';
 
-        if (!responseReservas.ok) {
-            throw new Error('Error al obtener el historial de reservas');
+            const nombreProducto = document.createElement('h2');
+            nombreProducto.textContent = reserva.producto.nombreProducto;
+
+            const descripcionDiv = document.createElement('div');
+            descripcionDiv.className = 'descripcion';
+            const descripcionTitulo = document.createElement('h3');
+            descripcionTitulo.textContent = 'Descripción: ';
+            const descripcion = document.createElement('p');
+            descripcion.textContent = reserva.producto.descripcion;
+            descripcionDiv.appendChild(descripcionTitulo);
+            descripcionDiv.appendChild(descripcion);
+
+            const categoriaDiv = document.createElement('div');
+            categoriaDiv.className = 'categoria';
+            const categoriaTitulo = document.createElement('h3');
+            categoriaTitulo.textContent = 'Categoría: ';
+            const categoria = document.createElement('p');
+            categoria.textContent = reserva.producto.categoria ? reserva.producto.categoria.nombre : 'Sin categoría';
+            categoriaDiv.appendChild(categoriaTitulo);
+            categoriaDiv.appendChild(categoria);
+
+            const caracteristicaDiv = document.createElement('div');
+            caracteristicaDiv.className = 'caracteristica';
+            const caracteristicasTitulo = document.createElement('h3');
+            caracteristicasTitulo.textContent = 'Características: ';
+            const caracteristicas = document.createElement('p');
+            caracteristicas.textContent = reserva.producto.caracteristicas.length > 0 ? reserva.producto.caracteristicas.map(c => c.nombre).join(', ') : 'Sin características';
+            caracteristicaDiv.appendChild(caracteristicasTitulo);
+            caracteristicaDiv.appendChild(caracteristicas);
+
+            const precioDiv = document.createElement('div');
+            precioDiv.className = 'precio';
+            const precioHoraTitulo = document.createElement('h3');
+            precioHoraTitulo.textContent = 'Precio por hora: ';
+            const precioHora = document.createElement('p');
+            precioHora.textContent = `USD $ ${reserva.producto.precioHora}`;
+            precioDiv.appendChild(precioHoraTitulo);
+            precioDiv.appendChild(precioHora);
+
+            const fechaDiv = document.createElement('div');
+            fechaDiv.className = 'fecha';
+            const fechaReservaTitulo = document.createElement('h3');
+            fechaReservaTitulo.textContent = 'Fecha de reserva: ';
+            const fechaReserva = document.createElement('p');
+            fechaReserva.textContent = reserva.fechaInicio;
+            fechaDiv.appendChild(fechaReservaTitulo);
+            fechaDiv.appendChild(fechaReserva);
+
+            const horaDiv = document.createElement('div');
+            horaDiv.className = 'hora';
+            const horaReservaTitulo = document.createElement('h3');
+            horaReservaTitulo.textContent = 'Hora de reserva: ';
+            const horaReserva = document.createElement('p');
+            horaReserva.textContent = reserva.horaInicio;
+            horaDiv.appendChild(horaReservaTitulo);
+            horaDiv.appendChild(horaReserva);
+
+            reservaDiv.appendChild(nombreProducto);
+            reservaDiv.appendChild(descripcionDiv);
+            reservaDiv.appendChild(categoriaDiv);
+            reservaDiv.appendChild(caracteristicaDiv);
+            reservaDiv.appendChild(precioDiv);
+            reservaDiv.appendChild(fechaDiv);
+            reservaDiv.appendChild(horaDiv);
+
+            listaReservas.appendChild(reservaDiv);
+
+            // Obtener la imagen del producto
+            const urlProducto = `http://localhost:8080/productos/${reserva.producto.idProducto}`;
+            fetch(urlProducto, { method: 'GET' })
+                .then(response => response.json())
+                .then(producto => {
+                    const imagenProducto = document.createElement('img');
+                    imagenProducto.src = producto.imagen;
+                    imagenProducto.style.maxWidth = '100%';
+                    imagenProducto.alt = reserva.producto.nombreProducto;
+                    reservaDiv.insertBefore(imagenProducto, descripcionDiv);
+                })
+                .catch(error => console.error('Error al obtener la imagen del producto:', error));
         }
-
-        const reservas = await responseReservas.json();
-
-        if (reservas.length === 0) {
-            const sinReservas = document.createElement('p');
-            sinReservas.textContent = 'No hay reservas en el historial.';
-            listaReservas.appendChild(sinReservas);
-        } else {
-            reservas.forEach(reserva => {
-                const reservaDiv = document.createElement('div');
-                reservaDiv.className = 'reserva';
-
-                const nombreProducto = document.createElement('h3');
-                nombreProducto.textContent = reserva.producto.nombreProducto;
-
-                const descripcion = document.createElement('p');
-                descripcion.textContent = `Descripción: ${reserva.producto.descripcion}`;
-
-                const categoria = document.createElement('p');
-                categoria.textContent = `Categoría: ${reserva.producto.categoria ? reserva.producto.categoria.nombre : 'Sin categoría'}`;
-
-                const caracteristicas = document.createElement('p');
-                caracteristicas.textContent = `Características: ${reserva.producto.caracteristicas.length > 0 ? reserva.producto.caracteristicas.map(c => c.nombre).join(', ') : 'Sin características'}`;
-
-                const imagenProducto = document.createElement('img');
-                imagenProducto.src = reserva.producto.imagenProducto;
-                imagenProducto.alt = reserva.producto.nombreProducto;
-
-                const precioHora = document.createElement('p');
-                precioHora.textContent = `Precio por hora: USD $${reserva.producto.precioHora}`;
-
-                const fechaReserva = document.createElement('p');
-                fechaReserva.textContent = `Fecha de reserva: ${reserva.fechaInicio}`;
-
-                const horaReserva = document.createElement('p');
-                horaReserva.textContent = `Hora de reserva: ${reserva.horaInicio}`;
-
-                reservaDiv.appendChild(nombreProducto);
-                reservaDiv.appendChild(descripcion);
-                reservaDiv.appendChild(categoria);
-                reservaDiv.appendChild(caracteristicas);
-                reservaDiv.appendChild(imagenProducto);
-                reservaDiv.appendChild(precioHora);
-                reservaDiv.appendChild(fechaReserva);
-                reservaDiv.appendChild(horaReserva);
-
-                listaReservas.appendChild(reservaDiv);
-            });
-        }
-    } catch (error) {
-        console.error("Error al obtener el historial de reservas:", error);
     }
 });
+

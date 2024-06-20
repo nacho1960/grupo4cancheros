@@ -4,33 +4,34 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name="reserva")
+@Table(name = "reserva")
 
 public class Reserva {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idReserva;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    @Column(name = "FechaInicio")
-    private LocalDate fechaInicio;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    @Column(name = "FechaFin")
-    private LocalDate fechaFin;
+    @Column(name = "Fecha")
+    private LocalDate fecha;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
-    @Column(name = "HoraInicio")
-    private LocalTime horaInicio;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
-    @Column(name = "HoraFin")
-    private LocalTime horaFin;
+    @Column(name = "Hora")
+    private LocalTime hora;
 
     //Muchas reservas tienen un producto.
     @ManyToOne
@@ -41,7 +42,5 @@ public class Reserva {
     @ManyToOne
     @JoinColumn(name = "idUsuario")
     private MyUser usuario;
-
-
 
 }

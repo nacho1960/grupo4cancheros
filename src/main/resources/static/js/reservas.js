@@ -115,8 +115,8 @@ window.addEventListener('load', function () {
                 usuario: {
                     id: idUsuarioObtenido
                 },
-                fechaInicio: formatDate(fechaGuardada),
-                horaInicio: horaGuardada
+                fecha: formatDate(fechaGuardada),
+                hora: horaGuardada
             }
 
             console.log(formData);
@@ -129,7 +129,7 @@ window.addEventListener('load', function () {
                 },
                 body: JSON.stringify(formData)
             };
-
+console.log (JSON.stringify(formData));
             const responseReserva = await fetch(url, settings);
             if (responseReserva.status == 200) {
                 const data = await responseReserva.json();

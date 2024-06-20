@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         // Ordenar las reservas por fecha, hora y luego por ID
         reservas.sort((a, b) => {
-            const fechaHoraA = parseDateAndTime(a.fechaInicio, a.horaInicio);
-            const fechaHoraB = parseDateAndTime(b.fechaInicio, b.horaInicio);
+            const fechaHoraA = parseDateAndTime(a.fecha, a.hora);
+            const fechaHoraB = parseDateAndTime(b.fecha, b.hora);
             if (fechaHoraA < fechaHoraB) return -1;
             if (fechaHoraA > fechaHoraB) return 1;
             return a.id - b.id;
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             const fechaReservaTitulo = document.createElement('h3');
             fechaReservaTitulo.textContent = 'Fecha de reserva: ';
             const fechaReserva = document.createElement('p');
-            fechaReserva.textContent = reserva.fechaInicio;
+            fechaReserva.textContent = reserva.fecha;
             fechaDiv.appendChild(fechaReservaTitulo);
             fechaDiv.appendChild(fechaReserva);
 
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             const horaReservaTitulo = document.createElement('h3');
             horaReservaTitulo.textContent = 'Hora de reserva: ';
             const horaReserva = document.createElement('p');
-            horaReserva.textContent = reserva.horaInicio;
+            horaReserva.textContent = reserva.hora;
             horaDiv.appendChild(horaReservaTitulo);
             horaDiv.appendChild(horaReserva);
 

@@ -50,6 +50,7 @@ window.addEventListener('load', function () {
             let verificaHorario = document.createElement("p");
             verificaHorario.textContent = 'Verifica el horario disponible en el día que deseas realizar la reserva';
             verificaHorario.style.fontWeight = 600;
+            verificaHorario.style.textAlign = 'center';
 
             let precio = document.createElement("p");
             precio.textContent = '$ ' + producto.precioHora + ' USD Por Hora';
@@ -68,7 +69,8 @@ window.addEventListener('load', function () {
             inputFecha.id = "fecha";
 
             // Establecer la fecha mínima del input de fecha al día actual
-            let today = new Date().toISOString().split('T')[0];
+            let today = new Date().toLocaleDateString('en-CA');
+            console.log(today);
             inputFecha.value = today;
             inputFecha.min = today;
 
@@ -102,11 +104,14 @@ window.addEventListener('load', function () {
             function actualizarSelectHoras(reservas) {
                 const inputFecha = document.getElementById("fecha");
                 const selectHora = document.getElementById("hora");
-
+            
                 inputFecha.addEventListener("change", function () {
                     const fechaSeleccionada = inputFecha.value;
                     selectHora.innerHTML = ""; // Limpiamos el select de horas
-
+            
+                    const currentDate = new Date();  // Fecha actual
+                    const currentHour = currentDate.getHours();  // Hora actual
+            
                     // Rellenamos el select de horas (suponiendo un horario de 9:00 a 23:00)
                     for (let hora = 9; hora <= 23; hora++) {
                         const option = document.createElement("option");
@@ -117,27 +122,32 @@ window.addEventListener('load', function () {
                             option.value = `${hora}:00`;
                             option.text = `${hora}:00`;
                         }
-
-                        // Verificamos si la hora está ocupada
+            
+                        // Verificamos si la hora está ocupada o si es una hora pasada del día actual
                         const horaOcupada = reservas.some(reserva =>
                             reserva.fechaInicio === formatDate(fechaSeleccionada) &&
                             parseInt(reserva.horaInicio.split(':')[0]) === hora
                         );
-
-                        if (horaOcupada) {
+            
+                        if (horaOcupada) {  
                             option.disabled = true;
                             option.style.backgroundColor = '#FF6666'; // Rojo para ocupado
-                        } else {
+                        } else if (fechaSeleccionada === today && hora <= currentHour){
+                            option.disabled = true;
+                            option.style.backgroundColor = 	'#b5b5b5'; // Gris para las horas que son menores a la hora actual 
+                        }
+                        else {
                             option.style.backgroundColor = '#CCFFCC'; // Verde claro para disponible
                         }
-
+            
                         selectHora.appendChild(option);
                     }
                 });
-
+            
                 // Disparar el evento change para inicializar el select de horas con la fecha por defecto
                 inputFecha.dispatchEvent(new Event('change'));
             }
+            
 
             // Llamar a la función para inicializar las horas disponibles
             actualizarHorasDisponibles(idProducto);

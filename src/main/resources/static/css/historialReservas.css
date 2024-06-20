@@ -210,9 +210,8 @@ h1 {
     margin-right: 1rem; /* Ajusta el espacio entre los elementos según necesites */
 }
 
-
 @media (max-width: 1200px) {
-    .producto {
+    .reserva {
         width: 40%; /* Ajuste de ancho para pantallas medianas */
     }
 }
@@ -223,7 +222,7 @@ h1 {
         align-items: center;
     }
 
-    #listaFavoritos {
+    #listaReservas {
         grid-template-columns: 1fr;
         width: 100%;
     }
@@ -236,18 +235,29 @@ h1 {
         display: block;
     }
 
-    .producto {
+    .reserva {
         width: 55%; /* Ajusta el ancho de los productos en pantallas pequeñas */
+    }
+
+    .descripcion, .categoria, .caracteristica, .precio, .fecha, .hora {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
 @media (max-width: 600px) {
-    #listaFavoritos {
+    #listaReservas {
         grid-template-columns: 1fr;
         width: 100%;
     }
 
-    .producto {
-        width: 70%; /* Ajusta el ancho de los productos en pantallas muy pequeñas */
+    .descripcion, .categoria, .caracteristica, .precio, .fecha, .hora {
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .reserva {
+        width: 70%; /* Asegura que cada reserva ocupe todo el ancho disponible */
     }
 }

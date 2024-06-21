@@ -23,7 +23,6 @@ public class RegistrationController {
 
     @Autowired
     private UsuarioServiceImpl usuarioService;
-
     @Autowired
     private IMyUserRepository myUserRepository;
     @Autowired

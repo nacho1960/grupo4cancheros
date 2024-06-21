@@ -1,5 +1,7 @@
 package com.example.cancheros.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -67,6 +69,12 @@ public class ProductoController {
     @GetMapping("/listarReservas/{idProducto}")
     public List<Reserva> listarReservasPorIdProducto (@PathVariable Long idProducto){
         return productoService.listarReservasPorIdProducto(idProducto);
+    }
+
+    //Url ejemplo para pegarle desde el postman: http://localhost:8080/productos/listarProductosDisponibles?fecha=2024-06-20&hora=09:00
+    @GetMapping("/listarProductosDisponibles")
+    public List<Producto> listarProductosDisponibles(@RequestParam LocalDate fecha, LocalTime hora){
+        return productoService.listarProductosDisponibles(fecha, hora);
     }
 
 }

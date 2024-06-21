@@ -17,20 +17,12 @@ public class Reserva {
     private long idReserva;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    @Column(name = "FechaInicio")
-    private LocalDate fechaInicio;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    @Column(name = "FechaFin")
-    private LocalDate fechaFin;
+    @Column(name = "Fecha")
+    private LocalDate fecha;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
-    @Column(name = "HoraInicio")
-    private LocalTime horaInicio;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
-    @Column(name = "HoraFin")
-    private LocalTime horaFin;
+    @Column(name = "Hora")
+    private LocalTime hora;
 
     //Muchas reservas tienen un producto.
     @ManyToOne

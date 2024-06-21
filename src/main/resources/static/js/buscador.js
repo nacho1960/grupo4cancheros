@@ -1,38 +1,25 @@
 $(function () {
     // Daterangepicker
-    $("#date-range").daterangepicker({
+    $("#date").daterangepicker({
+        singleDatePicker: true, // Habilita la selección de una sola fecha
         minDate: moment(), // Fecha minima para seleccionar: hoy
         maxDate: moment().add(2, 'year'), // Fecha maxima en la que puede seleccionar: un año.
         autoUpdateInput: false,
-        showDropdowns: true, //Menú desplegable para cambiar de mes y año.
         locale: {
             format: 'DD/MM/YYYY', // Especifica el formato de la fecha. 
-            separator: ' - ', // Define el separador que se utiliza entre las fechas de inicio y fin en el input.
             applyLabel: 'Aplicar', // Texto del botón para aplicar la selección del rango de fechas.
             cancelLabel: 'Cancelar', // Texto del botón para cancelar la selección del rango de fechas.
-            weekLabel: 'S', // Etiqueta de la columna de números de semana.
             daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'], // Nombres completos de los meses del año.
             firstDay: 1 // Define el primer día de la semana. 1 indica que la semana comienza el lunes.
         }
-    }).on('apply.daterangepicker', function (ev, picker) {
+    }).on('apply.singleDate', function (ev, picker) {
         // Al seleccionar el rango, actualizamos el valor del input manualmente con las fechas seleccionadas
         $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
     });
 
     // Timepicker
-    $("#start-time").timepicker({
-        timeFormat: "HH:mm", // Formato de la hora
-        interval: 60, // Intervalo de minutos
-        minTime: '09:00',
-        maxTime: '21:00',
-        startTime: "09:00", // Hora de inicio
-        dynamic: false, // Ajusta automáticamente las horas mínimas y máximas dependiendo de la hora actual
-        dropdown: true, // Usar menú desplegable
-        scrollbar: true, // Usar scrollbar
-    });
-
-    $("#end-time").timepicker({
+    $("#hour").timepicker({
         timeFormat: "HH:mm", // Formato de la hora
         interval: 60, // Intervalo de minutos
         minTime: '09:00',
@@ -93,26 +80,20 @@ $(function () {
             let caracteristica = document.getElementById("caracteristica").value;
             console.log("Esta es mi caracteristica: " + caracteristica);
 
-            let rangoFechas = document.getElementById("date-range").value;
-            console.log("Este es mi rango de fechas: " + rangoFechas);
+            let date = document.getElementById("date").value;
+            console.log("Este es mi fecha: " + date);
 
-            let startTime = document.getElementById("start-time").value;
-            console.log("Esta es mi hora de inicio: " + startTime);
+            let time = document.getElementById("hour").value;
+            console.log("Esta es la hora de la reserva: " + time);
 
-            let endTime = document.getElementById("end-time").value;
-            console.log("Esta es mi hora de fin: " + endTime);
-
-            // Parsear rango de fechas
-            let fechaInicioFiltro = null, fechaFinFiltro = null;
-            if (rangoFechas) {
-                const [start, end] = rangoFechas.split(" - ");
-                fechaInicioFiltro = start ? parseDate(start) : null;
-                fechaFinFiltro = end ? parseDate(end) : null;
+            // Parsear fecha
+            let fechSeleccionada = null;
+            if (date) {
+                fechSeleccionada = date
             }
 
             // Parsear horas
-            let horaInicioFiltro = startTime ? startTime : null;
-            let horaFinFiltro = endTime ? endTime : null;
+            let hora = time ? time : null;
 
             // Realizar el filtrado de productos utilizando los valores obtenidos
             let resultadosFiltrados = productos.filter(producto => {
@@ -131,17 +112,14 @@ $(function () {
                     return false;
                 }
 
-                // Parsear rango de fechas
-                let fechaInicioFiltro = null, fechaFinFiltro = null;
-                if (rangoFechas) {
-                    const [start, end] = rangoFechas.split(" - ");
-                    fechaInicioFiltro = start ? start : null;
-                    fechaFinFiltro = end ? end : null;
+                // Parsear fecha
+                let fechSeleccionada = null;
+                if (date) {
+                    fechSeleccionada = date
                 }
 
                 // Parsear horas
-                let horaInicioFiltro = startTime ? startTime : null;
-                let horaFinFiltro = endTime ? endTime : null;
+                let hora = time ? time : null;
 
                 // Realizar el filtrado de productos utilizando los valores obtenidos
                 let resultadosFiltrados = productos.filter(producto => {
@@ -181,14 +159,11 @@ $(function () {
                     }
 
                     //Filtrado por hora
-                    if (producto.horaInicio && producto.horaFin) {
-                        if (horaInicioFiltro && producto.horaInicio && producto.horaInicio < horaInicioFiltro) {
+                    if (producto.hora) {
+                        if (hora && producto.hora && producto.hora < hora) {
                             return false;
                         }
-                        if (horaFinFiltro && producto.horaFin && producto.horaFin > horaFinFiltro) {
-                            return false;
-                        }
-                    } else if (horaFinFiltro && horaInicioFiltro) {
+                    } else if (hora && hora) {
                         return false;
                     }
 

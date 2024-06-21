@@ -78,10 +78,8 @@ public class ReservaServiceImpl implements IReservaService {
         Reserva reservaExistente = reservaRepositorio.findById(reserva.getIdReserva())
                 .orElseThrow(() -> new ResourceNotFoundException("No existe la reserva solicitada: " + reserva.getIdReserva()));
 
-        reservaExistente.setFechaInicio(reserva.getFechaInicio());
-        reservaExistente.setFechaFin(reserva.getFechaFin());
-        reservaExistente.setHoraInicio(reserva.getHoraInicio());
-        reservaExistente.setHoraFin(reserva.getHoraFin());
+        reservaExistente.setFecha(reserva.getFecha());
+        reservaExistente.setHora(reserva.getHora());
 
         Producto producto = productoRepositorio.findById(reserva.getProducto().getIdProducto())
                 .orElseThrow(() -> new ResourceNotFoundException("No existe el producto con ID: " + reserva.getProducto().getIdProducto()));

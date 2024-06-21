@@ -115,8 +115,8 @@ window.addEventListener('load', function () {
                 usuario: {
                     id: idUsuarioObtenido
                 },
-                fechaInicio: formatDate(fechaGuardada),
-                horaInicio: horaGuardada
+                fecha: formatDate(fechaGuardada),
+                hora: horaGuardada
             }
 
             console.log(formData);

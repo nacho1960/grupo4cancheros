@@ -1,7 +1,6 @@
 package com.example.cancheros.controller;
 
 import com.example.cancheros.entity.Reserva;
-import com.example.cancheros.exceptions.InternalServerErrorException;
 import com.example.cancheros.service.impl.ProductoServiceImpl;
 import com.example.cancheros.service.impl.ReservaServiceImpl;
 import com.example.cancheros.service.impl.UsuarioServiceImpl;

@@ -1,4 +1,4 @@
- package com.example.cancheros.seguridad;
+/*package com.example.cancheros.seguridad;
 
  import com.example.cancheros.entity.MyUser;
  import com.example.cancheros.entity.UsuarioRole;
@@ -28,4 +28,4 @@
          //Guardamos el usuario creado.
         usuarioRepositorio.save(usuarioAInsertar);
      }
- }
+ }*/

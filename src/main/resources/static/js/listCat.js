@@ -66,7 +66,7 @@ window.addEventListener('load', function () {
                     let imgCelda = categoriaRow.insertCell();
                     let img = document.createElement("img");
                     img.src = categoria.imagen;
-                    img.style.maxWidth = '30%';
+                    img.style.maxWidth = '4em';
                     imgCelda.appendChild(img);
 
                     // Crear botones de edición y eliminar

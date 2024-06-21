@@ -1,34 +1,20 @@
-$(function () {
-    // Daterangepicker
-    $("#date").daterangepicker({
-        singleDatePicker: true, // Habilita la selección de una sola fecha
-        minDate: moment(), // Fecha minima para seleccionar: hoy
-        maxDate: moment().add(2, 'year'), // Fecha maxima en la que puede seleccionar: un año.
-        autoUpdateInput: false,
-        locale: {
-            format: 'DD/MM/YYYY', // Especifica el formato de la fecha. 
-            applyLabel: 'Aplicar', // Texto del botón para aplicar la selección del rango de fechas.
-            cancelLabel: 'Cancelar', // Texto del botón para cancelar la selección del rango de fechas.
-            daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'], // Nombres completos de los meses del año.
-            firstDay: 1 // Define el primer día de la semana. 1 indica que la semana comienza el lunes.
-        }
-    }).on('apply.singleDate', function (ev, picker) {
-        // Al seleccionar el rango, actualizamos el valor del input manualmente con las fechas seleccionadas
-        $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-    });
+window.addEventListener('load', function () {
+    const fechaBuscador = document.getElementById("fechaBuscador");
+    const horaBuscador = document.getElementById("horaBuscador");
+    const palabraClave = document.getElementById("keyword");
 
-    // Timepicker
-    $("#hour").timepicker({
-        timeFormat: "HH:mm", // Formato de la hora
-        interval: 60, // Intervalo de minutos
-        minTime: '09:00',
-        maxTime: '21:00',
-        startTime: "09:00", // Hora de inicio
-        dynamic: false, // Ajusta automáticamente las horas mínimas y máximas dependiendo de la hora actual
-        dropdown: true, // Usar menú desplegable
-        scrollbar: true, // Usar scrollbar
-    });
+    for (let hora = 9; hora <= 23; hora++) {
+        const option = document.createElement("option");
+        if (hora < 10) {
+            option.value = `0${hora}:00`;
+            option.text = `0${hora}:00`;
+        } else {
+            option.value = `${hora}:00`;
+            option.text = `${hora}:00`;
+        }
+
+        horaBuscador.appendChild(option);
+    }
 
     //FUNCIONALIDAD BUSCAR POR PALABRA CLAVE (NOMBRES DE LOS PRODUCTOS Y CARACTERISTICAS)
     // Autocomplete
@@ -48,14 +34,6 @@ $(function () {
                     if (!availableTags.includes(producto.nombreProducto)) {
                         availableTags.push(producto.nombreProducto); //Agregamos el nombre de los productos al array availableTags
                     }
-
-                    producto.caracteristicas.forEach(caracteristica => {
-                        //Verificamos que la caracteristica no exista en availableTags
-                        if (!availableTags.includes(caracteristica.nombre)) {
-                            // Si no existe, entonces lo agregamos
-                            availableTags.push(caracteristica.nombre);
-                        }
-                    });
                 });
 
                 console.log("Productos obtenidos:", data); // Para depuración
@@ -69,10 +47,9 @@ $(function () {
         });
 
         //FUNCIONALIDAD: BUSCAR
-        document.getElementById("buscar").addEventListener("click", function () {
+        document.getElementById("buscar").addEventListener("click", async function () {
             // Obtener valores de los campos de entrada
-            let keyword = document.getElementById("keyword").value;
-            console.log("Esta es mi palabra: " + keyword);
+            console.log("Esta es mi palabra clave: " + palabraClave.value);
 
             let categoria = document.getElementById("categoria").value;
             console.log("Esta es mi categoria: " + categoria);
@@ -80,102 +57,64 @@ $(function () {
             let caracteristica = document.getElementById("caracteristica").value;
             console.log("Esta es mi caracteristica: " + caracteristica);
 
-            let date = document.getElementById("date").value;
-            console.log("Este es mi fecha: " + date);
+            console.log("Este es la fecha de la reserva: " + fechaBuscador.value);
 
-            let time = document.getElementById("hour").value;
-            console.log("Esta es la hora de la reserva: " + time);
-
-            // Parsear fecha
-            let fechSeleccionada = null;
-            if (date) {
-                fechSeleccionada = date
-            }
-
-            // Parsear horas
-            let hora = time ? time : null;
+            console.log("Esta es la hora de la reserva: " + horaBuscador.value);
 
             // Realizar el filtrado de productos utilizando los valores obtenidos
-            let resultadosFiltrados = productos.filter(producto => {
+            let resultadosFiltrados = await Promise.all(productos.map(async producto => {
                 console.log("Producto:", producto); // Para depuración
 
                 // Filtrar por palabra clave
-                if (keyword && !producto.nombreProducto.includes(keyword)) {
+                if (palabraClave.value && !producto.nombreProducto.includes(palabraClave.value)) {
                     return false;
                 }
+
                 // Filtrar por categoría
                 if (categoria && (!producto.categoria || producto.categoria.nombre !== categoria)) {
                     return false;
                 }
+
                 // Filtrar por características
                 if (caracteristica && !producto.caracteristicas.some(c => c.nombre.includes(caracteristica))) {
                     return false;
                 }
 
-                // Parsear fecha
-                let fechSeleccionada = null;
-                if (date) {
-                    fechSeleccionada = date
+                console.log("Producto:", producto);
+
+                // Filtrado por fecha y hora
+                if (fechaBuscador.value && horaBuscador.value) {
+                    console.log('entre aca');
+                    let productosDisponibles = await buscarProductosDisponibles(fechaBuscador.value, horaBuscador.value);
+
+                    console.log(productosDisponibles);
+
+                    if (productosDisponibles.length == 0) {
+                        console.log("fallé acá");
+                        return false;
+                    }
+
+                    let exist = productosDisponibles.some(prodDis => prodDis.idProducto === producto.idProducto);
+
+                    console.log(exist);
+
+                    if (!exist) {
+                        return false;
+                    }
                 }
 
-                // Parsear horas
-                let hora = time ? time : null;
+                return producto;
+            }));
 
-                // Realizar el filtrado de productos utilizando los valores obtenidos
-                let resultadosFiltrados = productos.filter(producto => {
-                    console.log("Producto:", producto); // Para depuración
-                    // Filtrar por palabra clave
-                    if (keyword && !producto.nombreProducto.includes(keyword)) {
-                        return false;
-                    }
-                    // Filtrar por categoría
-                    if (categoria && (!producto.categoria || producto.categoria.nombre !== categoria)) {
-                        return false;
-                    }
-                    // Filtrar por características
-                    if (caracteristica && !producto.caracteristicas.some(c => c.nombre.includes(caracteristica))) {
-                        return false;
-                    }
-
-                    //Filtrado por fecha
-                    if (producto.fechaInicio && producto.fechaFin) {
-                        const productoFechaInicio = parseDate(producto.fechaInicio);
-                        const productoFechaFin = parseDate(producto.fechaFin);
-                        const fechaInicioFiltroDate = fechaInicioFiltro ? parseDate(fechaInicioFiltro) : null;
-                        const fechaFinFiltroDate = fechaFinFiltro ? parseDate(fechaFinFiltro) : null;
-
-                        // Comparar solo año, mes y día de las fechas
-                        if (fechaInicioFiltroDate &&
-                            (productoFechaInicio < fechaInicioFiltroDate)) {
-                            return false;
-                        }
-
-                        if (fechaFinFiltroDate &&
-                            (productoFechaFin > fechaFinFiltroDate)) {
-                            return false;
-                        }
-                    } else if (fechaFinFiltro && fechaInicioFiltro) {
-                        return false;
-                    }
-
-                    //Filtrado por hora
-                    if (producto.hora) {
-                        if (hora && producto.hora && producto.hora < hora) {
-                            return false;
-                        }
-                    } else if (hora && hora) {
-                        return false;
-                    }
-
-                    return true;
-                });
-            });
+            resultadosFiltrados = resultadosFiltrados.filter(result => result !== false);
 
             console.log("Resultados filtrados:", resultadosFiltrados); // Para depuración
+
             // Mostrar los resultados filtrados
             mostrarResultados(resultadosFiltrados);
         });
     });
+
 
     //INPUT CARACTERÍSTICAS
     function obtenerCaracteristicas() {
@@ -311,9 +250,27 @@ $(function () {
         contenedorResultados.appendChild(listaResultados);
 
     }
-});
+
+})
 
 const parseDate = dateString => {
     const [day, month, year] = dateString.split('/');
     return new Date(year, month - 1, day); // Mes se resta 1 porque en JavaScript los meses van de 0 a 11
 };
+
+async function buscarProductosDisponibles(fecha, hora) {
+    const url = 'http://localhost:8080/productos/listarProductosDisponibles?fecha=' + fecha + '&hora=' + hora;
+    const settings = {
+        method: 'GET'
+    };
+
+    try {
+        const response = await fetch(url, settings);
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return [];
+    }
+}

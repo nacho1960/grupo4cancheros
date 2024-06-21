@@ -64,8 +64,7 @@ footer {
     bottom: 0;
     box-sizing: border-box;
     box-shadow: 5px 0px 5px var(--color-quintenary);
-    text-decoration: underline; /* Esta línea asegura que el enlace esté subrayado */
-    
+    text-decoration: underline; /* Esta línea asegura que el enlace esté subrayado */ 
 }
 
 main{
@@ -111,6 +110,13 @@ select:hover {
 #datosUser div p, #datosUsuario div p, #detalleProducto div p, #detalleReserva div p{
     margin: 0;
     align-content: center;
+}
+
+#datosUser div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    padding-bottom: 2em;
 }
 
 #datosUser div span, #datosUsuario div span, #detalleProducto div span, #detalleReserva div span{

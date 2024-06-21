@@ -13,8 +13,24 @@ window.addEventListener('load', function () {
             option.text = `${hora}:00`;
         }
 
+        //No dejar seleccionar horas pasadas a la actual
+        const currentDate = new Date();  // Fecha actual
+        const currentHour = currentDate.getHours();  // Hora actual
+
+        if(hora <= currentHour){
+            option.disabled = true;
+            option.style.backgroundColor = 	'#b5b5b5'; // Gris para las horas que son menores a la hora actual 
+        }
+
         horaBuscador.appendChild(option);
     }
+
+    // Establecer la fecha mínima del input de fecha al día actual
+    let today = new Date().toLocaleDateString('en-CA');
+    fechaBuscador.value = today;
+    fechaBuscador.min = today;
+
+
 
     //FUNCIONALIDAD BUSCAR POR PALABRA CLAVE (NOMBRES DE LOS PRODUCTOS Y CARACTERISTICAS)
     // Autocomplete

@@ -247,16 +247,7 @@ select:hover {
     display: flex;
     gap: 0.55rem;
     align-items: center;
-}
-
-.date-picker, .time-picker{
-    display: flex;
-    gap: 10px;
-    
-}
-
-.daterangepicker td.available, .daterangepicker th, .daterangepicker .drp-selected{
-    color: var(--color-quaternary); 
+    justify-content: left;
 }
 
 .feedback{
@@ -268,7 +259,9 @@ select:hover {
 #buscadorInput #caracteristica option,
 #buscadorInput #categoria,
 #buscadorInput #categoria option,
-.buttonReserva {
+.buttonReserva,
+#horaBuscador,
+#fechaBuscador {
     padding: 0.7em;
     background-color: var(--color-quaternary);
     border: none;

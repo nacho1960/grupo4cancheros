@@ -23,7 +23,8 @@ h1 {
 }
 
 #datosUser div,
-#datosProducto #nombreProd, #datosProducto #descripcion {
+#datosProducto #nombreProd,
+#datosProducto #descripcion {
     display: grid;
     grid-template-columns: 1fr 2fr;
     padding-bottom: 2em;
@@ -52,6 +53,9 @@ h1 {
     align-items: center;
 }
 
+#inputTelefono {
+    background-color: transparent;
+}
 
 #datosUsuario h2,
 #detalleProducto h2,
@@ -111,22 +115,19 @@ h1 {
     align-items: center;
 }
 
-#categoria #imgCategoria{
+#categoria #imgCategoria {
     width: 20%;
     height: auto;
 }
 
-#caracteristicas img{
+#caracteristicas img {
     width: 3.125em;
     height: auto;
 }
 
-#caracteristicas{
+#caracteristicas {
     display: flex;
     align-items: flex-start;
     width: 100%;
     text-align: center;
 }
-
-
-

@@ -33,6 +33,17 @@ public class Reserva {
     @Column(name = "Hora")
     private LocalTime hora;
 
+    @Column(name = "Telefono", nullable = true)
+    private Long telefono;
+
+    public Long getTelefono() {
+        return this.telefono;
+    }
+
+    public void setTelefono(Long telefono) {
+        this.telefono = telefono;
+    }
+
     //Muchas reservas tienen un producto.
     @ManyToOne
     @JoinColumn(name = "idProducto")

@@ -18,7 +18,6 @@ window.addEventListener('load', function () {
     const buttonEditarFecha = document.getElementById("buttonEditarFecha");
     const buttonEditarHora = document.getElementById("buttonEditarHora");
 
-
     //Botón confirmar reserva
     const botonConfirmarReserva = document.getElementById("buttonConfirmarReserva")
 
@@ -85,7 +84,7 @@ window.addEventListener('load', function () {
         return `${day}/${month}/${year}`;
     }
 
-    //LLenamos los campos fecha y hora seleccionada para que se muestren en los span de detalle de la reserva. 
+    //LLenamos los campos fecha y hora seleccionada para que se muestren en los span de detalle de la reserva.
     fechaReserva.textContent = formatDate(fechaGuardada);
     console.log(formatDate(fechaGuardada));
 
@@ -116,7 +115,14 @@ window.addEventListener('load', function () {
                     id: idUsuarioObtenido
                 },
                 fecha: formatDate(fechaGuardada),
-                hora: horaGuardada
+                hora: horaGuardada,
+                // El teléfono se agrega después de verificar si está presente
+            }
+
+            // Agregar el teléfono a formData si está presente
+            const inputTelefono = document.getElementById("inputTelefono");
+            if (inputTelefono && inputTelefono.value) {
+                formData.telefono = inputTelefono.value;
             }
 
             console.log(formData);
@@ -129,7 +135,7 @@ window.addEventListener('load', function () {
                 },
                 body: JSON.stringify(formData)
             };
-console.log (JSON.stringify(formData));
+            console.log(JSON.stringify(formData));
             const responseReserva = await fetch(url, settings);
             if (responseReserva.status == 200) {
                 const data = await responseReserva.json();

@@ -38,7 +38,7 @@ header {
     box-shadow: 0px 5px 5px var(--color-quintenary);
     box-sizing: border-box;
     padding: 7px 10px 0px 10px;
-    
+
 }
 
 header a img,
@@ -64,10 +64,11 @@ footer {
     bottom: 0;
     box-sizing: border-box;
     box-shadow: 5px 0px 5px var(--color-quintenary);
-    text-decoration: underline; /* Esta línea asegura que el enlace esté subrayado */ 
+    text-decoration: underline;
+    /* Esta línea asegura que el enlace esté subrayado */
 }
 
-main{
+main {
     margin-top: 6%;
 }
 
@@ -94,11 +95,13 @@ select:hover {
     font-weight: 500;
 }
 
-#containerAvatar{
+#containerAvatar {
     text-align: center;
 }
 
-#nombreProd, #descripcion, #caracteristicasContainer{
+#nombreProd,
+#descripcion,
+#caracteristicasContainer {
     display: grid;
     grid-template-columns: 0.5fr 2.5fr;
     gap: 1em;
@@ -107,25 +110,32 @@ select:hover {
 }
 
 
-#datosUser div p, #datosUsuario div p, #detalleProducto div p, #detalleReserva div p{
+#datosUser div p,
+#datosUsuario div p,
+#detalleProducto div p,
+#detalleReserva div p {
     margin: 0;
     align-content: center;
 }
 
-#datosUser div{
+#datosUser div {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
     padding-bottom: 2em;
 }
 
-#datosUser div span, #datosUsuario div span, #detalleProducto div span, #detalleReserva div span{
+#datosUser div span,
+#datosUsuario div span,
+#detalleProducto div span,
+#detalleReserva div span,
+#inputTelefono {
     border: 0.063em solid #235C9F;
     padding: 0.938em;
-    border-radius: 0.313em; 
+    border-radius: 0.313em;
 }
 
-#avatar{
+#avatar {
     background-color: var(--color-primary);
     color: var(--color-quaternary);
     border-radius: 50%;
@@ -138,7 +148,7 @@ select:hover {
 }
 
 /*Usuario logueado*/
-#userLogin{
+#userLogin {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -146,27 +156,29 @@ select:hover {
     flex-direction: row;
 }
 
-#user-avatar{
-   color: var(--color-quaternary); 
-   border-radius: 50%;
-   background-color: var(--color-terceray);
-   font-size: 30px;
-   font-weight: 600;
-   padding: 15px 20px;
+#user-avatar {
+    color: var(--color-quaternary);
+    border-radius: 50%;
+    background-color: var(--color-terceray);
+    font-size: 30px;
+    font-weight: 600;
+    padding: 15px 20px;
 }
 
-#nombreYCierreDeSesion{
+#nombreYCierreDeSesion {
     text-align: center;
 }
 
-#nombreCompletoUser{
+#nombreCompletoUser {
     font-weight: 700;
     font-size: 20px;
     color: var(--color-terceray);
     margin-bottom: 0;
 }
 
-#navbarUser, #navbarUserResponsive, #navbarUserResponsiveNoLogged{
+#navbarUser,
+#navbarUserResponsive,
+#navbarUserResponsiveNoLogged {
     color: var(--color-primary);
     background-color: transparent;
     border: none;
@@ -174,7 +186,9 @@ select:hover {
     height: 16px;
 }
 
-#navbarUser option, #navbarUserResponsive option, #navbarUserResponsiveNoLogged option {
+#navbarUser option,
+#navbarUserResponsive option,
+#navbarUserResponsiveNoLogged option {
     background-color: var(--color-terceray);
     font-weight: 600;
     font-size: 16px;
@@ -182,7 +196,8 @@ select:hover {
     text-align: center;
 }
 
-#navbarUserResponsive, #navbarUserResponsiveNoLogged{
+#navbarUserResponsive,
+#navbarUserResponsiveNoLogged {
     appearance: none;
 }
 
@@ -221,12 +236,13 @@ select:hover {
     margin-top: 0%;
 }
 
-#buscadorInput p, #resultados .mensajeErrorResultados{
+#buscadorInput p,
+#resultados .mensajeErrorResultados {
     font-size: 1.5rem;
     margin-top: 0%;
-} 
+}
 
-#resultados .mensajeErrorResultados{
+#resultados .mensajeErrorResultados {
     color: #00008b;
     text-align: center;
     margin-bottom: 15%;
@@ -237,7 +253,7 @@ select:hover {
     text-align: center;
 }
 
-#buscadorInput h1{
+#buscadorInput h1 {
     color: #F6BF0F;
     align-self: center;
     margin-bottom: 0%;
@@ -249,14 +265,15 @@ select:hover {
     gap: 10px;
 }
 
-#contenedorFechaYHora, #contenedorPalabraClaveCategoriaYCaracteristica{
+#contenedorFechaYHora,
+#contenedorPalabraClaveCategoriaYCaracteristica {
     display: flex;
     gap: 0.55rem;
     align-items: center;
     justify-content: left;
 }
 
-.feedback{
+.feedback {
     color: white;
 }
 
@@ -346,7 +363,8 @@ a:active {
 
 /*Productos body*/
 /*Estilos para los productos dentro del div showProductos */
-#showProductos, .listaResultados {
+#showProductos,
+.listaResultados {
     display: grid;
     grid-template-columns: 1fr 1fr;
     /* La cuadrícula se ajustará automáticamente */
@@ -356,7 +374,8 @@ a:active {
     align-items: center;
 }
 
-.producto, .cardResultados {
+.producto,
+.cardResultados {
     border: 1px solid #ccc;
     background-color: var(--color-quaternary);
     border-radius: 10px;
@@ -364,31 +383,37 @@ a:active {
     width: 20vw;
 }
 
-.producto h2, .cardResultados h2{
+.producto h2,
+.cardResultados h2 {
     font-size: 1.2rem;
     margin-bottom: 0.625em;
     color: var(--color-primary);
 }
 
-.producto p, .cardResultados p {
+.producto p,
+.cardResultados p {
     font-size: 1rem;
     color: rgb(255, 255, 255);
 }
 
-.producto p.descripcion, .cardResultados p.descripcion{
+.producto p.descripcion,
+.cardResultados p.descripcion {
     color: rgb(12, 12, 12);
 }
 
-.producto p.precio, .cardResultados p.precio {
+.producto p.precio,
+.cardResultados p.precio {
     color: rgb(8, 8, 8);
     font-weight: bold;
 }
 
-#recomendaciones, .contenedorTituloResultados {
+#recomendaciones,
+.contenedorTituloResultados {
     text-align: center;
 }
 
-#tituloRecomendaciones, .tituloResultados{
+#tituloRecomendaciones,
+.tituloResultados {
     color: var(--color-primary);
 }
 
@@ -406,7 +431,7 @@ a:active {
     margin-top: 0.625em;
     font-weight: bold;
     text-decoration: none;
-    
+
 }
 
 .ver-mas-link:hover {
@@ -422,13 +447,15 @@ a:active {
 }
 
 .heart-icon {
-    font-size: 24px; 
-    color: #ccc; /* Color del corazón vacío */
+    font-size: 24px;
+    color: #ccc;
+    /* Color del corazón vacío */
     transition: color 0.3s ease;
 }
 
 .favorite-btn.favorited .heart-icon {
-    color: red; /* Color del corazón lleno */
+    color: red;
+    /* Color del corazón lleno */
 }
 
 
@@ -441,41 +468,42 @@ a:active {
     #buscadorInput,
     #viewCategorias,
     #descripcionYcard,
-    #contenedorFechaYHora, 
+    #contenedorFechaYHora,
     #contenedorPalabraClaveCategoriaYCaracteristica,
     .time-picker,
     #detailUserMain {
         flex-direction: column;
     }
 
-    footer{
+    footer {
         position: relative;
         bottom: 0;
     }
 
-    #detailUserMain{
+    #detailUserMain {
         min-height: max-content;
         margin-top: 40%;
         margin-bottom: 100%;
     }
 
-    #datosUser div{
+    #datosUser div {
         display: flex;
         flex-direction: column;
     }
 
     /*Ocultamos los botones de "Iniciar Sesión" y "Registrarse".*/
-    header button, #userLogin{
-        display:none;  
+    header button,
+    #userLogin {
+        display: none;
     }
 
     /*Mostrar el icono del menú hamburguesa.*/
     .menu-icon {
-        display: block;  
+        display: block;
     }
 
     /*Buscador*/
-    #buscador{
+    #buscador {
         text-align: center;
     }
 

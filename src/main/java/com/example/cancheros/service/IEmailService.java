@@ -47,11 +47,17 @@ public class IEmailService {
                 .append("Producto reservado: ").append(reserva.getProducto().getNombreProducto()).append("\n")
                 .append("Descripción del producto: ").append(reserva.getProducto().getDescripcion()).append("\n")
                 .append("Fecha: ").append(reserva.getFecha()).append("\n")
-                .append("Hora: ").append(reserva.getHora()).append("\n")
-                .append("\n\n")
+                .append("Hora: ").append(reserva.getHora()).append("\n");
+                
+        // Verificar si el usuario ha proporcionado un número de teléfono y agregarlo al correo
+        if (reserva.getTelefono() != null && reserva.getTelefono() != 0) {
+            sb.append("Teléfono proporcionado: ").append(reserva.getTelefono()).append("\n");
+        }
+
+        sb.append("\n\n")
                 .append("Información de contacto del proveedor: ")
                 .append("\n\n")
-                .append("Complejo Deportivo Cancheros:").append("\n")
+                .append("Complejo Deportivo Cancheros.").append("\n")
                 .append("Dirección: Av. Siempreviva 742.").append("\n")
                 .append("Teléfono: 0303456").append("\n")
                 .append("Correo electrónico: cancheros2024@gmail.com")

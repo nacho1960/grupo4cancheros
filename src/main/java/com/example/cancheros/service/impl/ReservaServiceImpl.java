@@ -43,7 +43,6 @@ public class ReservaServiceImpl implements IReservaService {
         this.usuarioRespositorio = usuarioRespositorio;
         this.emailService = emailService;
     }
-    //private IReservaRepository reservaRepository;
 
     @Override
     public ResponseEntity<Reserva> guardar(@RequestBody Reserva reserva) throws InternalServerErrorException {
@@ -56,8 +55,16 @@ public class ReservaServiceImpl implements IReservaService {
             if (usuario.isPresent() && producto.isPresent()) {
                 // Asignamos el usuario y el producto a la reserva
                 reserva.setProducto(producto.get());
+                reserva.setUsuario(usuario.get());
+
+                 // Verificamos si el número de teléfono está presente y es válido
+            if (reserva.getTelefono() != null && reserva.getTelefono() != 0) {
+                LOGGER.info("Número de teléfono proporcionado: " + reserva.getTelefono());
+            }
+
                 reservaRepositorio.save(reserva);
                 LOGGER.info("Reserva guardada con éxito.");
+
                 enviarCorreoConfirmacion(reserva, usuario.get());
                 return ResponseEntity.ok(reserva);
             } else {
@@ -107,8 +114,6 @@ public class ReservaServiceImpl implements IReservaService {
         return reservaRepositorio.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No existe la reserva solicitada: " + id));
     }
-    // public Reserva buscar(Long id) {
-    //     return reservaRepository.findById(id).orElse(null);
 
     @Override
     public void eliminar(Long id) throws ResourceNotFoundException {
@@ -117,8 +122,6 @@ public class ReservaServiceImpl implements IReservaService {
         reservaRepositorio.delete(reserva);
         LOGGER.info("Reserva eliminada con éxito: " + id);
     }
-    // public void eliminar(Long id) {
-    //     reservaRepository.deleteById(id);}
 
     @Override
     public void actualizar(Reserva reserva) throws ResourceNotFoundException {
@@ -137,9 +140,6 @@ public class ReservaServiceImpl implements IReservaService {
         reservaExistente.setProducto(producto);
         reservaExistente.setUsuario(usuario);
 
-        // public void actualizar(Reserva reserva) {
-        //     reservaRepository.save(reserva);
-        // }
         reservaRepositorio.save(reservaExistente);
         LOGGER.info("Reserva actualizada con éxito.");
     }

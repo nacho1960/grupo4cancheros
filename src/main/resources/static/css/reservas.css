@@ -53,6 +53,14 @@ h1 {
     align-items: center;
 }
 
+#divTelefono,
+#divIndicaciones {
+    display: grid;
+    grid-template-columns: 0.1fr 0.1fr;
+    gap: 2em;
+    align-items: center;
+}
+
 #inputTelefono,
 #inputIndicaciones {
     background-color: transparent;

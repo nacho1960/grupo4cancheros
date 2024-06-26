@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
     const listaReservas = document.getElementById('listaReservas');
 
     // Obtener el id del usuario (debes ajustar esto según cómo obtienes el usuario autenticado)
@@ -112,6 +112,32 @@ document.addEventListener('DOMContentLoaded', async function() {
             reservaDiv.appendChild(precioDiv);
             reservaDiv.appendChild(fechaDiv);
             reservaDiv.appendChild(horaDiv);
+
+            // Verificar y mostrar el teléfono si existe
+            if (reserva.telefono) {
+                const telefonoDiv = document.createElement('div');
+                telefonoDiv.className = 'telefono';
+                const telefonoTitulo = document.createElement('h3');
+                telefonoTitulo.textContent = 'Teléfono: ';
+                const telefono = document.createElement('p');
+                telefono.textContent = reserva.telefono;
+                telefonoDiv.appendChild(telefonoTitulo);
+                telefonoDiv.appendChild(telefono);
+                reservaDiv.appendChild(telefonoDiv); // Añadir al contenedor de la reserva
+            }
+
+            // Verificar y mostrar las indicaciones si existen
+            if (reserva.indicaciones) {
+                const indicacionesDiv = document.createElement('div');
+                indicacionesDiv.className = 'indicaciones';
+                const indicacionesTitulo = document.createElement('h3');
+                indicacionesTitulo.textContent = 'Indicaciones: ';
+                const indicaciones = document.createElement('p');
+                indicaciones.textContent = reserva.indicaciones;
+                indicacionesDiv.appendChild(indicacionesTitulo);
+                indicacionesDiv.appendChild(indicaciones);
+                reservaDiv.appendChild(indicacionesDiv); // Añadir al contenedor de la reserva
+            }
 
             listaReservas.appendChild(reservaDiv);
 

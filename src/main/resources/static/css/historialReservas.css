@@ -16,10 +16,12 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
+    min-height: 100vh;
+    /* Asegura que el body ocupe toda la altura de la ventana */
 }
 
-header, footer {
+header,
+footer {
     display: flex;
     align-items: center;
     background-color: var(--color-quintenary);
@@ -44,11 +46,14 @@ footer {
     width: 100%;
     box-sizing: border-box;
     box-shadow: 5px 0px 5px var(--color-quintenary);
-    text-decoration: underline; /* Esta línea asegura que el enlace esté subrayado */ 
-    margin-top: auto; /* Empuja el footer hacia el fondo */
+    text-decoration: underline;
+    /* Esta línea asegura que el enlace esté subrayado */
+    margin-top: auto;
+    /* Empuja el footer hacia el fondo */
 }
 
-header a img, footer img {
+header a img,
+footer img {
     width: 6.250em;
     height: auto;
 }
@@ -86,7 +91,7 @@ select:hover {
 }
 
 #user-avatar {
-    color: var(--color-quaternary); 
+    color: var(--color-quaternary);
     border-radius: 50%;
     background-color: var(--color-terceray);
     font-size: 30px;
@@ -105,7 +110,9 @@ select:hover {
     margin-bottom: 0;
 }
 
-#navbarUser, #navbarUserResponsive, #navbarUserResponsiveNoLogged {
+#navbarUser,
+#navbarUserResponsive,
+#navbarUserResponsiveNoLogged {
     color: var(--color-primary);
     background-color: transparent;
     border: none;
@@ -113,7 +120,9 @@ select:hover {
     height: 16px;
 }
 
-#navbarUser option, #navbarUserResponsive option, #navbarUserResponsiveNoLogged option {
+#navbarUser option,
+#navbarUserResponsive option,
+#navbarUserResponsiveNoLogged option {
     background-color: var(--color-terceray);
     font-weight: 600;
     font-size: 16px;
@@ -121,7 +130,8 @@ select:hover {
     text-align: center;
 }
 
-#navbarUserResponsive, #navbarUserResponsiveNoLogged {
+#navbarUserResponsive,
+#navbarUserResponsiveNoLogged {
     appearance: none;
 }
 
@@ -191,8 +201,10 @@ a:active {
 }
 
 main {
-    flex: 1 0 auto; /* Permite que main crezca y ocupe el espacio disponible */
-    padding-top: 200px; /* Ajusta este valor según la altura de tu header */
+    flex: 1 0 auto;
+    /* Permite que main crezca y ocupe el espacio disponible */
+    padding-top: 200px;
+    /* Ajusta este valor según la altura de tu header */
     width: 100vw;
 }
 
@@ -200,24 +212,44 @@ h1 {
     color: #F6BF0F;
 }
 
-.descripcion, .categoria, .caracteristica, .precio, .fecha, .hora {
+.descripcion,
+.categoria,
+.caracteristica,
+.precio,
+.fecha,
+.hora,
+.telefono,
+.indicaciones {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.descripcion div, .categoria div, .caracteristica div, .precio div, .fecha div, .hora div {
-    margin-right: 1rem; /* Ajusta el espacio entre los elementos según necesites */
+.descripcion div,
+.categoria div,
+.caracteristica div,
+.precio div,
+.fecha div,
+.hora div,
+.telefono div,
+.indicaciones div {
+    margin-right: 1rem;
+    /* Ajusta el espacio entre los elementos según necesites */
 }
 
 @media (max-width: 1200px) {
     .reserva {
-        width: 40%; /* Ajuste de ancho para pantallas medianas */
+        width: 40%;
+        /* Ajuste de ancho para pantallas medianas */
     }
 }
 
 @media (max-width: 800px) {
-    header, footer, #TituloHistorialReservas, #listaReservas {
+
+    header,
+    footer,
+    #TituloHistorialReservas,
+    #listaReservas {
         flex-direction: column;
         align-items: center;
     }
@@ -236,10 +268,18 @@ h1 {
     }
 
     .reserva {
-        width: 55%; /* Ajusta el ancho de los productos en pantallas pequeñas */
+        width: 55%;
+        /* Ajusta el ancho de los productos en pantallas pequeñas */
     }
 
-    .descripcion, .categoria, .caracteristica, .precio, .fecha, .hora {
+    .descripcion,
+    .categoria,
+    .caracteristica,
+    .precio,
+    .fecha,
+    .hora,
+    .telefono,
+    .indicaciones {
         flex-direction: column;
         align-items: center;
     }
@@ -251,13 +291,21 @@ h1 {
         width: 100%;
     }
 
-    .descripcion, .categoria, .caracteristica, .precio, .fecha, .hora {
+    .descripcion,
+    .categoria,
+    .caracteristica,
+    .precio,
+    .fecha,
+    .hora,
+    .telefono,
+    .indicaciones {
         flex-direction: column;
         align-items: center;
     }
 
 
     .reserva {
-        width: 70%; /* Asegura que cada reserva ocupe todo el ancho disponible */
+        width: 70%;
+        /* Asegura que cada reserva ocupe todo el ancho disponible */
     }
 }

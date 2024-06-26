@@ -44,6 +44,17 @@ public class Reserva {
         this.telefono = telefono;
     }
 
+    @Column(name = "Indicaciones", nullable = true)
+    private String indicaciones;
+
+    public String getIndicaciones() {
+        return this.indicaciones;
+    }
+
+    public String setIndicaciones() {
+        return this.indicaciones;
+    }
+
     //Muchas reservas tienen un producto.
     @ManyToOne
     @JoinColumn(name = "idProducto")

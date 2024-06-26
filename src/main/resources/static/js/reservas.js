@@ -116,13 +116,18 @@ window.addEventListener('load', function () {
                 },
                 fecha: formatDate(fechaGuardada),
                 hora: horaGuardada,
-                // El teléfono se agrega después de verificar si está presente
+                // El teléfono e indicaciones se agregan después de verificar si están presentes
             }
 
             // Agregar el teléfono a formData si está presente
             const inputTelefono = document.getElementById("inputTelefono");
             if (inputTelefono && inputTelefono.value) {
                 formData.telefono = inputTelefono.value;
+            }
+            // Agregar las indicaciones a formData si están presentes
+            const inputIndicaciones = document.getElementById("inputIndicaciones");
+            if (inputIndicaciones && inputIndicaciones.value) {
+                formData.indicaciones = inputIndicaciones.value;
             }
 
             console.log(formData);

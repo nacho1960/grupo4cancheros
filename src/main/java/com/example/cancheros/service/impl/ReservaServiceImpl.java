@@ -57,10 +57,14 @@ public class ReservaServiceImpl implements IReservaService {
                 reserva.setProducto(producto.get());
                 reserva.setUsuario(usuario.get());
 
-                 // Verificamos si el número de teléfono está presente y es válido
-            if (reserva.getTelefono() != null && reserva.getTelefono() != 0) {
-                LOGGER.info("Número de teléfono proporcionado: " + reserva.getTelefono());
-            }
+                // Verificamos si el número de teléfono está presente y es válido
+                if (reserva.getTelefono() != null && reserva.getTelefono() != 0) {
+                    LOGGER.info("Número de teléfono proporcionado: " + reserva.getTelefono());
+                }
+                // Verificamos si las indicaciones están presentes y son válidas
+                if (reserva.getIndicaciones() != null && !reserva.getIndicaciones().isEmpty()) {
+                    LOGGER.info("Indicaciones proporcionadas: " + reserva.getIndicaciones());
+                }
 
                 reservaRepositorio.save(reserva);
                 LOGGER.info("Reserva guardada con éxito.");

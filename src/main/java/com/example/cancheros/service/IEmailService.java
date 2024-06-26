@@ -28,7 +28,7 @@ public class IEmailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmail());
         message.setSubject("Confirmación de registro");
-        message.setText("Hola " + user.getNombre() + ",\n\nHas registrado la cuenta con el correo electrónico: " + user.getEmail() + ". Confirmación de registro exitosa " + "\n\nPuedes iniciar sesión aquí: http://localhost:8080/login" + "\n\nSaludos,\nEl equipo de Cancheros");
+        message.setText("Hola " + user.getNombre() + ",\n\nHas registrado la cuenta con el correo electrónico: " + user.getEmail() + "\n\nConfirmación de registro exitosa. " + "\nPuedes iniciar sesión aquí: http://localhost:8080/login" + "\n\nSaludos,\nEl equipo de Cancheros");
         mailSender.send(message);
     }
 
@@ -52,6 +52,10 @@ public class IEmailService {
         // Verificar si el usuario ha proporcionado un número de teléfono y agregarlo al correo
         if (reserva.getTelefono() != null && reserva.getTelefono() != 0) {
             sb.append("Teléfono proporcionado: ").append(reserva.getTelefono()).append("\n");
+        }
+        // Verificar si el usuario ha proporcionado indicaciones y agregarlas al correo
+        if (reserva.getIndicaciones() != null && !reserva.getIndicaciones().isEmpty()) {
+            sb.append("Indicaciones: ").append(reserva.getIndicaciones()).append("\n");
         }
 
         sb.append("\n\n")

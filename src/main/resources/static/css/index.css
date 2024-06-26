@@ -129,7 +129,8 @@ select:hover {
 #datosUsuario div span,
 #detalleProducto div span,
 #detalleReserva div span,
-#inputTelefono {
+#inputTelefono,
+#inputIndicaciones {
     border: 0.063em solid #235C9F;
     padding: 0.938em;
     border-radius: 0.313em;

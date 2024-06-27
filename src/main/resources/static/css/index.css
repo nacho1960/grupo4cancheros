@@ -267,7 +267,8 @@ select:hover {
 }
 
 #contenedorFechaYHora,
-#contenedorPalabraClaveCategoriaYCaracteristica {
+#contenedorPalabraClaveCategoriaYCaracteristica,
+#clearSearch {
     display: flex;
     gap: 0.55rem;
     align-items: center;
@@ -285,7 +286,8 @@ select:hover {
 #buscadorInput #categoria option,
 .buttonReserva,
 #horaBuscador,
-#fechaBuscador {
+#fechaBuscador,
+#clearSearch {
     padding: 0.7em;
     background-color: var(--color-quaternary);
     border: none;
@@ -471,6 +473,7 @@ a:active {
     #descripcionYcard,
     #contenedorFechaYHora,
     #contenedorPalabraClaveCategoriaYCaracteristica,
+    #clearSearch,
     .time-picker,
     #detailUserMain {
         flex-direction: column;
@@ -515,7 +518,8 @@ a:active {
 
     #buscadorInput input,
     #buscadorInput select,
-    #buscadorInput #buscar {
+    #buscadorInput #buscar,
+    #clearSearch {
         margin-bottom: 0.25rem;
     }
 

@@ -30,7 +30,16 @@ window.addEventListener('load', function () {
     fechaBuscador.value = today;
     fechaBuscador.min = today;
 
+    // Aquí comienza la integración del nuevo código
+    const clearButton = document.getElementById('clearSearch');
+    const searchInputs = [fechaBuscador, horaBuscador, palabraClave, categoria, caracteristica]; // Asumiendo que quieres limpiar todos estos campos
 
+    clearButton.addEventListener('click', function() {
+        searchInputs.forEach(input => input.value = ''); // Limpiar todos los campos de búsqueda
+        // Restablecer la fecha mínima del input de fecha al día actual
+        fechaBuscador.value = today;
+        fechaBuscador.min = today;
+    });
 
     //FUNCIONALIDAD BUSCAR POR PALABRA CLAVE (NOMBRES DE LOS PRODUCTOS Y CARACTERISTICAS)
     // Autocomplete

@@ -37,9 +37,8 @@ window.addEventListener('load', function () {
 
     // Evento para actualizar las horas disponibles cuando se cambia la fecha
     fechaBuscador.addEventListener('change', actualizarHorasDisponibles);
-});
 
-// Aquí comienza la integración del nuevo código para clearSearch
+//FUNCIONALIDAD LIMPIAR BUSQUEDA
 const clearButton = document.getElementById('clearSearch');
 const searchInputs = [fechaBuscador, horaBuscador, palabraClave, categoria, caracteristica]; // Asumiendo que quieres limpiar todos estos campos
 
@@ -48,6 +47,7 @@ clearButton.addEventListener('click', function () {
     // Restablecer la fecha mínima del input de fecha al día actual
     fechaBuscador.value = today;
     fechaBuscador.min = today;
+    actualizarHorasDisponibles(); // Asegúrate de llamar a esta función para actualizar las horas disponibles u otros elementos dependientes
 });
 
 //FUNCIONALIDAD BUSCAR POR PALABRA CLAVE (NOMBRES DE LOS PRODUCTOS Y CARACTERISTICAS)
@@ -306,3 +306,4 @@ async function buscarProductosDisponibles(fecha, hora) {
         return [];
     }
 }
+});

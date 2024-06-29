@@ -460,7 +460,11 @@ a:active {
     color: red;
     /* Color del corazón lleno */
 }
+#iconowaap {
+width:45px;
+height:45px;
 
+}
 
 
 @media (max-width: 800px) {

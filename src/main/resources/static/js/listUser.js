@@ -35,7 +35,7 @@ window.addEventListener('load', function () {
         formCaract.style.display = 'none';
         formEditCategoría.style.display = "none";
 
-        const url = 'http://localhost:8080/user/listarTodos';
+        const url = 'http://54.166.122.219/user/listarTodos';
         const settings = {
             method: 'GET'
         };
@@ -105,7 +105,7 @@ window.addEventListener('load', function () {
     function updateUserRole(user, isChecked) {
         user.usuarioRole = isChecked ? "ADMIN" : "USER";
 
-        const url = 'http://localhost:8080/user/update';
+        const url = 'http://54.166.122.219/user/update';
         const settings = {
             method: 'PUT',
             headers: {

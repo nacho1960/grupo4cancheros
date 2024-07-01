@@ -4,7 +4,7 @@ window.addEventListener('load', function () {
     const emailUser = document.getElementById("emailUser")
     const avatar = document.getElementById("avatar")
 
-    const url = 'http://localhost:8080/user/detail';
+    const url = 'http://54.166.122.219/user/detail';
     const settings = {
         method: 'GET'
     }

@@ -7,6 +7,7 @@
     <title>Cancheros</title>
     <link rel="icon" href="img/i-cancha.png">
     <link rel="stylesheet" href="css/favoritos.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/e50f04e157.js" crossorigin="anonymous"></script>
@@ -16,6 +17,7 @@
     <script type="text/javascript" src="js/favoritos.js"></script>
     <script type="text/javascript" src="js/aleatoriosProd.js"></script>
     <script type="text/javascript" src="js/navbar.js"></script>
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="5ef0eacd-cde4-4bf8-9d7d-0a5bcfe5d59a";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
 
 <body>
@@ -31,7 +33,7 @@
                 <option value="" disabled selected hidden></option>
                 <option value="datosUser.html">Información personal</option>
                 <option value="favoritos.html">Favoritos</option>
-                <option value="#">Reservas</option>
+                <option value="historialReservas.html">Reservas</option>
                 <option value="admin.html" id="adminPanel" style="display: none;">Panel administrador</option>
             </select>
         </div>
@@ -47,7 +49,7 @@
                 <option value="" disabled selected hidden>&#x2630;</option>
                 <option value="datosUser.html">Información personal</option>
                 <option value="favoritos.html">Favoritos</option>
-                <option value="#">Reservas</option>
+                <option value="historialReservas.html">Reservas</option>
                 <option value="admin.html" id="adminPanelResponsive" style="display: none;">Panel administrador</option>
                 <option value="/logout">Cerrar Sesión</option>
             </select>
@@ -69,10 +71,17 @@
 
     </main>
     <footer>
-        <img src="img/logo.png" alt="logo">
+        <div>
+          <img src="img/logo.png" alt="logo">
         <i class="fa-regular fa-copyright"></i>
         <p>2024</p>
-        <a href="politicas.html" class="button">Ver Políticas de Uso</a>
+        <a href="politicas.html" class="button">Ver Políticas de Uso</a>  
+        </div>
+        <div id="iconoWhatsapp">
+          <a href="https://wa.me/541121794871" >
+            <img src="../img/waap.png" alt="iconowapp" id="iconowaap">
+        </a>  
+        </div>
     </footer>
 </body>
 

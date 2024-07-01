@@ -58,7 +58,7 @@ window.addEventListener('load', function () {
 
 function enviarDatosCategoria(formData) {
     //Invocamos utilizando la función fetch la API Cancheros con el método POST que guardará a la nueva categoría que enviaremos en formato JSON
-    const url = "http://localhost:8080/categorias/new";
+    const url = "http://54.166.122.219/categorias/new";
     const settings = {
         method: 'POST',
         headers: {

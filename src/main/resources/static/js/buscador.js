@@ -1,46 +1,55 @@
-$(function () {
-    // Daterangepicker
-    $("#date-range").daterangepicker({
-        minDate: moment(), // Fecha minima para seleccionar: hoy
-        maxDate: moment().add(2, 'year'), // Fecha maxima en la que puede seleccionar: un año.
-        autoUpdateInput: false,
-        showDropdowns: true, //Menú desplegable para cambiar de mes y año.
-        locale: {
-            format: 'DD/MM/YYYY', // Especifica el formato de la fecha. 
-            separator: ' - ', // Define el separador que se utiliza entre las fechas de inicio y fin en el input.
-            applyLabel: 'Aplicar', // Texto del botón para aplicar la selección del rango de fechas.
-            cancelLabel: 'Cancelar', // Texto del botón para cancelar la selección del rango de fechas.
-            weekLabel: 'S', // Etiqueta de la columna de números de semana.
-            daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'], // Nombres completos de los meses del año.
-            firstDay: 1 // Define el primer día de la semana. 1 indica que la semana comienza el lunes.
+window.addEventListener('load', function () {
+    const fechaBuscador = document.getElementById("fechaBuscador");
+    const horaBuscador = document.getElementById("horaBuscador");
+    const palabraClave = document.getElementById("keyword");
+
+    function actualizarHorasDisponibles() {
+        const currentDate = new Date();
+
+        const selectedDate = new Date(fechaBuscador.value);
+        selectedDate.setMinutes(selectedDate.getMinutes() + selectedDate.getTimezoneOffset());
+
+
+        // Convertir fechas a formato YYYY-MM-DD para comparar solo la parte de la fecha
+        const currentDateStr = currentDate.toLocaleDateString('en-CA').split('T')[0];
+        const selectedDateStr = selectedDate.toLocaleDateString('en-CA').split('T')[0];
+        const currentHour = new Date().getHours(); // Hora actual
+
+        horaBuscador.innerHTML = ''; // Limpiar opciones existentes
+
+        for (let hora = 9; hora <= 23; hora++) {
+            const option = document.createElement("option");
+            option.value = option.text = `${hora < 10 ? `0${hora}` : hora}:00`;
+
+            // Ajustar la lógica para deshabilitar horas pasadas para la fecha actual
+            if (currentDateStr === selectedDateStr && hora <= currentHour) {
+                option.disabled = true;
+                option.style.backgroundColor = '#b5b5b5'; // Gris para indicar deshabilitado
+            }
+
+            horaBuscador.appendChild(option);
         }
-    }).on('apply.daterangepicker', function (ev, picker) {
-        // Al seleccionar el rango, actualizamos el valor del input manualmente con las fechas seleccionadas
-        $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-    });
+    }
 
-    // Timepicker
-    $("#start-time").timepicker({
-        timeFormat: "HH:mm", // Formato de la hora
-        interval: 60, // Intervalo de minutos
-        minTime: '09:00',
-        maxTime: '21:00',
-        startTime: "09:00", // Hora de inicio
-        dynamic: false, // Ajusta automáticamente las horas mínimas y máximas dependiendo de la hora actual
-        dropdown: true, // Usar menú desplegable
-        scrollbar: true, // Usar scrollbar
-    });
+    // Establecer la fecha mínima del input de fecha al día actual y actualizar las horas disponibles
+    let today = new Date().toLocaleDateString('en-CA').split('T')[0];
+    fechaBuscador.value = today;
+    fechaBuscador.min = today;
+    actualizarHorasDisponibles();
 
-    $("#end-time").timepicker({
-        timeFormat: "HH:mm", // Formato de la hora
-        interval: 60, // Intervalo de minutos
-        minTime: '09:00',
-        maxTime: '21:00',
-        startTime: "09:00", // Hora de inicio
-        dynamic: false, // Ajusta automáticamente las horas mínimas y máximas dependiendo de la hora actual
-        dropdown: true, // Usar menú desplegable
-        scrollbar: true, // Usar scrollbar
+    // Evento para actualizar las horas disponibles cuando se cambia la fecha
+    fechaBuscador.addEventListener('change', actualizarHorasDisponibles);
+
+    //FUNCIONALIDAD LIMPIAR BUSQUEDA
+    const clearButton = document.getElementById('clearSearch');
+    const searchInputs = [fechaBuscador, horaBuscador, palabraClave, categoria, caracteristica]; // Asumiendo que quieres limpiar todos estos campos
+
+    clearButton.addEventListener('click', function () {
+        searchInputs.forEach(input => input.value = ''); // Limpiar todos los campos de búsqueda
+        // Restablecer la fecha mínima del input de fecha al día actual
+        fechaBuscador.value = today;
+        fechaBuscador.min = today;
+        actualizarHorasDisponibles(); // Asegúrate de llamar a esta función para actualizar las horas disponibles u otros elementos dependientes
     });
 
     //FUNCIONALIDAD BUSCAR POR PALABRA CLAVE (NOMBRES DE LOS PRODUCTOS Y CARACTERISTICAS)
@@ -49,7 +58,7 @@ $(function () {
 
     //Obtengo los productos
     function obtenerProductos() {
-        const url = 'http://localhost:8080/productos/listarTodos';
+        const url = 'http://54.166.122.219/productos/listarTodos';
         const settings = {
             method: 'GET'
         };
@@ -61,14 +70,6 @@ $(function () {
                     if (!availableTags.includes(producto.nombreProducto)) {
                         availableTags.push(producto.nombreProducto); //Agregamos el nombre de los productos al array availableTags
                     }
-
-                    producto.caracteristicas.forEach(caracteristica => {
-                        //Verificamos que la caracteristica no exista en availableTags
-                        if (!availableTags.includes(caracteristica.nombre)) {
-                            // Si no existe, entonces lo agregamos
-                            availableTags.push(caracteristica.nombre);
-                        }
-                    });
                 });
 
                 console.log("Productos obtenidos:", data); // Para depuración
@@ -82,10 +83,9 @@ $(function () {
         });
 
         //FUNCIONALIDAD: BUSCAR
-        document.getElementById("buscar").addEventListener("click", function () {
+        document.getElementById("buscar").addEventListener("click", async function () {
             // Obtener valores de los campos de entrada
-            let keyword = document.getElementById("keyword").value;
-            console.log("Esta es mi palabra: " + keyword);
+            console.log("Esta es mi palabra clave: " + palabraClave.value);
 
             let categoria = document.getElementById("categoria").value;
             console.log("Esta es mi categoria: " + categoria);
@@ -93,90 +93,70 @@ $(function () {
             let caracteristica = document.getElementById("caracteristica").value;
             console.log("Esta es mi caracteristica: " + caracteristica);
 
-            let rangoFechas = document.getElementById("date-range").value;
-            console.log("Este es mi rango de fechas: " + rangoFechas);
+            console.log("Este es la fecha de la reserva: " + fechaBuscador.value);
 
-            let startTime = document.getElementById("start-time").value;
-            console.log("Esta es mi hora de inicio: " + startTime);
-
-            let endTime = document.getElementById("end-time").value;
-            console.log("Esta es mi hora de fin: " + endTime);
-
-            // Parsear rango de fechas
-            let fechaInicioFiltro = null, fechaFinFiltro = null;
-            if (rangoFechas) {
-                const [start, end] = rangoFechas.split(" - ");
-                fechaInicioFiltro = start ? start : null;
-                fechaFinFiltro = end ? end : null;
-            }
-
-            // Parsear horas
-            let horaInicioFiltro = startTime ? startTime : null;
-            let horaFinFiltro = endTime ? endTime : null;
+            console.log("Esta es la hora de la reserva: " + horaBuscador.value);
 
             // Realizar el filtrado de productos utilizando los valores obtenidos
-            let resultadosFiltrados = productos.filter(producto => {
+            let resultadosFiltrados = await Promise.all(productos.map(async producto => {
                 console.log("Producto:", producto); // Para depuración
+
                 // Filtrar por palabra clave
-                if (keyword && !producto.nombreProducto.includes(keyword)) {
+                if (palabraClave.value && !producto.nombreProducto.includes(palabraClave.value)) {
                     return false;
                 }
+
                 // Filtrar por categoría
                 if (categoria && (!producto.categoria || producto.categoria.nombre !== categoria)) {
                     return false;
                 }
+
                 // Filtrar por características
                 if (caracteristica && !producto.caracteristicas.some(c => c.nombre.includes(caracteristica))) {
                     return false;
                 }
 
-                //Filtrado por fecha
-                if (producto.fechaInicio && producto.fechaFin) {
-                    const productoFechaInicio = parseDate(producto.fechaInicio);
-                    const productoFechaFin = parseDate(producto.fechaFin);
-                    const fechaInicioFiltroDate = fechaInicioFiltro ? parseDate(fechaInicioFiltro) : null;
-                    const fechaFinFiltroDate = fechaFinFiltro ? parseDate(fechaFinFiltro) : null;
+                console.log("Producto:", producto);
 
-                    // Comparar solo año, mes y día de las fechas
-                    if (fechaInicioFiltroDate &&
-                        (productoFechaInicio < fechaInicioFiltroDate)) {
+                // Filtrado por fecha y hora
+                if (fechaBuscador.value && horaBuscador.value) {
+                    console.log('entre aca');
+                    let productosDisponibles = await buscarProductosDisponibles(fechaBuscador.value, horaBuscador.value);
+
+                    console.log(productosDisponibles);
+
+                    if (productosDisponibles.length == 0) {
+                        console.log("fallé acá");
                         return false;
                     }
 
-                    if (fechaFinFiltroDate &&
-                        (productoFechaFin > fechaFinFiltroDate)) {
+                    let exist = productosDisponibles.some(prodDis => prodDis.idProducto === producto.idProducto);
+
+                    console.log(exist);
+
+                    if (!exist) {
                         return false;
                     }
-                } else if(fechaFinFiltro && fechaInicioFiltro){
-                    return false;
                 }
 
-                //Filtrado por hora
-                if (producto.horaInicio && producto.horaFin) {
-                    if (horaInicioFiltro && producto.horaInicio && producto.horaInicio < horaInicioFiltro) {
-                        return false;
-                    }
-                    if (horaFinFiltro && producto.horaFin && producto.horaFin > horaFinFiltro) {
-                        return false;
-                    }
-                } else if (horaFinFiltro && horaInicioFiltro) {
-                    return false;
-                }
+                return producto;
+            }));
 
-                return true;
-            });
+            resultadosFiltrados = resultadosFiltrados.filter(result => result !== false);
 
             console.log("Resultados filtrados:", resultadosFiltrados); // Para depuración
+
             // Mostrar los resultados filtrados
             mostrarResultados(resultadosFiltrados);
         });
     });
 
+
     //INPUT CARACTERÍSTICAS
     function obtenerCaracteristicas() {
         const selectCaracteristica = document.getElementById("caracteristica");
 
-        const url = 'http://localhost:8080/caracteristicas/all';
+        const url = 'http://54.166.122.219/caracteristicas/all';
         const settings = {
             method: 'GET'
         };
@@ -304,11 +284,28 @@ $(function () {
         let contenedorResultados = document.getElementById("resultados")
         contenedorResultados.appendChild(contenedorTitulo);
         contenedorResultados.appendChild(listaResultados);
-        
+
+    }
+
+    const parseDate = dateString => {
+        const [day, month, year] = dateString.split('/');
+        return new Date(year, month - 1, day); // Mes se resta 1 porque en JavaScript los meses van de 0 a 11
+    };
+
+    async function buscarProductosDisponibles(fecha, hora) {
+        const url = 'http://54.166.122.219/productos/listarProductosDisponibles?fecha=' + fecha + '&hora=' + hora;
+        const settings = {
+            method: 'GET'
+        };
+
+        try {
+            const response = await fetch(url, settings);
+            const data = await response.json();
+            console.log(data);
+            return data;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            return [];
+        }
     }
 });
-
-const parseDate = dateString => {
-    const [day, month, year] = dateString.split('/');
-    return new Date(year, month - 1, day); // Mes se resta 1 porque en JavaScript los meses van de 0 a 11
-};

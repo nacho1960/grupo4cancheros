@@ -46,7 +46,7 @@ window.addEventListener('load', function () {
         });
 
         //Obtener las categorias desde la API
-        const url = 'http://localhost:8080/categorias/listarTodos';
+        const url = 'http://54.166.122.219/categorias/listarTodos';
         const settings = {
             method: 'GET'
         }
@@ -73,7 +73,7 @@ window.addEventListener('load', function () {
 
 
         //Obtener las caracteristicas desde la API
-        const urlCaract = 'http://localhost:8080/caracteristicas/all';
+        const urlCaract = 'http://54.166.122.219/caracteristicas/all';
         const settingsCaract = {
             method: 'GET'
         }
@@ -161,7 +161,7 @@ window.addEventListener('load', function () {
 
 
 function enviarDatos(formData) {
-    const url = 'http://localhost:8080/productos/new';
+    const url = 'http://54.166.122.219/productos/new';
     const settings = {
         method: 'POST',
         headers: {

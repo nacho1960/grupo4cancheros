@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
     const divTitulo = document.getElementById("titulo");
     const divCaracteristicas = document.getElementById("caracteristicas");
 
-    const url = 'http://localhost:8080/productos/' + idProducto;
+    const url = 'http://54.166.122.219/productos/' + idProducto;
     const settings = {
         method: 'GET'
     };
@@ -50,6 +50,7 @@ window.addEventListener('load', function () {
             let verificaHorario = document.createElement("p");
             verificaHorario.textContent = 'Verifica el horario disponible en el día que deseas realizar la reserva';
             verificaHorario.style.fontWeight = 600;
+            verificaHorario.style.textAlign = 'center';
 
             let precio = document.createElement("p");
             precio.textContent = '$ ' + producto.precioHora + ' USD Por Hora';
@@ -68,7 +69,8 @@ window.addEventListener('load', function () {
             inputFecha.id = "fecha";
 
             // Establecer la fecha mínima del input de fecha al día actual
-            let today = new Date().toISOString().split('T')[0];
+            let today = new Date().toLocaleDateString('en-CA');
+            console.log(today);
             inputFecha.value = today;
             inputFecha.min = today;
 
@@ -77,31 +79,15 @@ window.addEventListener('load', function () {
             selectHora.name = "hora";
             selectHora.id = "hora";
 
-            // DATOS EJEMPLO PARA LAS RESERVAS
-            const reservas = {
-                '2024-06-11': ['08:00', '10:00', '12:00'],
-                '2024-06-12': ['09:00', '11:00']
-            };
-
-            // Función para obtener horas ocupadas desde el servidor (aquí simulado con datos locales)
-            function fetchHorasOcupadas(fecha) {
-                return new Promise((resolve) => {
-                    const horarios = reservas[fecha] || [];
-                    resolve(horarios);
-                });
-            }
-            /* VERDADERA FUNCION fetchHorasOcupadas(fecha)
-              function fetchHorasOcupadas(fecha) {
-
-                const horarios = reservas[fecha] || [];
-
-                return horarios;
-                /*const url = http://localhost:8080/reservas/${fecha};
-                const settings = {
+            // Función para actualizar las horas disponibles según la fecha seleccionada
+            function actualizarHorasDisponibles(idProducto) {
+                //Listamos las reservas relacionadas al producto
+                const urlReservas = 'http://54.166.122.219/productos/listarReservas/' + idProducto;
+                const settingsReservas = {
                     method: 'GET'
                 };
-            
-                fetch(url, settings)
+
+                fetch(urlReservas, settingsReservas)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Error: ' + response.statusText);
@@ -110,60 +96,80 @@ window.addEventListener('load', function () {
                     })
                     .then(data => {
                         console.log(data);
-                        horasOcupadas = data[fecha] || [];
-                        
+                        actualizarSelectHoras(data);
                     })
-                    .catch(error => {
-                        console.error('Ha habido un problema al realizar la operacion:', error);
-                    });
-            
-            
-            */
 
-            // Función para actualizar las horas disponibles según la fecha seleccionada
-            function actualizarHorasDisponibles() {
-                let fechaSeleccionada = inputFecha.value;
-
-                fetchHorasOcupadas(fechaSeleccionada).then(horasOcupadas => {
-                    // Limpiar el select de hora
-                    selectHora.innerHTML = '';
-
-                    for (let hour = 8; hour <= 23; hour++) {
-                        let option = document.createElement("option");
-                        let hourString = hour.toString().padStart(2, '0') + ":00";
-                        option.value = hourString;
-                        option.textContent = hourString;
-
-                        if (horasOcupadas.includes(hourString)) {
-                            option.disabled = true;
-                            option.style.backgroundColor = '#FF6666'; // Rojo para ocupado
-                        } else {
-                            option.style.backgroundColor = '#CCFFCC'; // Verde claro para disponible
-                        }
-
-                        selectHora.appendChild(option);
-                    }
-                }).catch(error => {
-                    console.error('Error al obtener las horas ocupadas:', error);
-                });
             }
 
-            // Llamar a la función para inicializar las horas disponibles
-            actualizarHorasDisponibles();
+            function actualizarSelectHoras(reservas) {
+                const inputFecha = document.getElementById("fecha");
+                const selectHora = document.getElementById("hora");
+            
+                inputFecha.addEventListener("change", function () {
+                    const fechaSeleccionada = inputFecha.value;
+                    selectHora.innerHTML = ""; // Limpiamos el select de horas
+            
+                    const currentDate = new Date();  // Fecha actual
+                    const currentHour = currentDate.getHours();  // Hora actual
+            
+                    // Rellenamos el select de horas (suponiendo un horario de 9:00 a 23:00)
+                    for (let hora = 9; hora <= 23; hora++) {
+                        const option = document.createElement("option");
+                        if (hora < 10) {
+                            option.value = `0${hora}:00`;
+                            option.text = `0${hora}:00`;
+                        } else {
+                            option.value = `${hora}:00`;
+                            option.text = `${hora}:00`;
+                        }
+            
+                        // Verificamos si la hora está ocupada o si es una hora pasada del día actual
+                        const horaOcupada = reservas.some(reserva =>
+                            reserva.fechaInicio === formatDate(fechaSeleccionada) &&
+                            parseInt(reserva.horaInicio.split(':')[0]) === hora
+                        );
+            
+                        if (horaOcupada) {  
+                            option.disabled = true;
+                            option.style.backgroundColor = '#FF6666'; // Rojo para ocupado
+                        } else if (fechaSeleccionada === today && hora <= currentHour){
+                            option.disabled = true;
+                            option.style.backgroundColor = 	'#b5b5b5'; // Gris para las horas que son menores a la hora actual 
+                        }
+                        else {
+                            option.style.backgroundColor = '#CCFFCC'; // Verde claro para disponible
+                        }
+            
+                        selectHora.appendChild(option);
+                    }
+                });
+            
+                // Disparar el evento change para inicializar el select de horas con la fecha por defecto
+                inputFecha.dispatchEvent(new Event('change'));
+            }
+            
 
-            // Actualizar las horas disponibles cuando cambia la fecha
-            inputFecha.addEventListener('change', actualizarHorasDisponibles);
+            // Llamar a la función para inicializar las horas disponibles
+            actualizarHorasDisponibles(idProducto);
 
             let buttonReserva = document.createElement('button');
             buttonReserva.classList.add('buttonReserva');
             buttonReserva.textContent = 'Reserva aquí';
 
+            //Evento al botón de reserva aqui y guardado del rango horario y fechas en el localStorage.
             buttonReserva.addEventListener('click', () => {
+                //Al hacer click en el botón dirige hacia la pagina de reservas relacionado al producto
+                window.location.href = 'reservas.html?id=' + idProducto;
+
                 let fechaSeleccionada = inputFecha.value;
                 let horaSeleccionada = selectHora.value;
+
+                //Guardamos la fecha y hora seleccionada en el localStorage
+                localStorage.setItem("fechaSeleccionada", fechaSeleccionada)
+                localStorage.setItem("horaSeleccionada", horaSeleccionada)
+
                 console.log(`Fecha seleccionada: ${fechaSeleccionada}`);
                 console.log(`Hora seleccionada: ${horaSeleccionada}`);
-                // Aquí puedes añadir el código para procesar la reserva
             });
 
             divHorarios.appendChild(tituloHorarios);
@@ -201,4 +207,12 @@ window.addEventListener('load', function () {
             divDetail.appendChild(img);
         });
 });
+
+//Le damos un formato a la fecha:
+function formatDate(dateString) {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+}
+
+
 

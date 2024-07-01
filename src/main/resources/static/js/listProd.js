@@ -33,7 +33,7 @@ window.addEventListener('load', function () {
         tableDivCaract.style.display = 'none';
         formEditCategoría.style.display = "none";
 
-        const url = 'http://localhost:8080/productos/listarTodos';
+        const url = 'http://54.166.122.219/productos/listarTodos';
         const settings = {
             method: 'GET'
         };
@@ -98,7 +98,7 @@ window.addEventListener('load', function () {
 
 function confirmDelete(id) {
     if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
-        const url = 'http://localhost:8080/productos/' + id;
+        const url = 'http://54.166.122.219/productos/' + id;
         const settings = {
             method: 'DELETE'
         };
@@ -115,7 +115,7 @@ function confirmDelete(id) {
 }
 
 function editProduct(id) {
-    const url = 'http://localhost:8080/productos/' + id;
+    const url = 'http://54.166.122.219/productos/' + id;
     const settings = {
         method: 'GET'
     };
@@ -139,7 +139,7 @@ function editProduct(id) {
             checkboxCaractEdit.innerHTML = '<h4>Características</h4>';
 
             // Obtener las categorias desde la API
-            const urlCategorias = 'http://localhost:8080/categorias/listarTodos';
+            const urlCategorias = 'http://54.166.122.219/categorias/listarTodos';
             const settingsCategorias = {
                 method: 'GET'
             };
@@ -180,7 +180,7 @@ function editProduct(id) {
                 });
 
             //Obtener todas las caracteristicas del producto
-            const url = 'http://localhost:8080/caracteristicas/all';
+            const url = 'http://54.166.122.219/caracteristicas/all';
             const settings = {
                 method: 'GET'
             }
@@ -273,7 +273,7 @@ function editProduct(id) {
 }
 
 function updateProduct(id) {
-    const url = 'http://localhost:8080/productos/update';
+    const url = 'http://54.166.122.219/productos/update';
 
     const nombreProducto = document.querySelector('#nombreProdEdit').value;
     const imagenInput = document.querySelector('#imagenEdit');

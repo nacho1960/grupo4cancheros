@@ -1,8 +1,11 @@
 package com.example.cancheros.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
+import com.example.cancheros.entity.Reserva;
 import com.example.cancheros.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,8 +62,19 @@ public class ProductoController {
     }
 
     @GetMapping("/listarPorCategoria/{idCategoria}")
-    public List<Producto> listarPorCategoria( @PathVariable Long idCategoria){
+    public List<Producto> listarPorCategoria (@PathVariable Long idCategoria){
         return productoService.listarPorCategoria(idCategoria);
+    }
+
+    @GetMapping("/listarReservas/{idProducto}")
+    public List<Reserva> listarReservasPorIdProducto (@PathVariable Long idProducto){
+        return productoService.listarReservasPorIdProducto(idProducto);
+    }
+
+    //Url ejemplo para pegarle desde el postman: http://localhost:8080/productos/listarProductosDisponibles?fecha=2024-06-20&hora=09:00
+    @GetMapping("/listarProductosDisponibles")
+    public List<Producto> listarProductosDisponibles(@RequestParam LocalDate fecha, LocalTime hora){
+        return productoService.listarProductosDisponibles(fecha, hora);
     }
 
 }

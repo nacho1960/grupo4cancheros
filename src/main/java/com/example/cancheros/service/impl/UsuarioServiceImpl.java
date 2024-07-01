@@ -27,7 +27,6 @@ import jakarta.persistence.EntityExistsException;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 
-
 @Service
 @Log4j
 public class UsuarioServiceImpl implements UserDetailsService {
@@ -59,10 +58,6 @@ public class UsuarioServiceImpl implements UserDetailsService {
     @Autowired
     //Servicio de envío de correos electrónicos.
     private IEmailService emailService;
-
-    // @Autowired
-    // //Repositorio de tokens de confirmación.
-    // private IConfirmationTokenRepository confirmationTokenRepository;
 
     @Override
     //Método que carga los detalles del usuario (por email) y lanza una excepcion si no se encuentra el usuario.
@@ -97,26 +92,15 @@ public class UsuarioServiceImpl implements UserDetailsService {
         //Guardamos el usuario.
         MyUser savedUser = userRepository.save(usuario);
 
-        // Generamos un token de confirmación
-        // String token = UUID.randomUUID().toString();
-
-        // // Guardamos el token en la base de datos
-        // ConfirmationToken confirmationToken = new ConfirmationToken(token, savedUser);
-        // confirmationTokenRepository.save(confirmationToken);
-
         try {
             // Enviamos el correo electrónico de confirmación
             emailService.sendConfirmationEmail(savedUser);
         } catch (Exception ex) {
-        // Aquí puedes manejar la excepción, por ejemplo, puedes registrar el error y lanzar una excepción personalizada
-        log.error("Error al enviar el correo electrónico de confirmación", ex);
+            // Aquí puedes manejar la excepción, por ejemplo, puedes registrar el error y lanzar una excepción personalizada
+            log.error("Error al enviar el correo electrónico de confirmación", ex);
 
-        // Eliminamos el usuario y el token de confirmación
-        // (para que no queden datos inconsistentes en la base de datos si no se pudo enviar el correo electrónico)
-        // confirmationTokenRepository.delete(confirmationToken);
-        // userRepository.delete(savedUser);
-
-        throw new EmailSendingException("Error al enviar el correo electrónico de confirmación", ex);}
+            throw new EmailSendingException("Error al enviar el correo electrónico de confirmación", ex);
+        }
 
         return savedUser;
     }

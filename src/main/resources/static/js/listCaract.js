@@ -37,7 +37,7 @@ window.addEventListener('load', function () {
         formEditCategoría.style.display = "none";
 
         //Invocamos a la API de Canhceros con el método GET nos devolverá un JSON con una colección de cate
-        const url = 'http://localhost:8080/caracteristicas/all';
+        const url = 'http://54.166.122.219/caracteristicas/all';
         const settings = {
             method: 'GET'
         }
@@ -57,7 +57,7 @@ window.addEventListener('load', function () {
                     let imgCelda = caracteristicaRow.insertCell();
                     let img = document.createElement("img");
                     img.src = caracteristica.imagen;
-                    img.style.maxWidth = '40%';
+                    img.style.maxWidth = '4em';
                     imgCelda.appendChild(img);
                 });
 

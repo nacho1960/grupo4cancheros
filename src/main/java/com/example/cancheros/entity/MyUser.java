@@ -1,11 +1,8 @@
 package com.example.cancheros.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import java.util.Set;
 import lombok.Data;
 
 
@@ -32,6 +29,9 @@ public class MyUser {
     @Column
     private UsuarioRole usuarioRole; //Clase tipo enum, que le dará el rol al usuario.
 
+    @OneToMany //Un usuario puede tener muchas reservas
+    @JsonIgnore
+    private Set<Reserva> reservas;
 
     public MyUser(String nombre, String apellido, String email, String password, UsuarioRole usuarioRole) {
         this.nombre = nombre;

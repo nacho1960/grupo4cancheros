@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const listaReservas = document.getElementById('listaReservas');
 
     // Obtener el id del usuario (debes ajustar esto según cómo obtienes el usuario autenticado)
-    const urlUser = 'http://localhost:8080/user/detail';
+    const urlUser = 'http://54.166.122.219/user/detail';
     const responseUser = await fetch(urlUser, { method: 'GET' });
 
     if (!responseUser.ok) {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const idUsuario = dataUser.id;
 
     // Obtener el historial de reservas del usuario
-    const urlReservas = `http://localhost:8080/reservas/listarReservas/${idUsuario}`;
+    const urlReservas = `http://54.166.122.219/reservas/listarReservas/${idUsuario}`;
     const responseReservas = await fetch(urlReservas, { method: 'GET' });
 
     if (!responseReservas.ok) {
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             listaReservas.appendChild(reservaDiv);
 
             // Obtener la imagen del producto
-            const urlProducto = `http://localhost:8080/productos/${reserva.producto.idProducto}`;
+            const urlProducto = `http://54.166.122.219/productos/${reserva.producto.idProducto}`;
             fetch(urlProducto, { method: 'GET' })
                 .then(response => response.json())
                 .then(producto => {

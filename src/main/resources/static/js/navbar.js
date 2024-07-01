@@ -17,7 +17,7 @@ window.addEventListener('load', function () {
     const menuIcon = document.getElementById("menuIcon");
     const navbarUserResponsiveNoLogged = document.getElementById("navbarUserResponsiveNoLogged");
 
-    const url = 'http://localhost:8080/user/authenticated';
+    const url = 'http://54.166.122.219/user/authenticated';
     const settings = {
         method: 'GET'
     };
@@ -60,7 +60,7 @@ window.addEventListener('load', function () {
             }
         });
 
-    const urlDetails = 'http://localhost:8080/user/detail';
+    const urlDetails = 'http://54.166.122.219/user/detail';
     const settingsDetails = {
         method: 'GET'
     };

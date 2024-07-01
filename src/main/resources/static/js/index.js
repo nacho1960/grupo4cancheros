@@ -2,7 +2,7 @@ window.addEventListener('load', function () {
     const selectCat = document.getElementById('categoria');
 
     //Invocamos a la API de Canhceros con el método GET nos devolverá un JSON con una colección de categorías
-    const url = 'http://localhost:8080/categorias/listarTodos';
+    const url = 'http://54.166.122.219/categorias/listarTodos';
     const settings = {
         method: 'GET'
     }

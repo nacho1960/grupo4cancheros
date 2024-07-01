@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
     const divTitulo = document.getElementById("titulo");
     const divCaracteristicas = document.getElementById("caracteristicas");
 
-    const url = 'http://localhost:8080/productos/' + idProducto;
+    const url = 'http://54.166.122.219/productos/' + idProducto;
     const settings = {
         method: 'GET'
     };
@@ -82,7 +82,7 @@ window.addEventListener('load', function () {
             // Función para actualizar las horas disponibles según la fecha seleccionada
             function actualizarHorasDisponibles(idProducto) {
                 //Listamos las reservas relacionadas al producto
-                const urlReservas = 'http://localhost:8080/productos/listarReservas/' + idProducto;
+                const urlReservas = 'http://54.166.122.219/productos/listarReservas/' + idProducto;
                 const settingsReservas = {
                     method: 'GET'
                 };

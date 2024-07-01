@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
 // Función para mostrar productos aleatorios
 function mostrarProductosAleatorios() {
     const showProductos = document.getElementById('showProductos');
-    const url = 'http://localhost:8080/productos/listarTodos';
+    const url = 'http://54.166.122.219/productos/listarTodos';
 
     fetch(url)
         .then(response => response.json())

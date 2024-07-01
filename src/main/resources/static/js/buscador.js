@@ -58,7 +58,7 @@ window.addEventListener('load', function () {
 
     //Obtengo los productos
     function obtenerProductos() {
-        const url = 'http://localhost:8080/productos/listarTodos';
+        const url = 'http://54.166.122.219/productos/listarTodos';
         const settings = {
             method: 'GET'
         };
@@ -156,7 +156,7 @@ window.addEventListener('load', function () {
     function obtenerCaracteristicas() {
         const selectCaracteristica = document.getElementById("caracteristica");
 
-        const url = 'http://localhost:8080/caracteristicas/all';
+        const url = 'http://54.166.122.219/caracteristicas/all';
         const settings = {
             method: 'GET'
         };
@@ -293,7 +293,7 @@ window.addEventListener('load', function () {
     };
 
     async function buscarProductosDisponibles(fecha, hora) {
-        const url = 'http://localhost:8080/productos/listarProductosDisponibles?fecha=' + fecha + '&hora=' + hora;
+        const url = 'http://54.166.122.219/productos/listarProductosDisponibles?fecha=' + fecha + '&hora=' + hora;
         const settings = {
             method: 'GET'
         };

@@ -27,7 +27,7 @@ window.addEventListener('load', function () {
 
 
     //Obtenemos los datos del producto en cuestión
-    const url = 'http://localhost:8080/productos/' + idProducto;
+    const url = 'http://54.166.122.219/productos/' + idProducto;
     const settings = {
         method: 'GET'
     };
@@ -96,7 +96,7 @@ window.addEventListener('load', function () {
     botonConfirmarReserva.addEventListener('click', async () => {
         try {
             // Obtenemos el id del usuario y lo guardamos en la variable idUsuarioObtenido
-            const urlUser = 'http://localhost:8080/user/detail';
+            const urlUser = 'http://54.166.122.219/user/detail';
             const settingsUser = {
                 method: 'GET'
             };
@@ -132,7 +132,7 @@ window.addEventListener('load', function () {
 
             console.log(formData);
 
-            const url = 'http://localhost:8080/reservas/new';
+            const url = 'http://54.166.122.219/reservas/new';
             const settings = {
                 method: 'POST',
                 headers: {

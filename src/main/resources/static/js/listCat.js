@@ -35,7 +35,7 @@ window.addEventListener('load', function () {
         formEditCategoria.style.display = "none";
 
         //Invocamos a la API de Canhceros con el método GET nos devolverá un JSON con una colección de categorías
-        const url = 'http://localhost:8080/categorias/listarTodos';
+        const url = 'http://54.166.122.219/categorias/listarTodos';
         const settings = {
             method: 'GET'
         }
@@ -101,7 +101,7 @@ function confirmDeleteCategoria(categoria) {
     if (confirm("¿Estás seguro de que deseas eliminar la categoría " + categoria.nombre + "?\n\nLa eliminación de dicha categoría involucra la eliminación de los productos asociados a ella.")) {
 
         //Obtenemos los productos que tienen la categoría a eliminar
-        const urlListadoProductosPorCategoria = 'http://localhost:8080/productos/listarPorCategoria/' + categoria.idCategoria;
+        const urlListadoProductosPorCategoria = 'http://54.166.122.219/productos/listarPorCategoria/' + categoria.idCategoria;
         
         fetch(urlListadoProductosPorCategoria)
             .then(response => {
@@ -118,7 +118,7 @@ function confirmDeleteCategoria(categoria) {
 
                 // Eliminar cada producto asociado
                 const deleteProductPromises = productos.map(producto => {
-                    const urlEliminarProducto = 'http://localhost:8080/productos/' + producto.idProducto;
+                    const urlEliminarProducto = 'http://54.166.122.219/productos/' + producto.idProducto;
                     return fetch(urlEliminarProducto, { method: 'DELETE' })
                         .then(response => {
                             if (!response.ok) {
@@ -132,7 +132,7 @@ function confirmDeleteCategoria(categoria) {
             })
             .then(() => {
                 // Después de eliminar los productos (o si no hay productos), eliminar la categoría
-                const urlEliminarCategoria = 'http://localhost:8080/categorias/' + categoria.idCategoria;
+                const urlEliminarCategoria = 'http://54.166.122.219/categorias/' + categoria.idCategoria;
                 return fetch(urlEliminarCategoria, { method: 'DELETE' });
             })
             .then(response => {
@@ -153,7 +153,7 @@ function confirmDeleteCategoria(categoria) {
 }
 
 function editCategoria(id) {
-    const url = 'http://localhost:8080/categorias/' + id;
+    const url = 'http://54.166.122.219/categorias/' + id;
     const settings = {
         method: 'GET'
     };
@@ -227,7 +227,7 @@ function editCategoria(id) {
 }
 
 function updateCategoria(idCategoria) {
-    const url = 'http://localhost:8080/categorias/update';
+    const url = 'http://54.166.122.219/categorias/update';
 
     const tableDivCat = document.getElementById("divCatTabla");
     const nombre = document.querySelector('#nombreCategoriaEdit').value;

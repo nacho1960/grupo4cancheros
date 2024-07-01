@@ -65,7 +65,7 @@ window.addEventListener('load', function () {
 });
 
 function enviarDatosCaract(formData) {
-    const url = "http://localhost:8080/caracteristicas/new";
+    const url = "http://54.166.122.219/caracteristicas/new";
     const settings = {
         method: 'POST',
         headers: {

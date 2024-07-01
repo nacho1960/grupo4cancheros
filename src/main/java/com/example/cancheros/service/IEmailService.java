@@ -28,7 +28,7 @@ public class IEmailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmail());
         message.setSubject("Confirmación de registro");
-        message.setText("Hola " + user.getNombre() + ",\n\nHas registrado la cuenta con el correo electrónico: " + user.getEmail() + "\n\nConfirmación de registro exitosa. " + "\nPuedes iniciar sesión aquí: http://localhost:8080/login" + "\n\nSaludos,\nEl equipo de Cancheros");
+        message.setText("Hola " + user.getNombre() + ",\n\nHas registrado la cuenta con el correo electrónico: " + user.getEmail() + "\n\nConfirmación de registro exitosa. " + "\nPuedes iniciar sesión aquí: http://54.166.122.219/login" + "\n\nSaludos,\nEl equipo de Cancheros");
         mailSender.send(message);
     }
 

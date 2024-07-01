@@ -58,14 +58,23 @@ header button {
 }
 
 footer {
-    justify-content: left;
-    gap: 0.625rem;
+    justify-content: space-between;
     width: 100%;
     bottom: 0;
     box-sizing: border-box;
     box-shadow: 5px 0px 5px var(--color-quintenary);
-    text-decoration: underline;
-    /* Esta línea asegura que el enlace esté subrayado */
+    text-decoration: none;
+}
+
+footer div {
+    display: flex;
+    justify-content: space-around;
+    gap: 0.625rem;
+    align-items: center;
+}
+
+#iconoWhatsapp{
+    margin-right: 8em ;
 }
 
 main {
@@ -471,6 +480,7 @@ height:45px;
 
     header,
     footer,
+    footer div,
     #buscador,
     #buscadorInput,
     #viewCategorias,
@@ -488,6 +498,11 @@ height:45px;
         bottom: 0;
     }
 
+    #iconoWhatsapp{
+        margin-top: 1em;
+        margin-right: 0;
+    }
+    
     #detailUserMain {
         min-height: max-content;
         margin-top: 40%;
